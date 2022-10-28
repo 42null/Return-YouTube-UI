@@ -1,19 +1,23 @@
 const style = document.createElement('style');
 style.innerHTML = `
-*{
+#ttttttt{
     border-radius: 0 !important;
 }
 
-#voice-search-button{
+#ttttttvoice-search-button{
     background-color: red !important;
     border-radius: 100% !important;
 }
 #search{
     border-radius: 1px !important;
 }
-#avatar > img{
+#ttttttavatar-btn > img{
     background-color: red !important;
     border-radius: 100vh !important;
+}
+#thumbnail{
+    background-color: red !important;
+    border-radius: 0 !important;
 }
     `;
 
