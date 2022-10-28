@@ -3,7 +3,7 @@
   "manifest_version": 2,
   "name": "Youtube With The Actual Corners",
   "version": "1.0",
-  "description": "Extension aimed at making youtube look like it used to before 10/27/2022 when everything became rounded and circular.",
+  "description": "Extension aimed at making youtube look like it used to before everything became rounded and circular.",
 
   "icons": {
     "48": "icons/border-48.png"
@@ -11,14 +11,14 @@
 
   "content_scripts": [
     {
-      "matches": ["*://*.youtube.com/*","*://*.example.net/*"],
+      "matches": ["*://*.youtube.com/*"],
       "js": ["youtubewithactualcorners.js"]
     }
   ],
 
   "browser_specific_settings": {
     "gecko": {
-      "id": "borderify@example.com"
+      "id": "youtubewithactualcorners@example.com"
     }
   },
   "icons": {
