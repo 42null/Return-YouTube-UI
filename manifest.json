@@ -15,7 +15,6 @@
       "js": ["youtubewithactualcorners.js"]
     }
   ],
-
   "browser_specific_settings": {
     "gecko": {
       "id": "youtubewithactualcorners@example.com"
