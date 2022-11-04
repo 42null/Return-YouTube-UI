@@ -75,41 +75,17 @@ style.innerHTML = `
     
 `;
 
+document.head.appendChild(style);
+
 /* Delay of 1 second*/
 setTimeout(function(){
     let elements = document.getElementsByClassName("style-scope yt-formatted-string bold");
     for(let i = 0; i < elements.length; i++){
         if(elements[i].innerText.endsWith("ago")){
             elements[i].style.border = "dotted red 1px";
-
-            let datePublished = document.querySelectorAll("meta[itemprop='datePublished']")[0].getAttribute("content");
-            elements[i].innerText = datePublished;
-
-            /*
-            const words = elements[i].innerText.split(" ");
-            const timeUnitsAmount = words[0];
-            const timeUnit = words[1];
-
-            //Oct 18, 2022
-            const date = new Date();
-
-            let day = date.getDate();
-            let month = date.getMonth() + 1;
-            let year = date.getFullYear();
-            switch(timeUnit) {
-                case "hours":
-                    break;
-                case "years":
-                    // elements[i].innerText = year-timeUnitsAmount;
-                    break;
-                case "months":
-                    break;
-                default:
-                // code block
-            }*/
+            elements[i].textContent = document.querySelectorAll("yt-formatted-string.style-scope.ytd-video-primary-info-renderer")[2].textContent;
 
         }
     }
-}, 1000);//Figure out how to make on load
 
-document.head.appendChild(style);
+}, 1000);//Figure out how to make on load
