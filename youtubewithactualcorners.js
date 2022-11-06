@@ -2,6 +2,22 @@
 // The ability to inject JavaScript or CSS into the tab programmatically, using browser.tabs.executeScript() and browser.tabs.insertCSS()
 //https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/permissions
 
+/* SETTINGS */
+/*
+   Settings are established by default to reset YouTube to look how it did just before the circular UI rework,
+   leave all settings true to return to how it used to be, this changes shapes but also some other things such
+   as colors and text.
+*/
+
+/*At current state not all variables are used, functionally will be added as the project progresses*/
+const         UN_ROUNDED_VIEWS = true; //Makes views squared
+const             PROPER_DATES = true; //Changes main video date info from "<#> years/months/etc. ago" to it's formatted date
+const   SUBSCRIBE_BUTTON_COLOR = true; //Changes subscribed button from white to the original red
+const SAVE_VISIBLE_BEFORE_CLIP = true;
+
+/* Extras (Disabled by default) */
+const SHOW_VIDEO_LENGTH_IN_NOTIFICATIONS = false;
+
 
 const style = document.createElement('style');
 
@@ -38,9 +54,15 @@ style.innerHTML = `
     
 /*SUBSCRIBE THINGS*/
     [aria-label^='Subscribe to ']{
+        border-radius: 2px !important;
+    `;
+if(SUBSCRIBE_BUTTON_COLOR){
+    style.innerHTML += `
         color: var(--yt-spec-static-brand-white) !important;
         background-color: var(--yt-spec-brand-button-background) !important;/*Bring back the red instead of the white*/
-        border-radius: 2px !important;
+    `;
+}
+style.innerHTML += `
     }
     [aria-label^='Unsubscribe from ']{
         border-radius: 2px !important;
@@ -77,15 +99,27 @@ style.innerHTML = `
 
 document.head.appendChild(style);
 
-/* Delay of 1 second*/
+/* Delay of 1 second*/ //Figure out how to make on load correctly
 setTimeout(function(){
-    let elements = document.getElementsByClassName("style-scope yt-formatted-string bold");
-    for(let i = 0; i < elements.length; i++){
-        if(elements[i].innerText.endsWith("ago")){
-            elements[i].style.border = "dotted red 1px";
-            elements[i].textContent = document.querySelectorAll("yt-formatted-string.style-scope.ytd-video-primary-info-renderer")[2].textContent;
-
+    
+    if(PROPER_DATES){
+        let elementsOfFirstRowInDetails = document.getElementsByClassName("style-scope yt-formatted-string bold");
+        for(let i = 0; i < elementsOfFirstRowInDetails.length; i++){
+            if(elementsOfFirstRowInDetails[i].innerText.endsWith("ago")){//If the element was the one that needs to be replaced with the formatted date
+                elementsOfFirstRowInDetails[i].textContent = document.querySelectorAll("yt-formatted-string.style-scope.ytd-video-primary-info-renderer")[2].textContent;
+            }
         }
     }
+    if(SAVE_VISIBLE_BEFORE_CLIP){
+        let elements = document.querySelectorAll('#flexible-item-buttons.style-scope.ytd-menu-renderer > ytd-button-renderer.style-scope.ytd-menu-renderer');
 
-}, 1000);//Figure out how to make on load
+        for(let i = 0; i < elements.length; i++){
+            elements[i].style.backgroundColor = "blue";
+        }
+        elements[0].style.backgroundColor = "pink";
+        elements[1].style.backgroundColor = "red";
+        let container = document.querySelectorAll("#flexible-item-buttons.style-scope.ytd-menu-renderer")[0];
+        container.appendChild(elements[0]);
+
+    }
+}, 2000);
