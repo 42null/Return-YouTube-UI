@@ -1,7 +1,3 @@
-//TODO:
-// The ability to inject JavaScript or CSS into the tab programmatically, using browser.tabs.executeScript() and browser.tabs.insertCSS()
-//https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/permissions
-
 /* SETTINGS */
 /*
    Settings are established by default to reset YouTube to look how it did just before the circular UI rework,
@@ -9,15 +5,18 @@
    as colors and text.
 */
 
-/*At current state not all variables are used, functionally will be added as the project progresses*/
-const         UN_ROUNDED_VIEWS = true; //Makes views squared
+/*DISCLAIMER! At current state not all variables are used, functionally will be added as the project progresses*/
+const         UN_ROUNDED_VIEWS = true; //Makes views squared like they were originally (still some missing), also includes fixed search box at this time.
 const             PROPER_DATES = true; //Changes main video date info from "<#> years/months/etc. ago" to it's formatted date
 const   SUBSCRIBE_BUTTON_COLOR = true; //Changes subscribed button from white to the original red
-const SAVE_VISIBLE_BEFORE_CLIP = true;
+const SAVE_VISIBLE_BEFORE_CLIP = true; //Places save action before the clip action
 
 /* Extras (Disabled by default) */
 const SHOW_VIDEO_LENGTH_IN_NOTIFICATIONS = false;
+const PERCENT_MORE_SPACE_TO_ACTIONS_BAR = 0;//5 for adding one more option, for example, showing share, clip, and save instead of just share and clip
 
+/* DEBUGGING */
+const SHOW_CHANGES_BACKGROUNDS = false; //changes background color of all changed places to orange
 
 const style = document.createElement('style');
 
@@ -97,7 +96,9 @@ style.innerHTML += `
     
 `;
 
-document.head.appendChild(style);
+if(UN_ROUNDED_VIEWS){
+    document.head.appendChild(style);
+}
 
 /* Delay of 1 second*/ //Figure out how to make on load correctly
 setTimeout(function(){
@@ -113,13 +114,27 @@ setTimeout(function(){
     if(SAVE_VISIBLE_BEFORE_CLIP){
         let elements = document.querySelectorAll('#flexible-item-buttons.style-scope.ytd-menu-renderer > ytd-button-renderer.style-scope.ytd-menu-renderer');
 
-        for(let i = 0; i < elements.length; i++){
-            elements[i].style.backgroundColor = "blue";
+
+        let actionsRightOfDislike = document.querySelectorAll("ytd-button-renderer.style-scope.ytd-menu-renderer");
+        for(let i = 0; i < actionsRightOfDislike.length; i++){
+            // actionsRightOfDislike[i].style.backgroundColor = "darkgreen";
         }
-        elements[0].style.backgroundColor = "pink";
-        elements[1].style.backgroundColor = "red";
-        let container = document.querySelectorAll("#flexible-item-buttons.style-scope.ytd-menu-renderer")[0];
-        container.appendChild(elements[0]);
+        // const shareButton = actionsRightOfDislike[0].cloneNode(true);
+        // const saveButton = actionsRightOfDislike[2].cloneNode(true);
+
+        // shareButton.style.backgroundColor = "red";
+        // saveButton.style.backgroundColor = "blue";
+        // actionsRightOfDislike[0].replaceWith(saveButton);
+        // actionsRightOfDislike[2].replaceWith(shareButton);
+
+        actionsRightOfDislike[0].parentNode.insertBefore(actionsRightOfDislike[2], actionsRightOfDislike[0]);//.parentNode.firstChild
+
+        // let elements3 = document.querySelectorAll("ytd-watch-metadata[modern-metapanel-order]#actions.ytd-watch-metadata")[0];
+    if(PERCENT_MORE_SPACE_TO_ACTIONS_BAR !== 0){
+        let elements3 = document.getElementById("actions");
+        elements3.style.minWidth = "calc(5"+PERCENT_MORE_SPACE_TO_ACTIONS_BAR+"% - 6px)";
+        elements3.style.marginLeft = "-"+PERCENT_MORE_SPACE_TO_ACTIONS_BAR+"%";
+    }
 
     }
-}, 2000);
+}, 1000);
