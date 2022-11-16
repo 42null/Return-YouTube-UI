@@ -8,12 +8,12 @@
 /*DISCLAIMER! At current state not all variables are used, functionally will be added as the project progresses*/
 const         UN_ROUNDED_VIEWS = true; //Makes views squared like they were originally (still some missing), also includes fixed search box at this time.
 const             PROPER_DATES = true; //Changes main video date info from "<#> years/months/etc. ago" to it's formatted date
-const   SUBSCRIBE_BUTTON_COLOR = true; //Changes subscribed button from white to the original red
+const   SUBSCRIBE_BUTTON_COLOR = true; //Changes subscribe button from white to the original red
 const SAVE_VISIBLE_BEFORE_CLIP = true; //Places save action before the clip action
 
 /* Extras (Disabled by default) */
-const SHOW_VIDEO_LENGTH_IN_NOTIFICATIONS = false;
-const PERCENT_MORE_SPACE_TO_ACTIONS_BAR = 0;//5 for adding one more option, for example, showing share, clip, and save instead of just share and clip
+const SHOW_VIDEO_LENGTH_IN_NOTIFICATIONS = false;//Shows video length in notifications like it does in thumbnail views
+const PERCENT_MORE_SPACE_TO_ACTIONS_BAR = 0;//+5 for adding one more option, for example, showing share, clip, and save instead of just share and clip
 
 /* DEBUGGING */
 const SHOW_CHANGES_BACKGROUNDS = false; //changes background color of all changed places to orange
