@@ -85,14 +85,13 @@ style.innerHTML += `
         
     /*[data-layer="4"]{
         background-color: blue !important;
-        background-color:red !important;
+        background-color: red !important;
     }*/
 /*ANNOTATIONS*/
 /*PLAYER SETTINGS*/
     .ytp-settings-menu{
         border-radius: 0 !important;
     }
-
     
 `;
 
@@ -112,29 +111,49 @@ setTimeout(function(){
         }
     }
     if(SAVE_VISIBLE_BEFORE_CLIP){
-        let elements = document.querySelectorAll('#flexible-item-buttons.style-scope.ytd-menu-renderer > ytd-button-renderer.style-scope.ytd-menu-renderer');
+        // let flexActionElements = document.querySelectorAll('#flexible-item-buttons.style-scope.ytd-menu-renderer > ytd-button-renderer.style-scope.ytd-menu-renderer');
+
+        let actionsRightOfDislike = document.querySelectorAll(".ytd-menu-renderer>ytd-button-renderer.style-scope.ytd-menu-renderer");
 
 
-        let actionsRightOfDislike = document.querySelectorAll("ytd-button-renderer.style-scope.ytd-menu-renderer");
-        for(let i = 0; i < actionsRightOfDislike.length; i++){
-            // actionsRightOfDislike[i].style.backgroundColor = "darkgreen";
+        let shareButton = null;
+        let saveButton = null;
+        let thanksButton = null;
+        let clipButton = null;
+        for (let i = 0; i < actionsRightOfDislike.length; i++){
+            const actionRightOfDislike = actionsRightOfDislike[i].textContent;
+            if(actionRightOfDislike.includes("Share")){
+                if(!shareButton)
+                    shareButton = actionsRightOfDislike[i];
+            }else if(actionRightOfDislike.includes("Thanks")){
+                if(!thanksButton)
+                    thanksButton = actionsRightOfDislike[i];
+            }else if(actionRightOfDislike.includes("Cli")){
+                if(!clipButton)
+                    clipButton = actionsRightOfDislike[i];
+            }else if(actionRightOfDislike.includes("Save")){
+                if(!saveButton)
+                    saveButton = actionsRightOfDislike[i];
+            }
+
+
         }
-        // const shareButton = actionsRightOfDislike[0].cloneNode(true);
-        // const saveButton = actionsRightOfDislike[2].cloneNode(true);
 
-        // shareButton.style.backgroundColor = "red";
-        // saveButton.style.backgroundColor = "blue";
-        // actionsRightOfDislike[0].replaceWith(saveButton);
-        // actionsRightOfDislike[2].replaceWith(shareButton);
 
-        actionsRightOfDislike[0].parentNode.insertBefore(actionsRightOfDislike[2], actionsRightOfDislike[0]);//.parentNode.firstChild
+        /*Need to check to avoid error on null, checks all just for completeness and just
+         in case something get changed by another extension or a different view setting*/
+        if(saveButton && shareButton)
+            actionsRightOfDislike[0].parentNode.insertBefore(saveButton, shareButton);//.parentNode.firstChild
+        // if(!clipButton)
+        // if(!thanksButton)
 
-        // let elements3 = document.querySelectorAll("ytd-watch-metadata[modern-metapanel-order]#actions.ytd-watch-metadata")[0];
+
+        // MOVE and not just  set
+    }
     if(PERCENT_MORE_SPACE_TO_ACTIONS_BAR !== 0){
         let elements3 = document.getElementById("actions");
         elements3.style.minWidth = "calc(5"+PERCENT_MORE_SPACE_TO_ACTIONS_BAR+"% - 6px)";
         elements3.style.marginLeft = "-"+PERCENT_MORE_SPACE_TO_ACTIONS_BAR+"%";
     }
 
-    }
-}, 1000);
+}, 2000);

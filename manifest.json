@@ -1,27 +1,27 @@
 {
 
   "manifest_version": 2,
-  "name": "Youtube With The Actual Corners",
+  "name": "Return Youtube UI",
   "version": "1.0",
   "description": "Extension aimed at making youtube look like it used to before everything became rounded and circular.",
 
   "icons": {
-    "48": "icons/border-48.png"
+    "512": "icons/ReturnYoutubeUIIconV2R1_512.png"
   },
 
   "content_scripts": [
     {
       "matches": ["*://*.youtube.com/*"],
-      "js": ["youtubewithactualcorners.js"]
+      "js": ["returnYoutubeUI.js"]
     }
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "youtubewithactualcorners@example.com"
+      "id": "returnYoutubeUI@example.com"
     }
   },
   "icons": {
-    "48": "icons/border-48.png"
+    "48": "icons/ReturnYoutubeUIIconV2R1_512.png"
   }
 
 

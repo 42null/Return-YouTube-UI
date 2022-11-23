@@ -1,5 +1,5 @@
-# YoutubeWithActualCornersFirefox
-A firefox extension aimed at making Youtube look like it did before they made everything rounded.
+# Return YouTube UI
+A Firefox extension aimed at making YouTube look like it did before they made everything rounded.
 
 
 _Currently still in progress and not yet published to the Firefox Add-Ons as an extension._
@@ -29,6 +29,6 @@ SHOW_CHANGES_BACKGROUNDS | Planned | Changes background color of all changed pla
 
 If you try it out, please let me know if the changes feels natural on your device/aspect ratio.
 
-**In addition, any screenshots or saved pages from before the UI change would be appricated if you have them. Finding diffrences that could be applied without creating the old view from scratch would simplifly the process.**
+**In addition, any screenshots or saved pages from before the UI change would be appreciated if you have them. Finding diffrences that could be applied without creating the old view from scratch would simplifly the process.**
 
 Feel free to message me with any questions or suggestions! :)
