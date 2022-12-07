@@ -9,19 +9,21 @@
     "512": "icons/ReturnYoutubeUIIconV2R1_512.png"
   },
 
+  "background": {
+    "scripts": ["background.js"]
+  },
+
   "content_scripts": [
     {
       "matches": ["*://*.youtube.com/*"],
       "js": ["returnYoutubeUI.js"]
     }
   ],
+
   "browser_specific_settings": {
     "gecko": {
       "id": "returnYoutubeUI@example.com"
     }
-  },
-  "icons": {
-    "48": "icons/ReturnYoutubeUIIconV2R1_512.png"
   }
 
 

@@ -1,9 +1,13 @@
 # Return YouTube UI
+
 A Firefox extension aimed at making YouTube look like it did before they made everything rounded.
 
 
 _Coming to the Firefox Add-Ons page as an extension once the settings are moved to a Add-On window and a logo is decided on._
 
+<div style="text-align: center;">
+<img src="./icons/ReturnYoutubeUIIconV2R1_512.png" alt="Return Youtube UI Logo]" />
+</div>
 
 ---
 
@@ -11,7 +15,7 @@ _Coming to the Firefox Add-Ons page as an extension once the settings are moved 
 
 Implemented/In Progress/Planned fixes to revert the UI to pre-"circle crazy" times, these flags can be changed at the very top of "_returnYoutubeUI.js_"
 
-#### DEFAULT ON (Core priniples of return)
+#### DEFAULT ON (Core principles of return)
 OPTION | STATUS | DESCRIPTION
 -------|--------|------------
 UN_ROUNDED_VIEWS | Most noticle elements covered | Makes views squared like they were originally, also includes fixed search box at this time.
