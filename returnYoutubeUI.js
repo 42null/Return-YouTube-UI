@@ -6,6 +6,13 @@
    leave all settings true to return to how it used to be, this changes shapes but also some other things such
    as colors and text.
 */
+// chrome.runtime.onMessage.addListener(msgObj => {
+//     // do something with msgObj
+// });
+
+addEventListener('change', (event) => {
+    // alert("From inside of returnUI.js");
+});
 
 
 /*DISCLAIMER! At current state not all variables are used, functionally will be added as the project progresses*/
@@ -108,7 +115,7 @@ if(UN_ROUNDED_VIEWS){
 }
 
 script.innerHTML = `
-    function applyGeneratedScripts(){ 
+    function applyGeneratedScripts(){
         console.log("[ReturnYoutubeUI]: Activator call was received");
     `;
 
@@ -220,14 +227,30 @@ activator.innerHTML = `
     video.addEventListener('playing', function() {
         if(video.src !== lastSrc){
             lastSrc = video.src;
-    
             applyGeneratedScripts();
         }
     });
+    document.getElementById("injectedInvisibleClickable").addEventListener("change", function(){
+        alert("injectedInvisibleClickable");
+        console.log(("injectedInvisibleClickable"));
+    });
 `;
 
-
+let injectedInvisibleClickable = document.createElement("button");
+injectedInvisibleClickable.id = "injectedInvisibleClickable";
+injectedInvisibleClickable.nodeName = "injectedInvisibleClickable";
+document.body.appendChild(injectedInvisibleClickable);
+activator.innerHTML+= `
+    document.getElementById("injectedInvisibleClickable").addEventListener("click", function(){
+        console.log("[ReturnYoutubeUI]: injectedInvisibleClickable was 'clicked'");
+        applyGeneratedScripts();
+    });
+`;
 
 document.body.appendChild(injectedDiv);
 document.body.appendChild(activator);
 
+document.getElementById("injectedInvisibleClickable").addEventListener("change", function(){
+    console.log("[ReturnYoutubeUI]: injectedInvisibleClickableChangeListener");
+
+});

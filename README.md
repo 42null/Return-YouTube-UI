@@ -6,7 +6,7 @@ An extension aimed at making YouTube look like it did before they made everythin
 _Coming to the Firefox Add-Ons page as an extension once the settings are moved to an Add-On window and a logo is decided on._
 
 <div style="text-align: center;">
-<img src="./icons/ReturnYoutubeUIIconV2R2_512.png" alt="Return Youtube UI Logo]" width="128" height="auto" />
+<img src="./icons/ReturnYoutubeUIIconV2R2_512.png" alt="[Return Youtube UI Logo]" width="128" height="auto" />
 </div>
 
 ---

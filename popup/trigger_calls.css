@@ -1,0 +1,66 @@
+/*
+The starting point of this file started as a fork from the example repository in
+https://github.com/mdn/webextensions-examples/tree/master/beastify (choose_beast.css)
+*/
+
+html, body {
+  width: 210px;
+  /*font-family: Segoe UI, system-ui;*/
+  /*padding: 3%;*/
+  font-family: Gotham, system-ui;
+  margin-top: -5px;
+  border-radius: 0px;
+  text-align: justify;
+}
+
+.hidden {
+  display: none;
+}
+
+.smaller {
+  font-size: 0.7em;
+}
+
+button:hover {
+  /*background-color: #CFF2F2;*/
+  --alpha: 1;
+}
+
+button[type="callFunction"] {
+  background-color: #FBFBC9;
+}
+
+button[type="callFunction"]:hover {
+  /*background-color: #EAEA9D;*/
+}
+
+#titlePage{
+  text-align: center;
+}
+
+#error-content{
+   padding-left: 2%;
+  padding-right: 2%;
+}
+
+.homepageLink{
+  text-align: center;
+}
+
+button {
+  border: none;
+  width: 100%;
+  margin: 3% auto;
+  padding: 4px;
+  text-align: center;
+  font-size: 1.5em;
+  cursor: pointer;
+  background-color: #ff3349ff;
+}
+/*MORE SPECIFIC SELECTIONS*/
+#popup-content h3{
+  text-align: center;
+  margin-top: 3px;
+  margin-bottom: 2px;
+  text-decoration: underline;
+}

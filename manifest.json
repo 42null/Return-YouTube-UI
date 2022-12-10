@@ -5,9 +5,21 @@
   "version": "1.0",
   "author": "42null",
   "description": "An extension aimed at making youtube look like it used to before everything became rounded and circular.",
+  "homepage_url": "https://github.com/42null/Return-YouTube-UI",
 
-  "icons": {
-    "512": "icons/ReturnYoutubeUIIconV2R2_512.png"
+  "permissions": [
+    "*://*.youtube.com/*"
+  ],
+
+  "browser_action": {
+    "default_icon": "icons/ReturnYoutubeUIIconV2R2_512.png",
+    "theme_icons": [{
+      "light": "icons/ReturnYoutubeUIIconV2R2_512.png",
+      "dark": "icons/ReturnYoutubeUIIconV2R2_512.png",
+      "size": 32
+    }],
+    "default_title": "Return Youtube UI",
+    "default_popup": "popup/trigger_calls.html"
   },
 
   "content_scripts": [
@@ -15,6 +27,10 @@
       "matches": ["*://*.youtube.com/*"],
       "js": ["returnYoutubeUI.js"]
     }
-  ]
+  ],
+
+  "icons": {
+    "512": "icons/ReturnYoutubeUIIconV2R2_512.png"
+  }
 
 }
