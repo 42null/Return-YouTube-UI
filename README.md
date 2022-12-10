@@ -3,7 +3,7 @@
 An extension aimed at making YouTube look like it did before they made everything rounded. Firefox officially supported, not all features currently compatible with Chromium-based browsers.
 
 
-_Coming to the Firefox Add-Ons page as an extension once the settings are moved to an Add-On window and a logo is decided on._
+_Will publish to the Firefox Add-Ons page as an extension once the settings are moved to an Add-On window and a logo is decided on._
 
 <div style="text-align: center;">
 <img src="./icons/ReturnYoutubeUIIconV2R2_512.png" alt="[Return Youtube UI Logo]" width="128" height="auto" />
@@ -19,7 +19,7 @@ Implemented/In Progress/Planned fixes to revert the UI to pre-"circle crazy" tim
 OPTION | STATUS | DESCRIPTION
 -------|--------|------------
 UN_ROUNDED_VIEWS | Most noticle elements covered | Makes views squared like they were originally, also includes fixed search box at this time.
-PROPER_DATES | Works in some cases | Changes main video date info from "<#> years/months/etc. ago" to it's formatted date.
+PROPER_DATES | Works in some cases | Changes main video date info from "<#> years/months/etc. ago" to it's published date.
 SUBSCRIBE_BUTTON_COLOR | **Working** | Changes subscribe button from white/black to the original red.
 SAVE_VISIBLE_BEFORE_CLIP | Under development (works in some cases) | Places save action before the clip action.
 
