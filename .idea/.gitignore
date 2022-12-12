@@ -1,5 +1,9 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+# Other ignore's
+*.zip
+*.DS_Store
+TODO.txt
 # Editor-based HTTP Client requests
 /httpRequests/
