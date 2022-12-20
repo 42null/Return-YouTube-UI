@@ -40,6 +40,13 @@ let activator = document.createElement('script');
 //Element to hold injected items and insert within
 let injectedDiv = document.createElement("div");
 
+let style1 = document.createElement('link');
+style1.rel = 'stylesheet';
+style1.type = 'text/css';
+style1.href = browser.runtime.getURL("injection_parts/searchbox.css");
+document.head.appendChild(style1);
+// alert(style1.href);
+// <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 
 if(UN_ROUNDED_VIEWS){
     style.innerHTML = `
@@ -51,13 +58,7 @@ if(UN_ROUNDED_VIEWS){
             background-color: orange !important;
             border-radius: 0 !important;
         }
-    /*SEARCH BOX (main)*/
-        #container.ytd-searchbox {
-            border-radius: 2px 0px 0px 2px  !important;
-        }
-        button#search-icon-legacy {
-            border-radius: 0px 2px 2px 0px !important;
-        }
+
     /*FEEDBACK BUTTONS (remove background line to get corners)*/
         [aria-label='Share'], [aria-label='Dislike this video'], [aria-label^='like this video along with '], [aria-label$=' likes'], [aria-label='Clip'], [aria-label='Save to playlist']{
             border-radius: 0px !important;
@@ -213,6 +214,9 @@ if(PERCENT_MORE_SPACE_TO_ACTIONS_BAR !== 0){
     `;
 }
 
+//Append id's so the injected-ids can be located
+style.id = "returnYoutubeUI_style";
+
 injectedDiv.appendChild(style);
 injectedDiv.appendChild(script);
 
@@ -230,18 +234,18 @@ activator.innerHTML = `
             applyGeneratedScripts();
         }
     });
-    document.getElementById("injectedInvisibleClickable").addEventListener("change", function(){
-        alert("injectedInvisibleClickable");
-        console.log(("injectedInvisibleClickable"));
+    document.getElementById("returnYoutubeUI_invisibleClickable").addEventListener("change", function(){
+        alert("returnYoutubeUI_invisibleClickable");
+        console.log(("returnYoutubeUI_invisibleClickable"));
     });
 `;
 
 let injectedInvisibleClickable = document.createElement("button");
-injectedInvisibleClickable.id = "injectedInvisibleClickable";
-injectedInvisibleClickable.nodeName = "injectedInvisibleClickable";
+injectedInvisibleClickable.id = "returnYoutubeUI_invisibleClickable";
+injectedInvisibleClickable.nodeName = "returnYoutubeUI_invisibleClickable";
 document.body.appendChild(injectedInvisibleClickable);
 activator.innerHTML+= `
-    document.getElementById("injectedInvisibleClickable").addEventListener("click", function(){
+    document.getElementById("returnYoutubeUI_invisibleClickable").addEventListener("click", function(){
         console.log("[ReturnYoutubeUI]: injectedInvisibleClickable was 'clicked'");
         applyGeneratedScripts();
     });
@@ -250,7 +254,7 @@ activator.innerHTML+= `
 document.body.appendChild(injectedDiv);
 document.body.appendChild(activator);
 
-document.getElementById("injectedInvisibleClickable").addEventListener("change", function(){
+document.getElementById("returnYoutubeUI_invisibleClickable").addEventListener("change", function(){
     console.log("[ReturnYoutubeUI]: injectedInvisibleClickableChangeListener");
 
 });

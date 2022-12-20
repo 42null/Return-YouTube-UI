@@ -15,7 +15,16 @@ https://github.com/mdn/webextensions-examples/tree/master/beastify (beastify.js)
   window.hasRun = true;
 
   function manuallyTriggerVideoSwap() {
-    document.getElementById("injectedInvisibleClickable").click();// = document.createElement("injectedInvisibleClickable");
+    let injectedTriggerFound = document.getElementById("returnYoutubeUI_invisibleClickable");
+    if(!injectedTriggerFound){//If it is found
+      console.log("[ReturnYoutubeUI]: Injected trigger not found, adding again and recalling.");
+      let injectedInvisibleClickable = document.createElement("button");
+      injectedInvisibleClickable.id = "returnYoutubeUI_invisibleClickable";
+      injectedInvisibleClickable.nodeName = "returnYoutubeUI_invisibleClickable";
+      document.body.appendChild(injectedInvisibleClickable);//TODO: DUPLICATE CODE, FIX
+      injectedTriggerFound = document.getElementById("returnYoutubeUI_invisibleClickable");
+    }
+    injectedTriggerFound.click();// = document.createElement("returnYoutubeUI_invisibleClickable");
 
   }
 

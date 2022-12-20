@@ -34,7 +34,9 @@ function listenForClicks() {
      */
 
     if (e.target.type === "submit") {
-      if(e.target.id === "ManuallyReApplyJSPageModifications"){
+      if(e.target.id === "reloadExtension"){
+        browser.runtime.reload();
+      }else if(e.target.id === "ManuallyReApplyJSPageModifications"){
         browser.tabs.query({currentWindow: true, active: true}).then(reapplyGeneratedJS).catch(reportError);//TODO: Make double check for if a youtube page.
       }
     }
