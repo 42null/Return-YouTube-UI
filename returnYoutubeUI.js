@@ -1,14 +1,11 @@
 /* SETTINGS */
-// noinspection GrazieInspection
 
 /*
    Settings are established by default to reset YouTube to look how it did just before the circular UI rework,
    leave all settings true to return to how it used to be, this changes shapes but also some other things such
    as colors and text.
 */
-// chrome.runtime.onMessage.addListener(msgObj => {
-//     // do something with msgObj
-// });
+
 
 addEventListener('change', (event) => {
     // alert("From inside of returnUI.js");
@@ -40,98 +37,68 @@ let activator = document.createElement('script');
 //Element to hold injected items and insert within
 let injectedDiv = document.createElement("div");
 
-let style1 = document.createElement('link');
-style1.rel = 'stylesheet';
-style1.type = 'text/css';
-style1.href = browser.runtime.getURL("injection_parts/searchbox.css");
-document.head.appendChild(style1);
-// alert(style1.href);
-// <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+
+function createElementLink(styleSheetName) {
+    console.log("~~~~~~~~styleSheetName="+styleSheetName);
+    if(styleSheetName.endsWith(".css")){
+        const stylesheetLinkElement = document.createElement('link');
+        stylesheetLinkElement.rel = 'stylesheet';
+        stylesheetLinkElement.type = 'text/css';
+        stylesheetLinkElement.href = browser.runtime.getURL(styleSheetName);
+        return stylesheetLinkElement;
+    }else if(styleSheetName.endsWith(".js")){
+        const stylesheetLinkElement=document.createElement('script')
+        stylesheetLinkElement.setAttribute("type","text/javascript")
+        stylesheetLinkElement.setAttribute("src", browser.runtime.getURL(styleSheetName))
+        return stylesheetLinkElement;
+    }
+    // return stylesheetLinkElement;
+}
+
+let helperFunctions;
+
+let unroundedViewCSS;
+let unroundedLinkWindowsJS;
+let unroundedSearchboxCSS;
+let saveVisibleBeforeClip;
+
+let originalSubscribeButtonColorCSS;
+
+helperFunctions = createElementLink("injection_parts/helper_functions.js");
+document.head.appendChild(helperFunctions);
+
+
 
 if(UN_ROUNDED_VIEWS){
-    style.innerHTML = `
-    /*THUMBNAILS*/
-        #thumbnail{
-            border-radius: 0 !important;
-        }
-        .ytp-videowall-still-round-medium .ytp-videowall-still-image{
-            background-color: orange !important;
-            border-radius: 0 !important;
-        }
+    unroundedViewCSS = createElementLink("injection_parts/return/unrounded_views.css");
 
-    /*FEEDBACK BUTTONS (remove background line to get corners)*/
-        [aria-label='Share'], [aria-label='Dislike this video'], [aria-label^='like this video along with '], [aria-label$=' likes'], [aria-label='Clip'], [aria-label='Save to playlist']{
-            border-radius: 0px !important;
-            background: none !important;
-        }
-        /*Popup Menus*/
-            /*SAVE & SHARE*/
-            .ytd-popup-container{
-                border-radius: 0 !important;
-            }
-        
-    /*SUBSCRIBE THINGS*/
-        [aria-label^='Subscribe to ']{
-            border-radius: 2px !important;
-        `;
-    if(SUBSCRIBE_BUTTON_COLOR){
-        style.innerHTML += `
-            color: var(--yt-spec-static-brand-white) !important;
-            background-color: var(--yt-spec-brand-button-background) !important;/*Bring back the red instead of the white*/
-        `;
-    }
-    style.innerHTML += `
-        }
-        [aria-label^='Unsubscribe from ']{
-            border-radius: 2px !important;
-        }
-    /*PLAYLIST LIST*/
-        .ytd-playlist-panel-renderer{
-            border-radius: 0 !important;
-        }
-    /*MINIPLAYER*/
-        video{ /*Also does the main but this should be more efficient*/
-            border-radius: 0 !important;
-        }
-        /*When hovering layer*/
-        .ytp-miniplayer-scrim{
-            border-radius: 0 !important;
-        }
-    /*NOTIFICATIONS*/ /*Also taken care of under "Popup Menus"
-        ytd-multi-page-menu-renderer{
-            border-radius: 0 !important;
-        }*/
-            
-        /*[data-layer="4"]{
-            background-color: blue !important;
-            background-color: red !important;
-        }*/
-    /*ANNOTATIONS*/
-    /*PLAYER SETTINGS*/
-        .ytp-settings-menu{
-            border-radius: 0 !important;
-        }
-        
-    `;
+    unroundedSearchboxCSS = createElementLink("injection_parts/return/searchbox.css");
+
+    document.head.appendChild(unroundedViewCSS);
+    document.head.appendChild(unroundedSearchboxCSS);
 }
+
+/* Video link windows inside the player that show up during playtime */
+
+
+if(UN_ROUNDED_LINK_WINDOWS){
+
+    unroundedLinkWindowsJS = createElementLink("injection_parts/return/unrounded_link_windows.js");
+    document.head.appendChild(unroundedLinkWindowsJS);
+}
+
+
+if(SUBSCRIBE_BUTTON_COLOR){
+    originalSubscribeButtonColorCSS = createElementLink("injection_parts/return/subscribe_button_color.css");
+    document.head.appendChild(originalSubscribeButtonColorCSS);
+}
+
 
 script.innerHTML = `
     function applyGeneratedScripts(){
-        console.log("[ReturnYoutubeUI]: Activator call was received");
+        console.log("[Return Youtube UI]: Activator call was received");
     `;
 
-
-/* Video link windows inside the player that show up during playtime */
-if(UN_ROUNDED_LINK_WINDOWS){
-    script.innerHTML += `
-        let windows = document.querySelectorAll('.ytp-ce-covering-overlay');
-
-        for (let i = 0; i < windows.length; i++) {
-            windows[i].parentElement.style.borderRadius = '0px';
-        }
-
-    `;
-}
 
 /* Website link windows inside the player that show up during playtime are square but when
  they expand after being hovered over, they expand to have rounded corners after the UI update,
@@ -163,46 +130,8 @@ if(PROPER_DATES){
 }
 
 if(SAVE_VISIBLE_BEFORE_CLIP){
-    script.innerHTML += `
-        // let flexActionElements = document.querySelectorAll('#flexible-item-buttons.style-scope.ytd-menu-renderer > ytd-button-renderer.style-scope.ytd-menu-renderer');
-    
-        let actionsRightOfDislike = document.querySelectorAll(".ytd-menu-renderer>ytd-button-renderer.style-scope.ytd-menu-renderer");
-    
-    
-        let shareButton = null;
-        let saveButton = null;
-        let thanksButton = null;
-        let clipButton = null;
-        for (let i = 0; i < actionsRightOfDislike.length; i++){
-            const actionRightOfDislike = actionsRightOfDislike[i].textContent;
-            if(actionRightOfDislike.includes("Share")){
-                if(!shareButton)
-                    shareButton = actionsRightOfDislike[i];
-            }else if(actionRightOfDislike.includes("Thanks")){
-                if(!thanksButton)
-                    thanksButton = actionsRightOfDislike[i];
-            }else if(actionRightOfDislike.includes("Cli")){
-                if(!clipButton)
-                    clipButton = actionsRightOfDislike[i];
-            }else if(actionRightOfDislike.includes("Save")){
-                if(!saveButton)
-                    saveButton = actionsRightOfDislike[i];
-            }
-    
-    
-        }
-    
-   
-        /*Need to check to avoid error on null, checks all just for completeness and just
-         in case something get changed by another extension or a different view setting*/
-        if(saveButton && shareButton)
-            actionsRightOfDislike[0].parentNode.insertBefore(saveButton, shareButton);//.parentNode.firstChild
-        // if(!clipButton)
-        // if(!thanksButton)
-    
-    
-        // MOVE and not just  set
-    `;
+    saveVisibleBeforeClip = createElementLink("injection_parts/return/save_visible_before_clip.js");
+    document.head.appendChild(saveVisibleBeforeClip);
 }
 
 
@@ -214,17 +143,19 @@ if(PERCENT_MORE_SPACE_TO_ACTIONS_BAR !== 0){
     `;
 }
 
+script.innerHTML+=` unroundLinkWindows();`;
+script.innerHTML+=` };`;
+
 //Append id's so the injected-ids can be located
 style.id = "returnYoutubeUI_style";
 
 injectedDiv.appendChild(style);
 injectedDiv.appendChild(script);
 
-script.innerHTML+=` };`;
 
-/* Run the scrips again that were added to the page using this as youtube switches videos
+/* Run the scrips again that were added to the page using this as YouTube switches videos
    in a way that makes it difficult to just see if the page url changes. This also means
-   we do not need to worry about loosing the function we created between different pages. */
+   we do not need to worry about losing the function we created between different pages. */
 activator.innerHTML = `
     let video = document.getElementsByTagName('video')[0];
     let lastSrc = "-1";
@@ -234,11 +165,13 @@ activator.innerHTML = `
             applyGeneratedScripts();
         }
     });
-    document.getElementById("returnYoutubeUI_invisibleClickable").addEventListener("change", function(){
-        alert("returnYoutubeUI_invisibleClickable");
-        console.log(("returnYoutubeUI_invisibleClickable"));
-    });
+    // document.getElementById("returnYoutubeUI_invisibleClickable").addEventListener("change", function(){
+    //     alert("returnYoutubeUI_invisibleClickable");
+    //     console.log(("returnYoutubeUI_invisibleClickable"));
+    // });
+    
 `;
+//TODO: Above commented out code is not executing, possible removal
 
 let injectedInvisibleClickable = document.createElement("button");
 injectedInvisibleClickable.id = "returnYoutubeUI_invisibleClickable";
@@ -246,7 +179,7 @@ injectedInvisibleClickable.nodeName = "returnYoutubeUI_invisibleClickable";
 document.body.appendChild(injectedInvisibleClickable);
 activator.innerHTML+= `
     document.getElementById("returnYoutubeUI_invisibleClickable").addEventListener("click", function(){
-        console.log("[ReturnYoutubeUI]: injectedInvisibleClickable was 'clicked'");
+        console.log("[Return Youtube UI]: injectedInvisibleClickable was 'clicked'");
         applyGeneratedScripts();
     });
 `;
@@ -255,6 +188,6 @@ document.body.appendChild(injectedDiv);
 document.body.appendChild(activator);
 
 document.getElementById("returnYoutubeUI_invisibleClickable").addEventListener("change", function(){
-    console.log("[ReturnYoutubeUI]: injectedInvisibleClickableChangeListener");
+    console.log("[Return Youtube UI]: injectedInvisibleClickableChangeListener");
 
 });

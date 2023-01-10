@@ -1,0 +1,64 @@
+/*THUMBNAILS*/
+#thumbnail{
+    border-radius: 0 !important;
+}
+.ytp-videowall-still-round-medium .ytp-videowall-still-image{
+    background-color: orange !important;
+    border-radius: 0 !important;
+}
+
+/*FEEDBACK BUTTONS (remove background line to get corners)*/
+[aria-label='Share'], [aria-label='Dislike this video'], [aria-label^='like this video along with '], [aria-label$=' likes'], [aria-label='Clip'], [aria-label='Save to playlist']{
+    border-radius: 0px !important;
+    background: none !important;
+}
+/*Popup Menus*/
+/*SAVE & SHARE*/
+.ytd-popup-container{
+    border-radius: 0 !important;
+}
+
+/*SUBSCRIBE THINGS*/
+[aria-label^='Subscribe to ']{
+    border-radius: 2px !important;
+}
+[aria-label^='Unsubscribe from ']{
+    border-radius: 2px !important;
+}
+/*PLAYLIST LIST*/
+.ytd-playlist-panel-renderer{
+    border-radius: 0 !important;
+}
+/*MINIPLAYER*/
+video{ /*Also does the main but this should be more efficient*/
+    border-radius: 0 !important;
+}
+/*When hovering layer*/
+.ytp-miniplayer-scrim{
+    border-radius: 0 !important;
+}
+/*NOTIFICATIONS*/ /*Also taken care of under "Popup Menus"
+        ytd-multi-page-menu-renderer{
+            border-radius: 0 !important;
+        }*/
+
+/*[data-layer="4"]{
+    background-color: blue !important;
+    background-color: red !important;
+}*/
+/*ANNOTATIONS*/
+/*PLAYER SETTINGS*/
+.ytp-settings-menu{
+    border-radius: 0 !important;
+}
+
+
+/*THUMBNAILS INSIDE NOTIFICATIONS BELL*/
+div .thumbnail-container.style-scope.ytd-notification-renderer{
+    border-radius: 0;
+}
+
+/* END CARDS in the video, //TODO: For some reason not working, fix, using js method for now*/
+.ytp-ce-covering-overlay{
+    border-radius: 0 !important;
+}

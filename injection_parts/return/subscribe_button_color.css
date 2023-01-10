@@ -1,0 +1,11 @@
+/*Will use existing color vars on page, this is just here in case youtube removes them*/
+/*:root {*/
+/*    --yt-spec-static-brand-white: #fff;*/
+/*    --yt-spec-brand-button-background: #c00;*/
+/*}*/
+
+[aria-label^='Subscribe to '] {
+    color: var(--yt-spec-static-brand-white) !important;
+    /*Bring back the red instead of the white*/
+    background-color: var(--yt-spec-brand-button-background) !important;
+}

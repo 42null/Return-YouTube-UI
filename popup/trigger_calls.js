@@ -25,7 +25,7 @@ function listenForClicks() {
      * Just log the error to the console.
      */
     function reportError(error) {
-      console.error(`[ReturnYoutubeUI]: Could not edit page, most likely page is not permitted in manifest: ${error}`);
+      console.error(`[Return Youtube UI]: Could not edit page, most likely page is not permitted in manifest: ${error}`);
     }
 
     /**
@@ -50,7 +50,7 @@ function listenForClicks() {
 function reportExecuteScriptError(error) {
   document.querySelector("#popup-content").classList.add("hidden");
   document.querySelector("#error-content").classList.remove("hidden");
-  console.error(`[ReturnYoutubeUI]: Failed to execute content script: ${error.message}`);
+  console.error(`[Return Youtube UI]: Failed to execute content script: ${error.message}`);
 }
 
 /**
