@@ -3,8 +3,8 @@
     border-radius: 0 !important;
 }
 .ytp-videowall-still-round-medium .ytp-videowall-still-image{
-    background-color: orange !important;
-    border-radius: 0 !important;
+    /*background-color: orange !important;*/
+    border-radius: 0;
 }
 
 /*FEEDBACK BUTTONS (remove background line to get corners)*/
@@ -20,22 +20,32 @@
 
 /*SUBSCRIBE THINGS*/
 [aria-label^='Subscribe to ']{
-    border-radius: 2px !important;
+    border-radius: 2px;
 }
 [aria-label^='Unsubscribe from ']{
-    border-radius: 2px !important;
+    border-radius: 2px;
 }
+
 /*PLAYLIST LIST*/
 .ytd-playlist-panel-renderer{
-    border-radius: 0 !important;
+    border-radius: 0;
 }
 /*MINIPLAYER*/
-video{ /*Also does the main but this should be more efficient*/
+/*#video-preview-container{*/
+/*ytd-video-preview[rounded-container]*/
+/*#video-preview-container.ytd-video-preview{*/
+.ytd-video-preview{
     border-radius: 0 !important;
 }
+
+/*MAIN VIDEO*/
+video{
+    border-radius: 0;
+}
+
 /*When hovering layer*/
 .ytp-miniplayer-scrim{
-    border-radius: 0 !important;
+    border-radius: 0;
 }
 /*NOTIFICATIONS*/ /*Also taken care of under "Popup Menus"
         ytd-multi-page-menu-renderer{
