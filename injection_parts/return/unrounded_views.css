@@ -72,3 +72,9 @@ div .thumbnail-container.style-scope.ytd-notification-renderer{
 .ytp-ce-covering-overlay{
     border-radius: 0 !important;
 }
+
+/*OFFER MODULE (Watch on YouTube - "Buy")*/
+ytd-tvfilm-offer-module-renderer{
+    /*background-color: blue;*/
+    border-radius: 0;
+}

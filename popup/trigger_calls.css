@@ -9,8 +9,9 @@ html, body {
   /*padding: 3%;*/
   font-family: Gotham, system-ui;
   margin-top: -5px;
-  border-radius: 0px;
+  border-radius: 0;
   text-align: justify;
+  background-color: #ffffff;
 }
 
 .hidden {
@@ -43,10 +44,6 @@ button[type="callFunction"]:hover {
   padding-right: 2%;
 }
 
-.homepageLink{
-  text-align: center;
-}
-
 button {
   border: none;
   width: 100%;
@@ -63,4 +60,33 @@ button {
   margin-top: 3px;
   margin-bottom: 2px;
   text-decoration: underline;
+}
+
+/*CODE FROM https://dev-bay.com/css-ul-custom-bullet-style-with-image/*/
+.homepageLink {
+  padding-left: 0;
+  list-style: none;
+}
+.homepageLink li {
+  position: relative;
+  padding-left: 20px;
+}
+.homepageLink li:before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.homepageLink .githubHomepage li:before {
+  background-image: url('/icons/github-mark.png');
+}
+/*.firefoxHomepage .homepageLink li:before {*/
+.homepageLink .firefoxHomepage li:before {
+  background-image: url('/icons/Fx-Browser-icon-fullColor.svg');
 }

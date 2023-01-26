@@ -8,7 +8,8 @@
   "homepage_url": "https://github.com/42null/Return-YouTube-UI",
 
   "permissions": [
-    "*://.youtube.com/*"
+    "*://youtube.com/*",
+    "*://www.youtube.com/*"
   ],
 
   "browser_action": {

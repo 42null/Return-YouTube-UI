@@ -7,16 +7,16 @@
 }
 
 [aria-label^='Subscribe to ']{
-    color: var(--yt-spec-static-brand-white);
+    color: var(--yt-spec-static-brand-white) !important;/*Required !*/
     /*Bring back the red instead of the white*/
-    background-color: var(--yt-spec-brand-button-background);
+    background-color: var(--yt-spec-brand-button-background) !important;/*Required !*/
 }
 
-[aria-label^='Unsubscribe to ']{
-    color: var(--yt-spec-static-brand-white);
-    /*Bring back the red instead of the white*/
-    background-color: var(--yt-spec-brand-button-background);
-}
+/*[aria-label^='Unsubscribe to ']{*/
+/*    color: var(--yt-spec-static-brand-white);*/
+/*    !*Bring back the red instead of the white*!*/
+/*    background-color: var(--yt-spec-brand-button-background);*/
+/*}*/
 
 /*#notification-preference-button{*/
 /*    color: var(--yt-spec-static-brand-white);*/
