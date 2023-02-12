@@ -7,6 +7,7 @@ https://github.com/mdn/webextensions-examples/tree/master/beastify (beastify.css
  * Listen for clicks on the buttons, and send the appropriate message to
  * the content script in the page.
  */
+
 function listenForClicks() {
   document.addEventListener("click", (e) => {
 
@@ -34,8 +35,14 @@ function listenForClicks() {
      */
 
     if (e.target.type === "submit") {
-      if(e.target.id === "reloadExtension"){
+      if(e.target.id === "reloadExtension") {
         browser.runtime.reload();
+      }else if(e.target.id === "settingsPageButton"){
+        if(document.querySelector("#settingsOptionsList").classList.contains("hidden")){
+          document.querySelector("#settingsOptionsList").classList.remove("hidden");
+        }else{
+          document.querySelector("#settingsOptionsList").classList.add("hidden");
+        }
       }else if(e.target.id === "ManuallyReApplyJSPageModifications"){
         browser.tabs.query({currentWindow: true, active: true}).then(reapplyGeneratedJS).catch(reportError);//TODO: Make double check for if a youtube page.
       }

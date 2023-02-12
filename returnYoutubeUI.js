@@ -6,12 +6,6 @@
    as colors and text.
 */
 
-
-addEventListener('change', (event) => {
-    // alert("From inside of returnUI.js");
-});
-
-
 /*DISCLAIMER! At current state not all variables are used, functionally will be added as the project progresses*/
 const           UN_ROUNDED_VIEWS = true; //Makes views squared like they were originally (still some missing), also includes fixed search box at this time.
 const    UN_ROUNDED_LINK_WINDOWS = true; //Makes all video windows linked inside the video frame squared like they were originally.

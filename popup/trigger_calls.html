@@ -23,14 +23,37 @@ https://github.com/mdn/webextensions-examples/tree/master/beastify (choose_beast
   <div id="popup-content">
     <h3>Actions</h3>
 <!--    <button type="submit" id="ManuallyReApplyJSPageModifications">Re-Apply JS page modifications</button>-->
-    <button type="submit" id="reloadExtension">Reload Extension</button>
+    <div class="primary_buttons">
+      <div class="buttonsGroup">
+        <button type="submit" id="settingsPageButton">Edit Settings</button>
+        <table id="settingsOptionsList" class="hidden">
+          <tr>
+            <th>Setting</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <th colspan="2" >Unrounded Views</th>
+          </tr>
+          <tr>
+            <td>Notifications</td>
+            <td>CheckBox Here</td>
+          </tr>
+          <tr>
+            <td>Cards</td>
+            <td>CheckBox Here</td>
+          </tr>
+        </table>
+      </div>
+      <div class="buttonsGroup">
+        <button type="submit" id="reloadExtension">Reload Extension</button>
+      </div>
+    </div>
   </div>
 
   <div id="error-content" class="hidden">
     <p>For security purposes the manifest file restricts this extension to only pages on YouTube.com.</p>
     <p><b>To see this page as it should be, just switch to a tab where YouTube is open</b>.</p>
     <p>If loading the extension as a Temporary Add-On you can change this by adding "activeTab" under permissions.</p>
-
   </div>
 
   <h5 style="text-align: center; margin-bottom: 10px;"><u>View Extension On</u></h5>
