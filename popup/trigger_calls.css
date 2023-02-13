@@ -4,7 +4,9 @@ https://github.com/mdn/webextensions-examples/tree/master/beastify (choose_beast
 */
 
 :root {
-  /*All vars starting with md are for material design*/
+  /*All vars starting with md are for material design
+https://m2.material.io/resources/color/#!/?view.left=0&view.right=1&primary.color=14d1d1
+  */
   --md_primary: #14d1d1;
   --md_light: #69ffff;
   --md_dark: #009fa0;
@@ -48,6 +50,81 @@ button[type="callFunction"] {
 button[type="callFunction"]:hover {
   /*background-color: #EAEA9D;*/
 }
+
+
+
+/*Start section containing modified code from https://www.w3schools.com/howto/howto_css_switch.asp, credit to "How TO - Toggle Switch" article*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 90%;
+  height: 80%;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--md_greyBack);
+  -webkit-transition: .9s;
+  transition: .9s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  aspect-ratio: 1 / 1;
+  height: 90%;
+  left: 5%;
+  bottom: 5%;
+  background-color: var(--md_dark);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+/*Does not have any effect*/
+/*.slider:after {*/
+/*  background-color: var(--md_light);*/
+/*}*/
+
+input:checked + .slider {
+  background-color: var(--md_light);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--md_light);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/*End section containing modified code from https://www.w3schools.com/howto/howto_css_switch.asp*/
+
+
+
+
+
 
 #titlePage{
   text-align: center;
@@ -94,6 +171,11 @@ table#settingsOptionsList{
 }
 #settingsOptionsList td{
   margin-top: 0;
+  text-align: center;
+}
+
+#settingsOptionsList td:nth-child(1) {/*Does not work for the second child so to get second %, edit first's %*/
+  width: 75%;
 }
 
 #settingsOptionsList th, #settingsOptionsList td{
@@ -141,4 +223,8 @@ table#settingsOptionsList{
 /*.firefoxHomepage .homepageLink li:before {*/
 .homepageLink .firefoxHomepage li:before {
   background-image: url('/icons/Fx-Browser-icon-fullColor.svg');
+}
+
+#under_development_disclaimer{
+  margin-top: -50px;
 }
