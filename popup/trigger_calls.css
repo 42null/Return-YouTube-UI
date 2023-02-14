@@ -43,14 +43,6 @@ button:hover {
   --alpha: 1;
 }
 
-button[type="callFunction"] {
-  background-color: #FBFBC9;
-}
-
-button[type="callFunction"]:hover {
-  /*background-color: #EAEA9D;*/
-}
-
 
 
 /*Start section containing modified code from https://www.w3schools.com/howto/howto_css_switch.asp, credit to "How TO - Toggle Switch" article*/
@@ -70,9 +62,9 @@ button[type="callFunction"]:hover {
 .slider {
   position: absolute;
   cursor: pointer;
-  width: 100%;
+  width: 85%;
   top: 0;
-  left: 0;
+  left: 7%;
   right: 0;
   bottom: 0;
   background-color: var(--md_greyBack);
@@ -160,7 +152,7 @@ input:checked + .slider:before {
 table#settingsOptionsList{
   background-color: var(--md_light);
   width: 100%;
-  overflow: hidden;
+  word-break: break-word;
   padding-left: 0;
   list-style: none;
   /*margin-top: -4px;*/
@@ -175,7 +167,7 @@ table#settingsOptionsList{
 }
 
 #settingsOptionsList td:nth-child(1) {/*Does not work for the second child so to get second %, edit first's %*/
-  width: 75%;
+  width: 70%;
 }
 
 #settingsOptionsList th, #settingsOptionsList td{
