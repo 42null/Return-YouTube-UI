@@ -11,9 +11,18 @@ _Major releases are published to the Firefox Add-Ons page as an extension ([addo
 
 ---
 
-## Customization Flags
+## Settings & Customization Flags
+
+Settings control is being migrated to the extension popup page. With the latest versions, some settings have been moved while others are still only available to be set as static variables before installation.
+
+| Displayed Name (Renaming Planned) | State          | DESCRIPTION                                              |
+|-----------------------------------|----------------|----------------------------------------------------------|
+| UN_ROUNDED_SEARCH                 | True (default) | Reverts radius of search bar to previous 2px value       |
+| SUBSCRIBE_BUTTON_DESIGN           | True (default) | Gives back radius and colors of the red subscribe button |
 
 Implemented/In Progress/Planned fixes to revert the UI to pre-"circle crazy" times, these flags can be changed at the very top of "_returnYoutubeUI.js_".
+
+# Settings still available as static variables as of last commit
 
 #### DEFAULT ON (Core principles of return)
 | OPTION                   | STATUS                                  | DESCRIPTION                                                                                                                                 |

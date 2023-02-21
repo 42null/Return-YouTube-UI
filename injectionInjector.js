@@ -36,7 +36,7 @@ function getApplySettings(key) {
                     if (key === KEY_STORAGE_LOCAL_APPLYING_SETTINGS) {
                         defaultSettings = {
                             "UN_ROUNDED_SEARCH": true,
-                            "SEARCH_BUTTON_COLOR": true,
+                            "SUBSCRIBE_BUTTON_DESIGN": true,
                         };
                     }
                     result[key] = defaultSettings;
@@ -74,8 +74,8 @@ browser.storage.onChanged.addListener((changes, areaName) => {
                 for(const settingsKey in settings){
                     if (settingsKey === "UN_ROUNDED_SEARCH") {
                         setSearchBoxRounding(localCopyApplySettings.UN_ROUNDED_SEARCH);
-                    }else if(settingsKey==="SEARCH_BUTTON_COLOR"){
-                        setSubscribeState(localCopyApplySettings.SEARCH_BUTTON_COLOR);
+                    }else if(settingsKey==="SUBSCRIBE_BUTTON_DESIGN"){
+                        setSubscribeState(localCopyApplySettings.SUBSCRIBE_BUTTON_DESIGN);
                     }
                 }
             }
@@ -135,7 +135,7 @@ getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
         if(typeof value == "boolean"){
             if(key === "UN_ROUNDED_SEARCH"){
                 setSearchBoxRounding(value);
-            }else if(key === "SEARCH_BUTTON_COLOR"){
+            }else if(key === "SUBSCRIBE_BUTTON_DESIGN"){
                 setSubscribeState(value);
             }
         }
