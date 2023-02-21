@@ -7,7 +7,6 @@
 */
 
 /*DISCLAIMER! At current state not all variables are used, functionally will be added as the project progresses*/
-const           UN_ROUNDED_VIEWS = true; //Makes views squared like they were originally (still some missing), also includes fixed search box at this time.
 const    UN_ROUNDED_LINK_WINDOWS = true; //Makes all video windows linked inside the video frame squared like they were originally.
 const UN_ROUNDED_EXPANDING_HOVER = true; //Makes all website expanding link descriptions inside the video frame square like they were originally.
 const               PROPER_DATES = true; //Changes main video date info from "<#> years/months/etc. ago" to it's formatted date
@@ -62,21 +61,6 @@ helperFunctions = createElementLink("injection_partsconsole.log/helper_functions
 document.head.appendChild(helperFunctions);
 
 // document.head.appendChild(unroundedSearchboxCSS);
-
-
-if(UN_ROUNDED_VIEWS){
-    unroundedViewCSS = createElementLink("injection_parts/return/unrounded_views.css");
-
-    // unroundedSearchboxCSS = createElementLink("injection_parts/return/searchbox.css");
-
-    document.head.appendChild(unroundedViewCSS);
-    const activator2 = document.createElement('script');
-    activator2.innerHTML = `
-        retrieveOnStart();
-    `;
-    document.body.appendChild(activator2);
-    // document.head.appendChild(unroundedSearchboxCSS);
-}
 
 /* Video link windows inside the player that show up during playtime */
 

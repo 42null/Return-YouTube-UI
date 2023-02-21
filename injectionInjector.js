@@ -37,6 +37,7 @@ function getApplySettings(key) {
                         defaultSettings = {
                             "UN_ROUNDED_SEARCH": true,
                             "SUBSCRIBE_BUTTON_DESIGN": true,
+                            "UN_ROUNDED_VIEWS": true,
                         };
                     }
                     result[key] = defaultSettings;
@@ -71,76 +72,57 @@ browser.storage.onChanged.addListener((changes, areaName) => {
             console.log(`[Return Youtube UI]: Key "${key}" in area "${areaName}" changed. New value is ${JSON.stringify(changes[key].newValue)}.`);
             localCopyApplySettings = settings;
             if(key===KEY_STORAGE_LOCAL_APPLYING_SETTINGS){
-                for(const settingsKey in settings){
-                    if (settingsKey === "UN_ROUNDED_SEARCH") {
-                        setSearchBoxRounding(localCopyApplySettings.UN_ROUNDED_SEARCH);
-                    }else if(settingsKey==="SUBSCRIBE_BUTTON_DESIGN"){
-                        setSubscribeState(localCopyApplySettings.SUBSCRIBE_BUTTON_DESIGN);
-                    }
+                settingsToActions(settings);
+            }
+        }
+    }
+});
+
+// START INJECTOR BASED SETTINGS HELPERS
+function setInjectionStateHelper(state, id, filePath){
+    let element = document.getElementById(id);
+
+    if (state === true) {
+        // TODO: Make more efficient, right now trys removal and re-add
+        if(element === null) {
+            element = createElementLink(filePath);
+            element.id = id;
+            document.head.appendChild(element);
+        }
+    } else if (state === false) {
+        try{
+            element.parentElement.removeChild(element);
+        }catch(e){}
+    }
+}
+// END INJECTOR BASED SETTINGS HELPERS
+
+
+function settingsToActions(){
+    getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
+        console.log("Initial applySettings:", applySettings);
+        console.log("Settings used:");
+        const keys = Object.keys(applySettings);
+        for (let i = 0; i < keys.length; i++) {
+            const key = keys[i];
+            const value = applySettings[keys[i]];
+            console.log("[Return Youtube UI]:   " + key + ": " + value);
+
+            if(typeof value == "boolean"){
+                // TODO: Make switch statement
+                if(key === "UN_ROUNDED_SEARCH"){
+                    setInjectionStateHelper(value, "returnUI_injected_CSS__searchUnrouded", "injection_parts/return/searchbox.css");
+                }else if(key === "SUBSCRIBE_BUTTON_DESIGN"){
+                    setInjectionStateHelper(value, "returnUI_injected_CSS__subscribeButtonModified", "injection_parts/return/subscribe_button_color.css");
+                }else if(key === "UN_ROUNDED_VIEWS"){
+                    setInjectionStateHelper(value, "returnUI_injected_CSS__unrounded_views", "injection_parts/return/unrounded_views.css");
                 }
             }
         }
-    }
-});
-
-// START INJECTOR BASED SETTINGS FUNCTIONS
-function setSearchBoxRounding(state) {
-    let unroundedSearchboxCSS = document.getElementById("returnUI_injected_CSS__searchUnrouded");
-
-    if (state === true) {
-        // TODO: Make more efficient, right now trys removal and re-add
-        if(unroundedSearchboxCSS === null) {
-            unroundedSearchboxCSS = createElementLink("injection_parts/return/searchbox.css");
-            unroundedSearchboxCSS.id = "returnUI_injected_CSS__searchUnrouded";
-            document.head.appendChild(unroundedSearchboxCSS);
-        }
-    } else if (state === false) {
-        try{
-            unroundedSearchboxCSS.parentElement.removeChild(unroundedSearchboxCSS);
-        }catch(e){}
-    }
+    }).catch((error) => {
+        console.error(error);
+    });
 }
-function setSubscribeState(state) {
-    let originalSubscribeButtonColorCSS = document.getElementById("returnUI_injected_CSS__subscribeButtonModified");
-    if (state === true) {
-        // TODO: Make more efficient, right now trys removal and re-add
-        if(originalSubscribeButtonColorCSS === null) {
-            originalSubscribeButtonColorCSS = createElementLink("injection_parts/return/subscribe_button_color.css");
-            originalSubscribeButtonColorCSS.id = "returnUI_injected_CSS__subscribeButtonModified";
-            document.head.appendChild(originalSubscribeButtonColorCSS);
-        }
-    } else if (state === false) {
-        try{
-            originalSubscribeButtonColorCSS.parentElement.removeChild(originalSubscribeButtonColorCSS);
-        }catch(e){}
-    }
-}
-// END INJECTOR BASED SETTINGS FUNCTIONS
-
-
-
-
 
 // Initial setup/initial receive
-getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
-    console.log("Initial applySettings:", applySettings);
-    // Rest of the code to initialize the table
-    console.log("Settings used:");
-    const keys = Object.keys(applySettings);
-    for (let i = 0; i < keys.length; i++) {
-        const key = keys[i];
-        const value = applySettings[keys[i]];
-        console.log("[Return Youtube UI]:   " + key + ": " + value);
-
-        if(typeof value == "boolean"){
-            if(key === "UN_ROUNDED_SEARCH"){
-                setSearchBoxRounding(value);
-            }else if(key === "SUBSCRIBE_BUTTON_DESIGN"){
-                setSubscribeState(value);
-            }
-        }
-    }
-}).catch((error) => {
-    console.error(error);
-});
-
+settingsToActions();

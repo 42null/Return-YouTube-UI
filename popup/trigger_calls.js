@@ -58,13 +58,6 @@ getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
             localCopyApplySettings[key] = input.checked; // Change a setting
             console.log("[Return Youtube UI]: ApplySettingsUpdate");
             applySettingsUpdate();
-            // console.log("[Return Youtube UI]: ApplySettingsUpdate END");
-            // }else if(key === "SUBSCRIBE_BUTTON_DESIGN"){
-            //     localCopyApplySettings.SUBSCRIBE_BUTTON_DESIGN = input.checked; // Change a setting
-            //     console.log("[Return Youtube UI]: ApplySettingsUpdate");
-            //     applySettingsUpdate();
-            //     console.log("[Return Youtube UI]: ApplySettingsUpdate END");
-            // }
         }
     }
 }).catch((error) => {
