@@ -11,7 +11,7 @@ const           UN_ROUNDED_VIEWS = true; //Makes views squared like they were or
 const    UN_ROUNDED_LINK_WINDOWS = true; //Makes all video windows linked inside the video frame squared like they were originally.
 const UN_ROUNDED_EXPANDING_HOVER = true; //Makes all website expanding link descriptions inside the video frame square like they were originally.
 const               PROPER_DATES = true; //Changes main video date info from "<#> years/months/etc. ago" to it's formatted date
-const     SUBSCRIBE_BUTTON_COLOR = true; //Changes subscribe button from white to the original red
+// const     SUBSCRIBE_BUTTON_COLOR = true; //Changes subscribe button from white to the original red
 const   SAVE_VISIBLE_BEFORE_CLIP = true; //Places save action before the clip action
 
 /* Extras (Disabled by default) */
@@ -32,19 +32,19 @@ let activator = document.createElement('script');
 let injectedDiv = document.createElement("div");
 
 
-function createElementLink(styleSheetName) {
-    console.log("~~~~~~~~styleSheetName="+styleSheetName);
-    if(styleSheetName.endsWith(".css")){
+function createElementLink(sheetName) {
+    console.log("Linking name ="+sheetName);
+    if(sheetName.endsWith(".css")){
         const stylesheetLinkElement = document.createElement('link');
         stylesheetLinkElement.rel = 'stylesheet';
         stylesheetLinkElement.type = 'text/css';
-        stylesheetLinkElement.href = browser.runtime.getURL(styleSheetName);
+        stylesheetLinkElement.href = browser.runtime.getURL(sheetName);
         return stylesheetLinkElement;
-    }else if(styleSheetName.endsWith(".js")){
-        const stylesheetLinkElement=document.createElement('script')
-        stylesheetLinkElement.setAttribute("type","text/javascript")
-        stylesheetLinkElement.setAttribute("src", browser.runtime.getURL(styleSheetName))
-        return stylesheetLinkElement;
+    }else if(sheetName.endsWith(".js")){
+        const jsSheetLinkElement=document.createElement('script')
+        jsSheetLinkElement.setAttribute("type","text/javascript")
+        jsSheetLinkElement.setAttribute("src", browser.runtime.getURL(sheetName))
+        return jsSheetLinkElement;
     }
     // return stylesheetLinkElement;
 }
@@ -53,27 +53,32 @@ let helperFunctions;
 
 let unroundedViewCSS;
 let unroundedLinkWindowsJS;
-let unroundedSearchboxCSS;
+// let unroundedSearchboxCSS;
 let saveVisibleBeforeClip;
 
 let originalSubscribeButtonColorCSS;
 
-helperFunctions = createElementLink("injection_parts/helper_functions.js");
+helperFunctions = createElementLink("injection_partsconsole.log/helper_functions.js");
 document.head.appendChild(helperFunctions);
 
+// document.head.appendChild(unroundedSearchboxCSS);
 
 
 if(UN_ROUNDED_VIEWS){
     unroundedViewCSS = createElementLink("injection_parts/return/unrounded_views.css");
 
-    unroundedSearchboxCSS = createElementLink("injection_parts/return/searchbox.css");
+    // unroundedSearchboxCSS = createElementLink("injection_parts/return/searchbox.css");
 
     document.head.appendChild(unroundedViewCSS);
-    document.head.appendChild(unroundedSearchboxCSS);
+    const activator2 = document.createElement('script');
+    activator2.innerHTML = `
+        retrieveOnStart();
+    `;
+    document.body.appendChild(activator2);
+    // document.head.appendChild(unroundedSearchboxCSS);
 }
 
 /* Video link windows inside the player that show up during playtime */
-
 
 if(UN_ROUNDED_LINK_WINDOWS){
 
@@ -82,10 +87,10 @@ if(UN_ROUNDED_LINK_WINDOWS){
 }
 
 
-if(SUBSCRIBE_BUTTON_COLOR){
-    originalSubscribeButtonColorCSS = createElementLink("injection_parts/return/subscribe_button_color.css");
-    document.head.appendChild(originalSubscribeButtonColorCSS);
-}
+// if(SUBSCRIBE_BUTTON_COLOR){
+//     originalSubscribeButtonColorCSS = createElementLink("injection_parts/return/subscribe_button_color.css");
+//     document.head.appendChild(originalSubscribeButtonColorCSS);
+// }
 
 
 script.innerHTML = `
@@ -183,5 +188,18 @@ document.body.appendChild(activator);
 
 document.getElementById("returnYoutubeUI_invisibleClickable").addEventListener("change", function(){
     console.log("[Return Youtube UI]: injectedInvisibleClickableChangeListener");
-
 });
+
+
+
+
+
+
+//
+//
+//
+// let test = createElementLink("popup/trigger_calls.js");
+//
+// setTimeout(function(){
+//     document.head.appendChild(test);
+// }, 5000);

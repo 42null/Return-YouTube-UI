@@ -7,8 +7,8 @@ https://github.com/mdn/webextensions-examples/tree/master/beastify (choose_beast
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="trigger_calls.css"/>
-</head>
+    <link rel="stylesheet" href="trigger_calls.css" id="popup-style"/>
+  </head>
 
 <body>
   <div id="titlePage"><!--TODO: Come up with a better id name-->
@@ -31,12 +31,12 @@ https://github.com/mdn/webextensions-examples/tree/master/beastify (choose_beast
             <th>Setting</th>
             <th>Value</th>
           </tr>
-          <tr>
-            <th colspan="2" >Unrounded Views</th>
-          </tr>
-          <tr>
-            <th colspan="2" >Notifications</th>
-          </tr>
+<!--          <tr>-->
+<!--            <th colspan="2" >Unrounded Views</th>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            <th colspan="2" >Notifications</th>-->
+<!--          </tr>-->
 <!--          <td>Notifications</td>-->
 <!--          <td>-->
 <!--            <label class="switch">-->
@@ -81,8 +81,11 @@ https://github.com/mdn/webextensions-examples/tree/master/beastify (choose_beast
     </table>
   </ul>
   <p id="under_development_disclaimer" style="margin: 0 auto; text-align: center;" class="smaller"><i>(Project under active development)</i></p>
-
-  <script src="trigger_calls.js"></script>
 </body>
+
+<!--Include after page is built-->
+  <script src="../injectionInjector.js"></script>
+  <script src="trigger_calls.js"></script>
+  <script src="popup_page_preferences.js"></script>
 
 </html>

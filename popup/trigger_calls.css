@@ -17,9 +17,16 @@ https://m2.material.io/resources/color/#!/?view.left=0&view.right=1&primary.colo
   --md_sliderFill: #b6b6b7;
 
   --extension_legacy_button_color: #ff3349ff;
+
+
+  /*Numericals*/
+  --primaryButtonsWidth: 95%;
+  --scrollbar-width: calc(100vw - 100%);
 }
 
+
 html, body {
+  /*width: calc(210px + var(--scrollbar-width));*/
   width: 210px;
   /*font-family: Segoe UI, system-ui;*/
   /*padding: 3%;*/
@@ -98,7 +105,6 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(100%);
   -ms-transform: translateX(100%);
   transform: translateX(100%);
 }
@@ -122,6 +128,12 @@ input:checked + .slider:before {
   text-align: center;
 }
 
+#titlePage > h2{
+  width: 100%;
+  /*background-color: #F0F;*/
+  /*padding-left: var(--scrollbar-width);*/
+}
+
 #error-content{
    padding-left: 2%;
   padding-right: 2%;
@@ -132,8 +144,8 @@ input:checked + .slider:before {
 }
 
 .primary_buttons{
-  width: 90%;
-  transform: translateX(5%);
+  width: var(--primaryButtonsWidth);
+  transform: translateX(calc((100% - (var(--primaryButtonsWidth))) / 2));
 }
 
 .primary_buttons > .buttonsGroup > button{

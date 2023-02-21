@@ -27,12 +27,14 @@
   "content_scripts": [
     {
       "matches": ["*://*.youtube.com/*"],
-      "js": ["returnYoutubeUI.js"]
+      "js": ["returnYoutubeUI.js", "injectionInjector.js"]
     }
   ],
 
   "web_accessible_resources": [
     "injection_parts/helper_functions.js",
+    "injectionInjector.js",
+
     "injection_parts/core/*.css",
     "injection_parts/extras/*.css"
   ],

@@ -1,5 +1,5 @@
 waitForElm('.ytd-menu-renderer>ytd-button-renderer.style-scope.ytd-menu-renderer').then((elm) => {
-    console.log('[Element is ready');
+    console.log('[Return Youtube UI]: Element is ready');
     save_visible_before_clip();
 });
 
