@@ -17,8 +17,9 @@ Settings control is being migrated to the extension popup page. With the latest 
 
 | Displayed Name (Renaming Planned) | State          | DESCRIPTION                                              |
 |-----------------------------------|----------------|----------------------------------------------------------|
-| UN_ROUNDED_SEARCH                 | True (default) | Reverts radius of search bar to previous 2px value       |
-| SUBSCRIBE_BUTTON_DESIGN           | True (default) | Gives back radius and colors of the red subscribe button |
+| UN_ROUNDED_SEARCH                 | true (default) | Reverts radius of search bar to previous 2px value       |
+| SUBSCRIBE_BUTTON_DESIGN           | true (default) | Gives back radius and colors of the red subscribe button |
+| UN_ROUNDED_VIEWS                  | true (default) | Reverts thumbnails and views to no longer being rounded  |
 
 Implemented/In Progress/Planned fixes to revert the UI to pre-"circle crazy" times, these flags can be changed at the very top of "_returnYoutubeUI.js_".
 
@@ -27,7 +28,6 @@ Implemented/In Progress/Planned fixes to revert the UI to pre-"circle crazy" tim
 #### DEFAULT ON (Core principles of return)
 | OPTION                   | STATUS                                  | DESCRIPTION                                                                                                                                 |
 |--------------------------|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| UN_ROUNDED_VIEWS         | Most notice elements covered            | Makes thumbnails&views cornered like they were originally, including others from the search box to notification bar and everything between. |
 | PROPER_DATES             | Works in some cases                     | Changes main video date info from "<#> years/months/etc. ago" to it's published date.                                                       |
 | SUBSCRIBE_BUTTON_COLOR   | **Working**                             | Changes subscribe button from white/black to the original red (newer notification settings also taken care of).                             |
 | SAVE_VISIBLE_BEFORE_CLIP | Under development (works in some cases) | Places save action before the clip action.                                                                                                  |
