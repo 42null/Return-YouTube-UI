@@ -24,9 +24,9 @@ https://github.com/mdn/webextensions-examples/tree/master/beastify (choose_beast
     <h3>Actions</h3>
 <!--    <button type="submit" id="ManuallyReApplyJSPageModifications">Re-Apply JS page modifications</button>-->
     <div class="primary_buttons">
-      <div class="buttonsGroup">
-        <button type="submit" id="settingsPageButton">Edit Settings</button>
-        <table id="settingsOptionsList" class="hidden">
+      <div class="majorButton">
+        <button type="submit" id="settingsPageButton">Youtube Settings</button>
+        <table id="settingsOptionsList" >
           <tr>
             <th>Setting</th>
             <th>Value</th>
@@ -59,7 +59,13 @@ https://github.com/mdn/webextensions-examples/tree/master/beastify (choose_beast
 
         </table>
       </div>
-      <div class="buttonsGroup">
+
+
+
+      <div class="majorButton">
+        <button type="submit" id="extensionPreferencesPageButton">App Preferences</button>
+      </div>
+      <div class="majorButton">
         <button type="submit" id="reloadExtension">Reload Extension</button>
       </div>
     </div>
@@ -84,6 +90,7 @@ https://github.com/mdn/webextensions-examples/tree/master/beastify (choose_beast
 </body>
 
 <!--Include after page is built-->
+  <script src="popupSettings.js"></script>
   <script src="../injectionInjector.js"></script>
   <script src="trigger_calls.js"></script>
   <script src="popup_page_preferences.js"></script>

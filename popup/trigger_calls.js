@@ -1,6 +1,5 @@
-const settingsListElement = document.querySelector("#settingsOptionsList");
-
-
+const settingsListElement = document.getElementById("settingsOptionsList");
+// const appPreferencesListElement = document.getElementById("settingsOptionsList");
 
 
 // CREATE TABLE
@@ -98,7 +97,7 @@ function listenForClicks() {//TODO: Merge components with getApplySettings initi
         if (e.target.type === "submit") {
             if (e.target.id === "reloadExtension") {
                 browser.runtime.reload();
-            } else if (e.target.id === "settingsPageButton") {
+            } else if (e.target.id === "settingsPageButton" && !settingsListElement.unhideable) {
                 if (settingsListElement.classList.contains("hidden")) {
                     settingsListElement.classList.remove("hidden");
                     // Get the vertical scrollbar element dimensions

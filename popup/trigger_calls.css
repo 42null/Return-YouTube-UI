@@ -139,16 +139,18 @@ input:checked + .slider:before {
   padding-right: 2%;
 }
 
-.buttonsGroup{
+.majorButton{
   background-color: var(--md_light);
 }
+/*Default major buttons*/
+.majorButton > button{ background-color: var(--md_primary); }
 
 .primary_buttons{
   width: var(--primaryButtonsWidth);
   transform: translateX(calc((100% - (var(--primaryButtonsWidth))) / 2));
 }
 
-.primary_buttons > .buttonsGroup > button{
+.primary_buttons > .majorButton > button{
   width: 100%;
   border: none;
   margin: 0 auto 3% auto;
@@ -157,8 +159,7 @@ input:checked + .slider:before {
   font-size: 1.5em;
   cursor: pointer;
 }
-#reloadExtension{ background-color: var(--md_primary); }
-#settingsPageButton{ background-color: var(--md_primary); }
+
 
 
 table#settingsOptionsList{
