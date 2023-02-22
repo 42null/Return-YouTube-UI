@@ -36,7 +36,8 @@ function getApplySettings(key) {
                     if (key === KEY_STORAGE_LOCAL_APPLYING_SETTINGS) {
                         defaultSettings = {
                             "UN_ROUNDED_SEARCH": true,
-                            "SUBSCRIBE_BUTTON_DESIGN": true,
+                            "SUBSCRIBE_BUTTON_COLOR": true,
+                            "SUBSCRIBE_BUTTON_SHAPE": true,
                             "UN_ROUNDED_VIEWS": true,
                         };
                     }
@@ -80,6 +81,10 @@ browser.storage.onChanged.addListener((changes, areaName) => {
 
 // START INJECTOR BASED SETTINGS HELPERS
 function setInjectionStateHelper(state, id, filePath){
+    if(typeof filePath == "undefined"){//Make id filepath for overloading
+        filePath = id;
+        id = "returnUI_injected_CSS__"+filePath.substring((filePath.lastIndexOf("/")===-1 ? 0 : (filePath.lastIndexOf("/"))),filePath.lastIndexOf("."));
+    }
     let element = document.getElementById(id);
 
     if (state === true) {
@@ -112,8 +117,10 @@ function settingsToActions(){
                 // TODO: Make switch statement
                 if(key === "UN_ROUNDED_SEARCH"){
                     setInjectionStateHelper(value, "returnUI_injected_CSS__searchUnrouded", "injection_parts/return/searchbox.css");
-                }else if(key === "SUBSCRIBE_BUTTON_DESIGN"){
-                    setInjectionStateHelper(value, "returnUI_injected_CSS__subscribeButtonModified", "injection_parts/return/subscribe_button_color.css");
+                }else if(key === "SUBSCRIBE_BUTTON_COLOR"){
+                    setInjectionStateHelper(value, "injection_parts/return/subscribe_button_color.css");
+                }else if(key === "SUBSCRIBE_BUTTON_SHAPE"){
+                    setInjectionStateHelper(value, "injection_parts/return/subscribe_button_shape.css");
                 }else if(key === "UN_ROUNDED_VIEWS"){
                     setInjectionStateHelper(value, "returnUI_injected_CSS__unrounded_views", "injection_parts/return/unrounded_views.css");
                 }

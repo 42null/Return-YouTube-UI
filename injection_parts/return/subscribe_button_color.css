@@ -29,5 +29,4 @@
 [aria-label^='Current setting is receive no notifications. Tap to change your notification setting for ']{
     color: var(--yt-spec-text-secondary);
     background-color: var(--yt-spec-touch-response);
-    border-radius: 4px !important;
 }

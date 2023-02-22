@@ -70,13 +70,6 @@ if(UN_ROUNDED_LINK_WINDOWS){
     document.head.appendChild(unroundedLinkWindowsJS);
 }
 
-
-// if(SUBSCRIBE_BUTTON_COLOR){
-//     originalSubscribeButtonColorCSS = createElementLink("injection_parts/return/subscribe_button_color.css");
-//     document.head.appendChild(originalSubscribeButtonColorCSS);
-// }
-
-
 script.innerHTML = `
     function applyGeneratedScripts(){
         console.log("[Return Youtube UI]: Activator call was received");

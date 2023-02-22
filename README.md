@@ -29,7 +29,8 @@ Implemented/In Progress/Planned fixes to revert the UI to pre-"circle crazy" tim
 | OPTION                   | STATUS                                  | DESCRIPTION                                                                                                                                 |
 |--------------------------|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
 | PROPER_DATES             | Works in some cases                     | Changes main video date info from "<#> years/months/etc. ago" to it's published date.                                                       |
-| SUBSCRIBE_BUTTON_COLOR   | **Working**                             | Changes subscribe button from white/black to the original red (newer notification settings also taken care of).                             |
+
+[//]: # (| SUBSCRIBE_BUTTON_COLOR   | **Working**                             | Changes subscribe button from white/black to the original red &#40;newer notification settings also taken care of&#41;.                             |)
 | SAVE_VISIBLE_BEFORE_CLIP | Under development (works in some cases) | Places save action before the clip action.                                                                                                  |
 
 #### EXTRAS

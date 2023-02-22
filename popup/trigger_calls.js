@@ -9,7 +9,7 @@ getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
     const keys = Object.keys(applySettings);
     for (let i = 0; i < keys.length; i++) {
         const key = keys[i];
-        const name = key;//TODO: keep this way?
+        const displayName = key;//TODO: keep this way?
         const value = applySettings[keys[i]];
         console.log("[Return Youtube UI]:   " + key + ": " + value);
 
@@ -17,15 +17,15 @@ getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
         const row = settingsListElement.insertRow();
         const cell1 = row.insertCell(0);
         const cell2 = row.insertCell(1);
-        cell1.innerText = name;
+        cell1.innerText = displayName;
 
         if (typeof value == "boolean") {
             const label = document.createElement('label');
             label.classList.add("switch");
             const input = document.createElement('input');
             input.type = "checkbox";
-            input.id = "idAuto_" + name;
-            input.name = "nameAuto_" + name;
+            input.id = "idAuto_" + key;
+            input.name = "nameAuto_" + key;
             input.checked = value;
 
             const span = document.createElement("span");
@@ -55,7 +55,6 @@ getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
             //     // saveData(KEY_STORAGE_LOCAL_APPLYING_SETTINGS, applySettings);
             // });
             localCopyApplySettings[key] = input.checked; // Change a setting
-            console.log("[Return Youtube UI]: ApplySettingsUpdate");
             applySettingsUpdate();
         }
     }

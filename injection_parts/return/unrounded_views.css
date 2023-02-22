@@ -26,9 +26,9 @@
 }
 
 /*SUBSCRIBE THINGS*/
-[aria-label^='Subscribe to ']{
-    border-radius: 2px;
-}
+/*[aria-label^='Subscribe to ']{*/
+/*    border-radius: 2px;*/
+/*}*/
 /*[aria-label^='Unsubscribe from ']{*/
 /*    border-radius: 2px;*/
 /*}*/
@@ -55,16 +55,7 @@ video{
 .ytp-miniplayer-scrim{
     border-radius: 0;
 }
-/*NOTIFICATIONS*/ /*Also taken care of under "Popup Menus"
-        ytd-multi-page-menu-renderer{
-            border-radius: 0 !important;
-        }*/
 
-/*[data-layer="4"]{
-    background-color: blue !important;
-    background-color: red !important;
-}*/
-/*ANNOTATIONS*/
 /*PLAYER SETTINGS*/
 .ytp-settings-menu{
     border-radius: 0 !important;
@@ -83,6 +74,5 @@ div .thumbnail-container.style-scope.ytd-notification-renderer{
 
 /*OFFER MODULE (Watch on YouTube - "Buy")*/
 ytd-tvfilm-offer-module-renderer{
-    /*background-color: blue;*/
     border-radius: 0;
 }
