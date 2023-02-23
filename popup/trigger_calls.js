@@ -9,8 +9,8 @@ getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
     const keys = Object.keys(applySettings);
     for (let i = 0; i < keys.length; i++) {
         const key = keys[i];
-        const displayName = key;//TODO: keep this way?
-        const value = applySettings[keys[i]];
+        const displayName = applySettings[keys[i]].displayName;
+        const value = applySettings[keys[i]].value;
         console.log("[Return Youtube UI]:   " + key + ": " + value);
 
         // Table Builder
@@ -54,10 +54,14 @@ getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
             //         .catch(error => console.error(error));
             //     // saveData(KEY_STORAGE_LOCAL_APPLYING_SETTINGS, applySettings);
             // });
-            localCopyApplySettings[key] = input.checked; // Change a setting
+
+            localCopyApplySettings[key].value = input.checked; // Change a setting
+            // localCopyApplySettings[key] = JSON.parse(JSON.stringify({"value":false}));
+            // {"UN_ROUNDED_SEARCH":{"value":true}}
             applySettingsUpdate();
         }
     }
+
 }).catch((error) => {
     console.error(error);
 });
@@ -69,7 +73,6 @@ getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
 // Major button processing
 function listenForClicks() {//TODO: Merge components with getApplySettings initial
     document.addEventListener("click", (e) => {
-
         /**
          * Remove the page-hiding CSS from the active tab,
          * send a "reset" message to the content script in the active tab.
@@ -116,19 +119,18 @@ function listenForClicks() {//TODO: Merge components with getApplySettings initi
             console.log(e.target.attributes);
             const currentApplySettingKey = e.target.id.replace("idAuto_", "");
             // console.log(e.target.attributes);
-            // console.log(e.target.checked);
 
             browser.storage.local.get("applying_settings", async (result) => {
-                result[currentApplySettingKey] = e.target.checked;
+                result[KEY_STORAGE_LOCAL_APPLYING_SETTINGS][currentApplySettingKey].value = e.target.checked;
                 try {
                     try {
                         const newSettings = JSON.parse(JSON.stringify(result)).applying_settings;
-                        newSettings[currentApplySettingKey] = e.target.checked;
+                        newSettings[currentApplySettingKey].value = e.target.checked;
                         await browser.storage.local.set({"applying_settings": newSettings});
+                        console.log("Storage set successfully");
                     }catch(e2){
                         console.log("Error="+e2);
                     }
-                        console.log("Storage set successfully");
                 } catch (error) {
                     console.error(`Error setting storage: ${error}`);
                 }

@@ -1,0 +1,12 @@
+/*FEEDBACK BUTTONS (remove background line to get corners)*/
+[aria-label='Share'], [aria-label='Dislike this video'], [aria-label^='like this video along with '], [aria-label$=' likes'], [aria-label='Clip'], [aria-label='Thanks'], [aria-label='Save to playlist']{
+    border-radius: 0 !important;
+    background: none !important;
+}
+
+/*Three dot more options menu*/
+[aria-label='More actions']{
+    border-radius: 0;/* Not really necessary, just there for consistency. Makes it easier to click */
+    background-color: transparent !important; /*required !*/
+}
+

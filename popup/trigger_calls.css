@@ -101,12 +101,12 @@ input:checked + .slider {
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px var(--md_light);
+  box-shadow: 0 0 2px var(--md_light);
 }
 
 input:checked + .slider:before {
-  -ms-transform: translateX(100%);
-  transform: translateX(100%);
+  -ms-transform: translateX(117%);
+  transform: translateX(117%);
 }
 
 /* Rounded sliders */
@@ -177,6 +177,7 @@ table#settingsOptionsList{
 #settingsOptionsList td{
   margin-top: 0;
   text-align: center;
+  padding: 5% 0;
 }
 
 #settingsOptionsList td:nth-child(1) {/*Does not work for the second child so to get second %, edit first's %*/
@@ -201,8 +202,16 @@ table#settingsOptionsList{
   text-decoration: underline;
 }
 
+#viewExtension{
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 /*CODE FROM https://dev-bay.com/css-ul-custom-bullet-style-with-image/*/
 .homepageLink {
+  margin-top: 5px;
+  margin-bottom: 5px;
   padding-left: 0;
   list-style: none;
 }

@@ -35,10 +35,12 @@ function getApplySettings(key) {
                     let defaultSettings = {};
                     if (key === KEY_STORAGE_LOCAL_APPLYING_SETTINGS) {
                         defaultSettings = {
-                            "UN_ROUNDED_SEARCH": true,
-                            "SUBSCRIBE_BUTTON_COLOR": true,
-                            "SUBSCRIBE_BUTTON_SHAPE": true,
-                            "UN_ROUNDED_VIEWS": true,
+                            "UN_ROUNDED_SEARCH":                 {value: true, displayName: "Search Bar"},
+                            "SUBSCRIBE_BUTTON_COLOR":            {value: true, displayName: "Subscribe Color"},
+                            "SUBSCRIBE_BUTTON_SHAPE":            {value: true, displayName: "Subscribe Shape"},
+                            "UN_ROUNDED_MENUS":                  {value: true, displayName: "Menus"},
+                            "UN_ROUNDED_THUMBNAILS_AND_PLAYERS": {value: true, displayName: "Thumbnails"},
+                            "BAR_BUTTONS":                       {value: true, displayName: "Action Buttons"},
                         };
                     }
                     result[key] = defaultSettings;
@@ -110,19 +112,23 @@ function settingsToActions(){
         const keys = Object.keys(applySettings);
         for (let i = 0; i < keys.length; i++) {
             const key = keys[i];
-            const value = applySettings[keys[i]];
+            const value = applySettings[keys[i]].value;
             console.log("[Return Youtube UI]:   " + key + ": " + value);
 
             if(typeof value == "boolean"){
                 // TODO: Make switch statement
                 if(key === "UN_ROUNDED_SEARCH"){
-                    setInjectionStateHelper(value, "returnUI_injected_CSS__searchUnrouded", "injection_parts/return/searchbox.css");
+                    setInjectionStateHelper(value, "injection_parts/return/searchbox.css");
                 }else if(key === "SUBSCRIBE_BUTTON_COLOR"){
                     setInjectionStateHelper(value, "injection_parts/return/subscribe_button_color.css");
                 }else if(key === "SUBSCRIBE_BUTTON_SHAPE"){
                     setInjectionStateHelper(value, "injection_parts/return/subscribe_button_shape.css");
-                }else if(key === "UN_ROUNDED_VIEWS"){
-                    setInjectionStateHelper(value, "returnUI_injected_CSS__unrounded_views", "injection_parts/return/unrounded_views.css");
+                }else if(key === "UN_ROUNDED_MENUS"){
+                    setInjectionStateHelper(value, "injection_parts/return/unrounded_menus.css");
+                }else if(key === "UN_ROUNDED_THUMBNAILS_AND_PLAYERS"){
+                    setInjectionStateHelper(value, "injection_parts/return/unrounded_thumbnails_and_players.css");
+                }else if(key === "BAR_BUTTONS"){
+                    setInjectionStateHelper(value, "injection_parts/return/OtherFormattingFromViews.css");
                 }
             }
         }

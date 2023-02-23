@@ -7,42 +7,30 @@ _Major releases are published to the Firefox Add-Ons page as an extension ([addo
 
 <div style="text-align: center;">
 <img src="./icons/ReturnYoutubeUIIconV2R2_512.png" alt="[Return Youtube UI Logo]" width="128" height="auto" />
+<img src="./Screenshots/PopupPageFullSettings_latestTOP.png" alt="[Return Youtube UI Logo]" width="128" height="auto" />
 </div>
 
 ---
 
 ## Settings & Customization Flags
 
-Settings control is being migrated to the extension popup page. With the latest versions, some settings have been moved while others are still only available to be set as static variables before installation.
+Settings control is being migrated to the extension popup page. With the latest versions, some settings have been moved while others are still only available to be set as static variables before installation. Those values can be adjusted by setting flags at the very top of "_returnYoutubeUI.js_".
 
-| Displayed Name (Renaming Planned) | State          | DESCRIPTION                                              |
-|-----------------------------------|----------------|----------------------------------------------------------|
-| UN_ROUNDED_SEARCH                 | true (default) | Reverts radius of search bar to previous 2px value       |
-| SUBSCRIBE_BUTTON_DESIGN           | true (default) | Gives back radius and colors of the red subscribe button |
-| UN_ROUNDED_VIEWS                  | true (default) | Reverts thumbnails and views to no longer being rounded  |
-
-Implemented/In Progress/Planned fixes to revert the UI to pre-"circle crazy" times, these flags can be changed at the very top of "_returnYoutubeUI.js_".
-
-# Settings still available as static variables as of last commit
-
-#### DEFAULT ON (Core principles of return)
-| OPTION                   | STATUS                                  | DESCRIPTION                                                                                                                                 |
-|--------------------------|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| PROPER_DATES             | Works in some cases                     | Changes main video date info from "<#> years/months/etc. ago" to it's published date.                                                       |
-
-[//]: # (| SUBSCRIBE_BUTTON_COLOR   | **Working**                             | Changes subscribe button from white/black to the original red &#40;newer notification settings also taken care of&#41;.                             |)
-| SAVE_VISIBLE_BEFORE_CLIP | Under development (works in some cases) | Places save action before the clip action.                                                                                                  |
-
-#### EXTRAS
-| OPTION                             | STATUS      | DESCRIPTION                                                                                               |
-|------------------------------------|-------------|-----------------------------------------------------------------------------------------------------------|
-| SHOW_VIDEO_LENGTH_IN_NOTIFICATIONS | Planned     | Shows video length in notifications like it does in thumbnail views.                                      |
-| PERCENT_MORE_SPACE_TO_ACTIONS_BAR  | **Working** | +5 for adding one more option, for example, showing share, clip, and save instead of just share and clip. |
-
-#### DEBUGGING
-| OPTION                   | STATUS  | DESCRIPTION                                               |
-|--------------------------|---------|-----------------------------------------------------------|
-| SHOW_CHANGES_BACKGROUNDS | Planned | Changes background color of all changed places to orange. |
+#### Items that are the core principles of return are on by default
+| Setting                            | Default & Location     | Description                                                                                                                                     |
+|------------------------------------|------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| Search Bar                         | true (popup)           | Reverts the radius of search bar back to how it was before                                                                                      |
+| Subscribe Color                    | true (popup)           | Brings back the red to the subscribe color                                                                                                      |
+| Subscribe Shape                    | true (popup)           | Brings back the shape subscribe color                                                                                                           |
+| Menus                              | true (popup)           | Un-rounds borders in all (found) menus                                                                                                          |
+| Thumbnails                         | true (popup)           | Hardens corners for thumbnails mini-players everywhere                                                                                          |
+| Action Buttons                     | true (popup)           | Removes borders on action bar buttons                                                                                                           |
+| Thumbnails                         | true (popup)           | Hardens corners for thumbnails mini-players everywhere                                                                                          |
+| SAVE_VISIBLE_BEFORE_CLIP           | true (static)          | Places save action before the clip action, not yet working in all environments                                                                  |
+| PROPER_DATES                       | true (static)          | Works in some cases, not active priority. Changes main video date info from "<#> years/months/etc. ago" to it's published date                  |
+| PERCENT_MORE_SPACE_TO_ACTIONS_BAR  | 0 (static)             | +5 for adding one more option, for example, showing share, clip, and save instead of just share and clip. +5 recommended by personal preference |
+| SHOW_VIDEO_LENGTH_IN_NOTIFICATIONS | Planned (false/extras) | Shows video length in notifications like it does in thumbnail views.                                                                            |
+| SHOW_CHANGES_BACKGROUNDS           | Planned (false/extras) | Changes background color of all changed places to orange.                                                                                       |
 
 <hr/>
 
