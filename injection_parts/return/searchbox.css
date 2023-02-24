@@ -1,8 +1,8 @@
 /*SEARCH BOX (main)*/
 #container.ytd-searchbox {
-    border-radius: 2px 0px 0px 2px  !important;
+    border-radius: 2px 0 0 2px  !important;
 }
 button#search-icon-legacy {
-    border-radius: 0px 2px 2px 0px !important;
+    border-radius: 0 2px 2px 0 !important;
     /*background-color: blueviolet !important;*/
 }

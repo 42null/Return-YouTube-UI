@@ -18,14 +18,3 @@ function waitForElm(selector){
         });
     });
 }
-
-
-
-
-
-
-
-// setTimeout(function(){
-//     console.log("Executed after 1 second");
-//     test();
-// }, 5000);

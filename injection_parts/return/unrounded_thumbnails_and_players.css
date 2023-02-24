@@ -2,20 +2,10 @@
 #thumbnail{
     border-radius: 0 !important;
 }
-.ytp-videowall-still-round-medium .ytp-videowall-still-image{
+.ytp-videowall-still-round-medium, .ytp-videowall-still-image{
     /*background-color: orange !important;*/
-    border-radius: 0;
+    border-radius: 0 !important;
 }
-
-
-
-/*SUBSCRIBE THINGS*/
-/*[aria-label^='Subscribe to ']{*/
-/*    border-radius: 2px;*/
-/*}*/
-/*[aria-label^='Unsubscribe from ']{*/
-/*    border-radius: 2px;*/
-/*}*/
 
 /*MINIPLAYER*/
 /*#video-preview-container{*/

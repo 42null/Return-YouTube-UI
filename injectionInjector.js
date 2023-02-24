@@ -5,7 +5,7 @@ let localCopyApplySettings = {};
 // TODO: MOVE TO A BETTER/LESS REDUNDANT SPOT. Remove Duplicate Code
 
 function createElementLink(sheetName) {
-    console.log("[Return Youtube UI]: Linking document name ="+sheetName);
+    console.log("[Return YouTube UI]: Linking document name ="+sheetName);
     if(sheetName.endsWith(".css")){
         const stylesheetLinkElement = document.createElement('link');
         stylesheetLinkElement.rel = 'stylesheet';
@@ -62,7 +62,7 @@ function getApplySettings(key) {
 }
 
 function applySettingsUpdate(){
-    console.log("[Return Youtube UI]: Start of applySettingsUpdate");
+    console.log("[Return YouTube UI]: Start of applySettingsUpdate");
 
     // TODO: Try to fix again, KEY_STORAGE_LOCAL_APPLYING_SETTINGS not converted to string for some reason
     browser.storage.local.set({ "applying_settings": localCopyApplySettings }); // Synchronize the changes made to localCopyApplySettings
@@ -71,8 +71,8 @@ function applySettingsUpdate(){
 browser.storage.onChanged.addListener((changes, areaName) => {
     if (areaName === "local" && KEY_STORAGE_LOCAL_APPLYING_SETTINGS in changes) {
         for (let key in changes) {
-            const settings = JSON.parse(JSON.stringify(changes[key].newValue));//TODO: Make sure this is efficent
-            console.log(`[Return Youtube UI]: Key "${key}" in area "${areaName}" changed. New value is ${JSON.stringify(changes[key].newValue)}.`);
+            const settings = JSON.parse(JSON.stringify(changes[key].newValue));//TODO: Make sure this is efficient
+            console.log(`[Return YouTube UI]: Key "${key}" in area "${areaName}" changed. New value is ${JSON.stringify(changes[key].newValue)}.`);
             localCopyApplySettings = settings;
             if(key===KEY_STORAGE_LOCAL_APPLYING_SETTINGS){
                 settingsToActions(settings);
@@ -108,12 +108,12 @@ function setInjectionStateHelper(state, id, filePath){
 function settingsToActions(){
     getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
         console.log("Initial applySettings:", applySettings);
-        console.log("Settings used:");
+        console.log("[Return Youtube UI]: Settings used:");
         const keys = Object.keys(applySettings);
         for (let i = 0; i < keys.length; i++) {
             const key = keys[i];
             const value = applySettings[keys[i]].value;
-            console.log("[Return Youtube UI]:   " + key + ": " + value);
+            console.log("[Return YouTube UI]:   " + key + ": " + value);
 
             if(typeof value == "boolean"){
                 // TODO: Make switch statement
@@ -127,8 +127,9 @@ function settingsToActions(){
                     setInjectionStateHelper(value, "injection_parts/return/unrounded_menus.css");
                 }else if(key === "UN_ROUNDED_THUMBNAILS_AND_PLAYERS"){
                     setInjectionStateHelper(value, "injection_parts/return/unrounded_thumbnails_and_players.css");
+                    setInjectionStateHelper(value, "injection_parts/return/unrounded_image_posts.css");//TODO: Move to own setting?
                 }else if(key === "BAR_BUTTONS"){
-                    setInjectionStateHelper(value, "injection_parts/return/OtherFormattingFromViews.css");
+                    setInjectionStateHelper(value, "injection_parts/return/otherFormattingFromViews.css");
                 }
             }
         }

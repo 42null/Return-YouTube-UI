@@ -5,14 +5,6 @@
 //TODO: Visible name correlation (make inside default?)
 
 //VISIBLE BUTTONS
-
-// const majorButtons = document.querySelectorAll("div.majorButton>button");
-// function getMajorButton(idString){ return majorButtons.getElementById(idString); }
-
-// const majorButtonEditSettings = getMajorButton("settingsPageButton");
-
-// console.log("majorButtonEditSettings ="+majorButtonEditSettings.textContent);
-const majorButtonEditSettings    = document.getElementById("settingsPageButton");
 const majorButtonEditPreferences = document.getElementById("extensionPreferencesPageButton").parentElement;
 const majorButtonReloadExtension = document.getElementById("reloadExtension").parentElement;
 

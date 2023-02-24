@@ -1,11 +1,10 @@
 waitForElm('.ytd-menu-renderer>ytd-button-renderer.style-scope.ytd-menu-renderer').then((elm) => {
-    console.log('[Return Youtube UI]: Element is ready');
+    console.log('[Return YouTube UI]: Element is ready');
     save_visible_before_clip();
 });
 
 function save_visible_before_clip() {
     let actionsRightOfDislike = document.querySelectorAll(".ytd-menu-renderer>ytd-button-renderer.style-scope.ytd-menu-renderer");
-
 
     let shareButton = null;
     let saveButton = null;
@@ -29,7 +28,7 @@ function save_visible_before_clip() {
 
     }
 
-    console.log("[Return Youtube UI]: save visible before clip");
+    console.log("[Return YouTube UI]: save visible before clip");
 
     /*Need to check to avoid error on null, checks all just for completeness and just
      in case something get changed by another extension or a different view setting*/

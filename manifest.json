@@ -1,10 +1,10 @@
 {
 
   "manifest_version": 2,
-  "name": "Return Youtube UI",
-  "version": "1.1.0",
+  "name": "Return YouTube UI",
+  "version": "2.1.0",
   "author": "42null",
-  "description": "An extension aimed at making youtube look like it used to before everything became rounded and circular.",
+  "description": "An extension making YouTube look like it used to before everything became rounded and circular.",
   "homepage_url": "https://github.com/42null/Return-YouTube-UI",
 
   "permissions": [
@@ -14,20 +14,20 @@
   ],
 
   "browser_action": {
-    "default_icon": "icons/ReturnYoutubeUIIconV2R2_512.png",
+    "default_icon": "icons/ReturnYouTubeUIIconV2R2_512.png",
     "theme_icons": [{
-      "light": "icons/ReturnYoutubeUIIconV2R2_512.png",
-      "dark": "icons/ReturnYoutubeUIIconV2R2_512.png",
+      "light": "icons/ReturnYouTubeUIIconV2R2_512.png",
+      "dark": "icons/ReturnYouTubeUIIconV2R2_512.png",
       "size": 32
     }],
-    "default_title": "Return Youtube UI",
+    "default_title": "Return YouTube UI",
     "default_popup": "popup/trigger_calls.html"
   },
 
   "content_scripts": [
     {
       "matches": ["*://*.youtube.com/*"],
-      "js": ["returnYoutubeUI.js", "injectionInjector.js"]
+      "js": ["returnYouTubeUI.js", "injectionInjector.js"]
     }
   ],
 
@@ -40,7 +40,7 @@
   ],
 
   "icons": {
-    "512": "icons/ReturnYoutubeUIIconV2R2_512.png"
+    "512": "icons/ReturnYouTubeUIIconV2R2_512.png"
   }
 
 }

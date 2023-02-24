@@ -10,15 +10,10 @@
 const    UN_ROUNDED_LINK_WINDOWS = true; //Makes all video windows linked inside the video frame squared like they were originally.
 const UN_ROUNDED_EXPANDING_HOVER = true; //Makes all website expanding link descriptions inside the video frame square like they were originally.
 const               PROPER_DATES = true; //Changes main video date info from "<#> years/months/etc. ago" to it's formatted date
-// const     SUBSCRIBE_BUTTON_COLOR = true; //Changes subscribe button from white to the original red
 const   SAVE_VISIBLE_BEFORE_CLIP = true; //Places save action before the clip action
 
 /* Extras (Disabled by default) */
-const SHOW_VIDEO_LENGTH_IN_NOTIFICATIONS = false;//Shows video length in notifications like it does in thumbnail views
 const PERCENT_MORE_SPACE_TO_ACTIONS_BAR = 0;//+5 for adding one more option, for example, showing share, clip, and save instead of just share and clip
-
-/* DEBUGGING */
-const SHOW_CHANGES_BACKGROUNDS = false; //changes background color of all changed places to orange
 
 
 //Created pages to inject
@@ -50,17 +45,12 @@ function createElementLink(sheetName) {
 
 let helperFunctions;
 
-let unroundedViewCSS;
 let unroundedLinkWindowsJS;
-// let unroundedSearchboxCSS;
 let saveVisibleBeforeClip;
 
-let originalSubscribeButtonColorCSS;
 
 helperFunctions = createElementLink("injection_partsconsole.log/helper_functions.js");
 document.head.appendChild(helperFunctions);
-
-// document.head.appendChild(unroundedSearchboxCSS);
 
 /* Video link windows inside the player that show up during playtime */
 
@@ -78,7 +68,7 @@ script.innerHTML = `
 
 /* Website link windows inside the player that show up during playtime are square but when
  they expand after being hovered over, they expand to have rounded corners after the UI update,
- if this setting is true, then the corners will be removed to their orignal state. */
+ if this setting is true, then the corners will be removed to their original state. */
 if(UN_ROUNDED_EXPANDING_HOVER){
     script.innerHTML += `
         let expandingDescriptions = document.querySelectorAll('.ytp-ce-expanding-overlay-background');
@@ -89,10 +79,6 @@ if(UN_ROUNDED_EXPANDING_HOVER){
         }
     `;
 }
-
-
-/* Delay of # second*/ //Figure out how to make on load correctly
-
 
 if(PROPER_DATES){
     script.innerHTML += `
@@ -166,17 +152,3 @@ document.body.appendChild(activator);
 document.getElementById("returnYoutubeUI_invisibleClickable").addEventListener("change", function(){
     console.log("[Return Youtube UI]: injectedInvisibleClickableChangeListener");
 });
-
-
-
-
-
-
-//
-//
-//
-// let test = createElementLink("popup/trigger_calls.js");
-//
-// setTimeout(function(){
-//     document.head.appendChild(test);
-// }, 5000);

@@ -44,8 +44,6 @@ getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
             //     browser.tabs.query({active: true, currentWindow: true})
             //         .then(tabs => {
             //             // send message to active tab
-            //             // console.log("DID IT !!!!!");
-            //             console.log('[return youtube ui]; input.checked in trigger=' + input.checked)
             //             browser.tabs.sendMessage(tabs[0].id, {
             //                 targetName: '',
             //                 checkYourself: input.checked
@@ -113,7 +111,7 @@ function listenForClicks() {//TODO: Merge components with getApplySettings initi
                 }
 
             } else if (e.target.id === "ManuallyReApplyJSPageModifications") {
-                browser.tabs.query({currentWindow: true, active: true}).then(reapplyGeneratedJS).catch(reportError);//TODO: Make double check for if a youtube page.
+                browser.tabs.query({currentWindow: true, active: true}).then(reapplyGeneratedJS).catch(reportError);//TODO: Make double check for if a YouTube page.
             }
         } else if (e.target.type === "checkbox") {
             console.log(e.target.attributes);
