@@ -1,0 +1,7 @@
+/* "Latest YouTube posts" section */
+#image-container.style-scope.ytd-backstage-image-renderer{
+    border-radius: 0 !important;
+}
+
+/*Focused image (larger when clicked) */
+/*Overlap with search bar radius //TODO: Fix collision*/

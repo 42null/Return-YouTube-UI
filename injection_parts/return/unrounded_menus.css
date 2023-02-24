@@ -1,0 +1,23 @@
+/*PLAYLIST LIST*/
+.style-scope.ytd-playlist-panel-renderer{
+    border-radius: 0 !important;/*Required !*/
+    /*    TODO: Make option for border-color #292929*/
+}
+
+
+/*START Popup Menus*/
+/*SAVE & SHARE*/
+.ytd-popup-container{
+    border-radius: 0 !important;
+}
+/*END Popup Menus*/
+
+/*PLAYER SETTINGS*/
+.ytp-settings-menu{
+    border-radius: 4px !important;
+}
+
+/*OFFER MODULE (Watch on YouTube - "Buy")*/
+ytd-tvfilm-offer-module-renderer{
+    border-radius: 0;
+}
