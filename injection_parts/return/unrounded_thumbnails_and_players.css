@@ -1,0 +1,38 @@
+/*THUMBNAILS*/
+#thumbnail{
+    border-radius: 0 !important;
+}
+.ytp-videowall-still-round-medium, .ytp-videowall-still-image{
+    /*background-color: orange !important;*/
+    border-radius: 0 !important;
+}
+
+/*MINIPLAYER*/
+/*#video-preview-container{*/
+/*ytd-video-preview[rounded-container]*/
+/*#video-preview-container.ytd-video-preview{*/
+.ytd-video-preview{
+    border-radius: 0 !important;
+}
+
+/*MAIN VIDEO*/
+video{
+    border-radius: 0;
+}
+
+/*When hovering layer*/
+.ytp-miniplayer-scrim{
+    border-radius: 0;
+}
+
+
+/*THUMBNAILS INSIDE NOTIFICATIONS BELL*/
+div .thumbnail-container.style-scope.ytd-notification-renderer{
+    border-radius: 0;
+}
+
+/* END CARDS in the video, //TODO: For some reason not working, fix, using js method for now*/
+.ytp-ce-covering-overlay{
+    border-radius: 0 !important;
+}
+

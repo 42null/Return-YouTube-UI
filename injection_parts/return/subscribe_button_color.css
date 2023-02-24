@@ -1,0 +1,32 @@
+/*Will use existing color vars on page, this is just here in case YouTube removes them*/
+:root {
+    --yt-spec-static-brand-white: #fff;
+    --yt-spec-brand-button-background: #c00;
+    --yt-spec-touch-response: #272727;
+    --yt-spec-text-secondary: #aaa;
+}
+
+[aria-label^='Subscribe to ']{
+    color: var(--yt-spec-static-brand-white) !important;/*Required !*/
+    /*Bring back the red instead of the white*/
+    background-color: var(--yt-spec-brand-button-background) !important;/*Required !*/
+}
+
+/*[aria-label^='Unsubscribe to ']{*/
+/*    color: var(--yt-spec-static-brand-white);*/
+/*    !*Bring back the red instead of the white*!*/
+/*    background-color: var(--yt-spec-brand-button-background);*/
+/*}*/
+
+/*#notification-preference-button{*/
+/*    color: var(--yt-spec-static-brand-white);*/
+/*    background-color: var(--yt-spec-touch-response);*/
+/*}*/
+
+/*Could make it just on all "Tap to change..." but to make it check less I decided to check it from the start*/
+[aria-label^='Current setting is all notifications. Tap to change your notification setting for '],
+[aria-label^='Current setting is personalized notifications. Tap to change your notification setting for '],
+[aria-label^='Current setting is receive no notifications. Tap to change your notification setting for ']{
+    color: var(--yt-spec-text-secondary);
+    background-color: var(--yt-spec-touch-response);
+}

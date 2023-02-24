@@ -3,14 +3,38 @@ The starting point of this file started as a fork from the example repository in
 https://github.com/mdn/webextensions-examples/tree/master/beastify (choose_beast.css)
 */
 
+:root {
+  /*All vars starting with md are for material design
+https://m2.material.io/resources/color/#!/?view.left=0&view.right=1&primary.color=14d1d1
+  */
+  --md_primary: #14d1d1;
+  --md_light: #69ffff;
+  --md_dark: #009fa0;
+  --md_greyBack: #e1e2e1;
+  --md_greyFore: #f5f5f6;
+  --md_textOnP: #000000;
+  --md_sliderBack: var(--md_primary);
+  --md_sliderFill: #b6b6b7;
+
+  --extension_legacy_button_color: #ff3349ff;
+
+
+  /*Numericals*/
+  --primaryButtonsWidth: 95%;
+  --scrollbar-width: calc(100vw - 100%);
+}
+
+
 html, body {
+  /*width: calc(210px + var(--scrollbar-width));*/
   width: 210px;
   /*font-family: Segoe UI, system-ui;*/
   /*padding: 3%;*/
   font-family: Gotham, system-ui;
   margin-top: -5px;
-  border-radius: 0px;
+  border-radius: 0;
   text-align: justify;
+  background-color: var(--md_greyFore);
 }
 
 .hidden {
@@ -26,16 +50,88 @@ button:hover {
   --alpha: 1;
 }
 
-button[type="callFunction"] {
-  background-color: #FBFBC9;
+
+
+/*Start section containing modified code from https://www.w3schools.com/howto/howto_css_switch.asp, credit to "How TO - Toggle Switch" article*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 90%;
+  height: 80%;
 }
 
-button[type="callFunction"]:hover {
-  /*background-color: #EAEA9D;*/
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  width: 85%;
+  top: 0;
+  left: 7%;
+  right: 0;
+  bottom: 0;
+  background-color: var(--md_greyBack);
+  -webkit-transition: .9s;
+  transition: .9s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  aspect-ratio: 1 / 1;
+  height: 90%;
+  left: 5%;
+  bottom: 5%;
+  background-color: var(--md_dark);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+/*Does not have any effect*/
+/*.slider:after {*/
+/*  background-color: var(--md_light);*/
+/*}*/
+
+input:checked + .slider {
+  background-color: var(--md_light);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 2px var(--md_light);
+}
+
+input:checked + .slider:before {
+  -ms-transform: translateX(117%);
+  transform: translateX(117%);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/*End section containing modified code from https://www.w3schools.com/howto/howto_css_switch.asp*/
+
+
+
+
+
 
 #titlePage{
   text-align: center;
+}
+
+#titlePage > h2{
+  width: 100%;
+  /*background-color: #F0F;*/
+  /*padding-left: var(--scrollbar-width);*/
 }
 
 #error-content{
@@ -43,24 +139,106 @@ button[type="callFunction"]:hover {
   padding-right: 2%;
 }
 
-.homepageLink{
-  text-align: center;
+.majorButton{
+  background-color: var(--md_light);
+}
+/*Default major buttons*/
+.majorButton > button{ background-color: var(--md_primary); }
+
+.primary_buttons{
+  width: var(--primaryButtonsWidth);
+  transform: translateX(calc((100% - (var(--primaryButtonsWidth))) / 2));
 }
 
-button {
-  border: none;
+.primary_buttons > .majorButton > button{
   width: 100%;
-  margin: 3% auto;
-  padding: 4px;
+  border: none;
+  margin: 0 auto 3% auto;
+  padding: 2px;
   text-align: center;
   font-size: 1.5em;
   cursor: pointer;
-  background-color: #ff3349ff;
 }
+
+
+
+table#settingsOptionsList{
+  background-color: var(--md_light);
+  width: 100%;
+  word-break: break-word;
+  padding-left: 0;
+  list-style: none;
+  /*margin-top: -4px;*/
+}
+
+#settingsOptionsList th{
+  text-align: center;
+}
+#settingsOptionsList td{
+  margin-top: 0;
+  text-align: center;
+  padding: 5% 0;
+}
+
+#settingsOptionsList td:nth-child(1) {/*Does not work for the second child so to get second %, edit first's %*/
+  width: 70%;
+}
+
+#settingsOptionsList th, #settingsOptionsList td{
+  /*border: var(--md_dark) 2px solid;*/
+  /*padding: 4px;*/
+  background-color: var(--md_dark);
+  width: 50%;
+}
+
+#popup-content{
+}
+
 /*MORE SPECIFIC SELECTIONS*/
 #popup-content h3{
   text-align: center;
   margin-top: 3px;
   margin-bottom: 2px;
   text-decoration: underline;
+}
+
+#viewExtension{
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/*CODE FROM https://dev-bay.com/css-ul-custom-bullet-style-with-image/*/
+.homepageLink {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-left: 0;
+  list-style: none;
+}
+.homepageLink li {
+  position: relative;
+  padding-left: 20px;
+}
+.homepageLink li:before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.homepageLink .githubHomepage li:before {
+  background-image: url('/icons/github-mark.png');
+}
+/*.firefoxHomepage .homepageLink li:before {*/
+.homepageLink .firefoxHomepage li:before {
+  background-image: url('/icons/Fx-Browser-icon-fullColor.svg');
+}
+
+#under_development_disclaimer{
+  margin-top: -50px;
 }

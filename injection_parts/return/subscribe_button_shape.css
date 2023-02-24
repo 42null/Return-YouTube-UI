@@ -1,0 +1,13 @@
+[aria-label^='Subscribe to ']{
+    border-radius: 4px;
+}
+[aria-label^='Unsubscribe from ']{
+    border-radius: 4px;
+}
+
+/*Could make it just on all "Tap to change..." but to make it check less I decided to check it from the start*/
+[aria-label^='Current setting is all notifications. Tap to change your notification setting for '],
+[aria-label^='Current setting is personalized notifications. Tap to change your notification setting for '],
+[aria-label^='Current setting is receive no notifications. Tap to change your notification setting for ']{
+    border-radius: 4px !important;
+}
