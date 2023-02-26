@@ -36,10 +36,10 @@ function getApplySettings(key) {
                     if (key === KEY_STORAGE_LOCAL_APPLYING_SETTINGS) {
                         defaultSettings = {
                             "UN_ROUNDED_SEARCH":                 {value: true, displayName: "Search Bar"},
+                            "UN_ROUNDED_THUMBNAILS_AND_PLAYERS": {value: true, displayName: "Thumbnails"},
+                            "UN_ROUNDED_MENUS":                  {value: true, displayName: "Menus"},
                             "SUBSCRIBE_BUTTON_COLOR":            {value: true, displayName: "Subscribe Color"},
                             "SUBSCRIBE_BUTTON_SHAPE":            {value: true, displayName: "Subscribe Shape"},
-                            "UN_ROUNDED_MENUS":                  {value: true, displayName: "Menus"},
-                            "UN_ROUNDED_THUMBNAILS_AND_PLAYERS": {value: true, displayName: "Thumbnails"},
                             "BAR_BUTTONS":                       {value: true, displayName: "Action Buttons"},
                         };
                     }
