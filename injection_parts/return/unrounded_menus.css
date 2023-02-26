@@ -17,7 +17,12 @@
     border-radius: 4px !important;
 }
 
-/*OFFER MODULE (Watch on YouTube - "Buy")*/
+/*START OFFER MODULE (Watch on YouTube - "Buy")*/
 ytd-tvfilm-offer-module-renderer{
     border-radius: 0;
 }
+#header.style-scope.ytd-universal-watch-card-renderer{
+    border-radius: 0 !important;
+}
+/*END OFFER MODULE*/
+

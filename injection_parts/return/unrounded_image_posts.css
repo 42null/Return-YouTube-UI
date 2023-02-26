@@ -4,4 +4,4 @@
 }
 
 /*Focused image (larger when clicked) */
-/*Overlap with search bar radius //TODO: Fix collision*/
+/*As of now, it does not appear that YouTube is rounding the corners here inside the actual image, menu-like border has one which changing has not been decided yet.*/

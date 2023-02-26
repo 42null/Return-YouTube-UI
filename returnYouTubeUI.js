@@ -7,7 +7,6 @@
 */
 
 /*DISCLAIMER! At current state not all variables are used, functionally will be added as the project progresses*/
-const    UN_ROUNDED_LINK_WINDOWS = true; //Makes all video windows linked inside the video frame squared like they were originally.
 const UN_ROUNDED_EXPANDING_HOVER = true; //Makes all website expanding link descriptions inside the video frame square like they were originally.
 const               PROPER_DATES = true; //Changes main video date info from "<#> years/months/etc. ago" to it's formatted date
 const   SAVE_VISIBLE_BEFORE_CLIP = true; //Places save action before the clip action
@@ -53,12 +52,6 @@ helperFunctions = createElementLink("injection_partsconsole.log/helper_functions
 document.head.appendChild(helperFunctions);
 
 /* Video link windows inside the player that show up during playtime */
-
-if(UN_ROUNDED_LINK_WINDOWS){
-
-    unroundedLinkWindowsJS = createElementLink("injection_parts/return/unrounded_link_windows.js");
-    document.head.appendChild(unroundedLinkWindowsJS);
-}
 
 script.innerHTML = `
     function applyGeneratedScripts(){
