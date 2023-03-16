@@ -41,6 +41,7 @@ function getApplySettings(key) {
                             "SUBSCRIBE_BUTTON_COLOR":            {value: true, displayName: "Subscribe Color"},
                             "SUBSCRIBE_BUTTON_SHAPE":            {value: true, displayName: "Subscribe Shape"},
                             "BAR_BUTTONS":                       {value: true, displayName: "Action Buttons"},
+                            "FOUR_ROW":                          {value: true, displayName: "Homepage 4 columns"},
                         };
                     }
                     result[key] = defaultSettings;
@@ -130,6 +131,18 @@ function settingsToActions(){
                     setInjectionStateHelper(value, "injection_parts/return/unrounded_image_posts.css");//TODO: Move to own setting?
                 }else if(key === "BAR_BUTTONS"){
                     setInjectionStateHelper(value, "injection_parts/return/otherFormattingFromViews.css");
+                }else if(key === "FOUR_ROW"){
+                    setInjectionStateHelper(value, "injection_parts/return/spaced_four_per_row.css");
+                    let homePageVideos = document.querySelectorAll("ytd-rich-item-renderer.style-scope.ytd-rich-grid-row");
+                    let homePageRows = document.querySelectorAll("ytd-rich-grid-row.style-scope.ytd-rich-grid-renderer");
+                    // for (let i = 1; i < homePageVideos.length; i++) {
+                    //     homePageVideos[i].parentElement.removeChild(homePageVideos[i]);
+                    //     homePageVideos[i-1].parentElement.appendChild(homePageVideos[i]);
+                    // }
+
+                    // for (let j = 0; j < 2/*homePageRows.length*/; j++) {
+                    //     homePageRows[j].style.backgroundColor = "#ff00ff";
+                    // }
                 }
             }
         }
