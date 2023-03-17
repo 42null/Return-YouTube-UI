@@ -39,11 +39,16 @@ div.thumbnail-container.style-scope.ytd-notification-renderer{
 }
 
 /*Next video preview button hold*/
+/*Outer Element*/
 .ytp-tooltip.ytp-rounded-tooltip.ytp-text-detail.ytp-preview.ytp-bottom{
     border-radius: 6px;
 }
-/*Next video preview from autoplay*/
+/*Thumbnail*/
+.ytp-tooltip.ytp-rounded-tooltip.ytp-text-detail.ytp-preview.ytp-bottom > .ytp-tooltip-bg{
+    border-radius: 2px;
+}
 
+/*Next video preview from autoplay*/
 .ytp-autonav-endscreen-upnext-thumbnail.rounded-thumbnail{
     border-radius: 0 !important;
 }
