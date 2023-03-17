@@ -35,27 +35,30 @@ getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
             label.appendChild(span);
             cell2.appendChild(label);
 
-            // label.addEventListener('change', async event => {
-            //
-            //     console.log("label.eventListener = " + input.name + " ");
-            //     // resolveApplication();//TODO move into individual and have in the eventListener?
-            //     applySettings[keys[i]] = input.checked;
-            //     label.value = input.checked;
-            //     browser.tabs.query({active: true, currentWindow: true})
-            //         .then(tabs => {
-            //             // send message to active tab
-            //             browser.tabs.sendMessage(tabs[0].id, {
-            //                 targetName: '',
-            //                 checkYourself: input.checked
-            //             });
-            //         })
-            //         .catch(error => console.error(error));
-            //     // saveData(KEY_STORAGE_LOCAL_APPLYING_SETTINGS, applySettings);
-            // });
-
             localCopyApplySettings[key].value = input.checked; // Change a setting
-            // localCopyApplySettings[key] = JSON.parse(JSON.stringify({"value":false}));
-            // {"UN_ROUNDED_SEARCH":{"value":true}}
+            applySettingsUpdate();
+        }else if(Number.isInteger(parseInt(value))){
+            const label = document.createElement('label');
+            label.classList.add("integerBox");
+            const input = document.createElement('input');
+            input.type = "number";
+            input.id = "idAuto_" + key;
+            input.name = "nameAuto_" + key;
+            input.value = parseInt(value);
+            // Check if min and max settings were used
+            if(typeof applySettings[keys[i]].min){
+                input.min = applySettings[keys[i]].min;
+            }
+            if(typeof applySettings[keys[i]].max){
+                input.max = applySettings[keys[i]].max;
+            }
+
+            input.classList.add("numberBox");//TODO: Make option for without round
+
+            label.appendChild(input);
+            cell2.appendChild(label);
+
+            localCopyApplySettings[key].value = parseInt(value); // Change a setting
             applySettingsUpdate();
         }
     }
@@ -133,8 +136,26 @@ function listenForClicks() {//TODO: Merge components with getApplySettings initi
                     console.error(`Error setting storage: ${error}`);
                 }
                 });
-        } else {
+        } else if (e.target.type === "number") {
+            console.log(e.target.attributes);
+            const currentApplySettingKey = e.target.id.replace("idAuto_", "");
+            // console.log(e.target.attributes);
 
+            browser.storage.local.get("applying_settings", async (result) => {
+                result[KEY_STORAGE_LOCAL_APPLYING_SETTINGS][currentApplySettingKey].value = e.target.checked;
+                try {
+                    try {
+                        const newSettings = JSON.parse(JSON.stringify(result)).applying_settings;
+                        newSettings[currentApplySettingKey].value = parseInt(e.target.value);
+                        await browser.storage.local.set({"applying_settings": newSettings});
+                        console.log("Storage set successfully");
+                    }catch(e2){
+                        console.log("Error="+e2);
+                    }
+                } catch (error) {
+                    console.error(`Error setting storage: ${error}`);
+                }
+            });
         }
     });
 }

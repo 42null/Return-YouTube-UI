@@ -1,16 +1,13 @@
-ytd-rich-grid-renderer{
-    --ytd-rich-grid-items-per-row: 4 !important;/*Required*/
-    --ytd-rich-grid-posts-per-row: 4 !important;/*Required*/
-    --ytd-rich-grid-slim-items-per-row: 8 !important;/*Required*/
-    --ytd-rich-grid-game-cards-per-row: 8 !important;/*Required*/
+:root{
+    --return-youtube-ui-videos-per-row: -1;
 }
 
-ytd-rich-item-renderer.style-scope, .ytd-rich-grid-row{
-    items-per-row: 4 !important;
+/*Code basis for videos per homepage is from https://webapps.stackexchange.com/a/160600*/
+ytd-rich-grid-renderer {
+    margin: 8px;
+    --ytd-rich-grid-items-per-row: var(--return-youtube-ui-videos-per-row) !important;
 }
-ytd-rich-grid-renderer.style-scope.ytd-two-column-browse-results-renderer{
-    --ytd-rich-grid-items-per-row: 4 !important;
-    --ytd-rich-grid-posts-per-row: 4 !important;
-    --ytd-rich-grid-slim-items-per-row: 8 !important;
-    --ytd-rich-grid-game-cards-per-row: 8 !important;
+#contents > ytd-rich-grid-row,
+#contents > ytd-rich-grid-row > #contents {
+    display: contents;
 }

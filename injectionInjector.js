@@ -41,7 +41,7 @@ function getApplySettings(key) {
                             "SUBSCRIBE_BUTTON_COLOR":            {value: true, displayName: "Subscribe Color"},
                             "SUBSCRIBE_BUTTON_SHAPE":            {value: true, displayName: "Subscribe Shape"},
                             "BAR_BUTTONS":                       {value: true, displayName: "Action Buttons"},
-                            "FOUR_ROW":                          {value: true, displayName: "Homepage 4 columns"},
+                            "FOUR_ROW":                          {value: 4,    displayName: "Videos Per Row", min: 1},
                         };
                     }
                     result[key] = defaultSettings;
@@ -108,7 +108,7 @@ function setInjectionStateHelper(state, id, filePath){
 
 function settingsToActions(){
     getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
-        console.log("Initial applySettings:", applySettings);
+        console.log("ApplySettings:", applySettings);
         console.log("[Return Youtube UI]: Settings used:");
         const keys = Object.keys(applySettings);
         for (let i = 0; i < keys.length; i++) {
@@ -131,18 +131,13 @@ function settingsToActions(){
                     setInjectionStateHelper(value, "injection_parts/return/unrounded_image_posts.css");//TODO: Move to own setting?
                 }else if(key === "BAR_BUTTONS"){
                     setInjectionStateHelper(value, "injection_parts/return/otherFormattingFromViews.css");
-                }else if(key === "FOUR_ROW"){
-                    setInjectionStateHelper(value, "injection_parts/return/spaced_four_per_row.css");
-                    let homePageVideos = document.querySelectorAll("ytd-rich-item-renderer.style-scope.ytd-rich-grid-row");
-                    let homePageRows = document.querySelectorAll("ytd-rich-grid-row.style-scope.ytd-rich-grid-renderer");
-                    // for (let i = 1; i < homePageVideos.length; i++) {
-                    //     homePageVideos[i].parentElement.removeChild(homePageVideos[i]);
-                    //     homePageVideos[i-1].parentElement.appendChild(homePageVideos[i]);
-                    // }
-
-                    // for (let j = 0; j < 2/*homePageRows.length*/; j++) {
-                    //     homePageRows[j].style.backgroundColor = "#ff00ff";
-                    // }
+                }
+            }else{
+                if(key === "FOUR_ROW"){
+                    var r = document.querySelector(':root');
+                    r.style.setProperty('--return-youtube-ui-videos-per-row', value);
+                    setInjectionStateHelper(false, "injection_parts/return/spaced_four_per_row.css");
+                    setInjectionStateHelper(true, "injection_parts/return/spaced_four_per_row.css");
                 }
             }
         }
@@ -152,4 +147,5 @@ function settingsToActions(){
 }
 
 // Initial setup/initial receive
+console.log("Running initial applySettings...");
 settingsToActions();
