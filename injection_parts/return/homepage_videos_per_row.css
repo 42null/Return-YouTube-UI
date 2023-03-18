@@ -1,0 +1,13 @@
+:root{
+    --return-youtube-ui-videos-per-row: -1;
+}
+
+/*Code basis for videos per homepage is from https://webapps.stackexchange.com/a/160600*/
+ytd-rich-grid-renderer {
+    margin: 8px;
+    --ytd-rich-grid-items-per-row: var(--return-youtube-ui-videos-per-row) !important;
+}
+#contents > ytd-rich-grid-row,
+#contents > ytd-rich-grid-row > #contents {
+    display: contents;
+}

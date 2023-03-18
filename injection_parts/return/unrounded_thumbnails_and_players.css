@@ -38,7 +38,22 @@ div.thumbnail-container.style-scope.ytd-notification-renderer{
     border-radius: 0 !important;
 }
 
+/*Next video preview button hold*/
+/*Outer Element*/
+.ytp-tooltip.ytp-rounded-tooltip.ytp-text-detail.ytp-preview.ytp-bottom{
+    border-radius: 6px;
+}
+/*Thumbnail*/
+.ytp-tooltip.ytp-rounded-tooltip.ytp-text-detail.ytp-preview.ytp-bottom > .ytp-tooltip-bg{
+    border-radius: 2px;
+}
+
+/*Next video preview from autoplay*/
+.ytp-autonav-endscreen-upnext-thumbnail.rounded-thumbnail{
+    border-radius: 0 !important;
+}
+
 /* From <Creator> (i) cards*/
 .iv-card.ytp-rounded-info{
-    border-radius: 0;
+    border-radius: 0 !important;
 }
