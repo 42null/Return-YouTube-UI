@@ -51,6 +51,15 @@ button:hover {
 }
 
 
+.numberBox {
+  position: relative;
+  display: inline-block;
+  height: 80%;
+  width: 58%;
+  /*left: 7%;*/
+  background-color: var(--md_greyBack);
+  /*background-color: #cc0000;*/
+}
 
 /*Start section containing modified code from https://www.w3schools.com/howto/howto_css_switch.asp, credit to "How TO - Toggle Switch" article*/
 .switch {
@@ -118,9 +127,6 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 /*End section containing modified code from https://www.w3schools.com/howto/howto_css_switch.asp*/
-
-
-
 
 
 
