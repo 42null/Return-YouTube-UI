@@ -45,6 +45,7 @@ getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
             input.id = "idAuto_" + key;
             input.name = "nameAuto_" + key;
             input.value = parseInt(value);
+            input.placeholder = parseInt(4);
             // Check if min and max settings were used
             if(typeof applySettings[keys[i]].min){
                 input.min = applySettings[keys[i]].min;

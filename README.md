@@ -19,11 +19,12 @@ Settings control is being migrated to the extension popup page. With the latest 
 #### Items that are the core principles of return are on by default
 | Setting                            | Default & Location     | Description                                                                                                                                      |
 |------------------------------------|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| Search Bar                         | true (popup)           | Reverts the radius of search bar back to how it was before.                                                                                      |
+| Videos Per Row                     | 4 (popup)              | Sets the number of video columns in the homepage to user provided value (min = 1).                                                               |
+| Thumbnails                         | true (popup)           | Hardens corners for thumbnails mini-players everywhere.                                                                                          |
 | Subscribe Color                    | true (popup)           | Brings back the red to the subscribe color.                                                                                                      |
 | Subscribe Shape                    | true (popup)           | Brings back the shape subscribe color.                                                                                                           |
+| Search Bar                         | true (popup)           | Reverts the radius of search bar back to how it was before.                                                                                      |
 | Menus                              | true (popup)           | Un-rounds borders in all (found) menus.                                                                                                          |
-| Thumbnails                         | true (popup)           | Hardens corners for thumbnails mini-players everywhere.                                                                                          |
 | Action Buttons                     | true (popup)           | Removes borders on action bar buttons.                                                                                                           |
 | SAVE_VISIBLE_BEFORE_CLIP           | true (static)          | Places save action before the clip action, not yet working in all environments.                                                                  |
 | PROPER_DATES                       | true (static)          | Works in some cases, not active priority. Changes main video date info from "<#> years/months/etc. ago" to it's published date.                  |

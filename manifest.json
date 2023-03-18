@@ -2,7 +2,7 @@
 
   "manifest_version": 2,
   "name": "Return YouTube UI",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "author": "42null",
   "description": "An extension making YouTube look like it used to before everything became rounded and circular with customisable settings.",
   "homepage_url": "https://github.com/42null/Return-YouTube-UI",
