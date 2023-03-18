@@ -35,13 +35,13 @@ function getApplySettings(key) {
                     let defaultSettings = {};
                     if (key === KEY_STORAGE_LOCAL_APPLYING_SETTINGS) {
                         defaultSettings = {
+                            "VIDEOS_PER_ROW":                    {value: 4,    displayName: "Videos Per Row", min: 1},
                             "UN_ROUNDED_SEARCH":                 {value: true, displayName: "Search Bar"},
                             "UN_ROUNDED_THUMBNAILS_AND_PLAYERS": {value: true, displayName: "Thumbnails"},
                             "UN_ROUNDED_MENUS":                  {value: true, displayName: "Menus"},
                             "SUBSCRIBE_BUTTON_COLOR":            {value: true, displayName: "Subscribe Color"},
                             "SUBSCRIBE_BUTTON_SHAPE":            {value: true, displayName: "Subscribe Shape"},
                             "BAR_BUTTONS":                       {value: true, displayName: "Action Buttons"},
-                            "FOUR_ROW":                          {value: 4,    displayName: "Videos Per Row", min: 1},
                         };
                     }
                     result[key] = defaultSettings;
@@ -133,11 +133,11 @@ function settingsToActions(){
                     setInjectionStateHelper(value, "injection_parts/return/otherFormattingFromViews.css");
                 }
             }else{
-                if(key === "FOUR_ROW"){
+                if(key === "VIDEOS_PER_ROW"){
                     var r = document.querySelector(':root');
                     r.style.setProperty('--return-youtube-ui-videos-per-row', value);
-                    setInjectionStateHelper(false, "injection_parts/return/spaced_four_per_row.css");
-                    setInjectionStateHelper(true, "injection_parts/return/spaced_four_per_row.css");
+                    setInjectionStateHelper(false, "injection_parts/return/homepage_videos_per_row.css");
+                    setInjectionStateHelper(true, "injection_parts/return/homepage_videos_per_row.css");
                 }
             }
         }
