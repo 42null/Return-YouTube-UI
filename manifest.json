@@ -33,6 +33,7 @@
 
   "web_accessible_resources": [
     "injection_parts/helper_functions.js",
+    "global_helper_functions.js",
     "injectionInjector.js",
 
     "injection_parts/core/*.css",

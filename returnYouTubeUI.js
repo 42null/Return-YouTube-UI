@@ -1,5 +1,3 @@
-/* SETTINGS */
-
 /*
    Settings are established by default to reset YouTube to look how it did just before the circular UI rework,
    leave all settings true to return to how it used to be, this changes shapes but also some other things such
@@ -7,33 +5,30 @@
 */
 
 /*DISCLAIMER! At current state not all variables are used, functionally will be added as the project progresses*/
-const UN_ROUNDED_EXPANDING_HOVER = true; //Makes all website expanding link descriptions inside the video frame square like they were originally.
 const               PROPER_DATES = true; //Changes main video date info from "<#> years/months/etc. ago" to it's formatted date
 const   SAVE_VISIBLE_BEFORE_CLIP = true; //Places save action before the clip action
 
 /* Extras (Disabled by default) */
 const PERCENT_MORE_SPACE_TO_ACTIONS_BAR = 0;//+5 for adding one more option, for example, showing share, clip, and save instead of just share and clip
 
-
 //Created pages to inject
 let style = document.createElement('style');
 let script = document.createElement('script');
 let activator = document.createElement('script');
 
-
 //Element to hold injected items and insert within
 let injectedDiv = document.createElement("div");
 
-
 function createElementLink(sheetName) {
-    console.log("Linking name ="+sheetName);
     if(sheetName.endsWith(".css")){
+        console.log("["+projectConfiguration.log_header+"]: Linking style name ="+sheetName);
         const stylesheetLinkElement = document.createElement('link');
         stylesheetLinkElement.rel = 'stylesheet';
         stylesheetLinkElement.type = 'text/css';
         stylesheetLinkElement.href = browser.runtime.getURL(sheetName);
         return stylesheetLinkElement;
     }else if(sheetName.endsWith(".js")){
+        console.log("["+projectConfiguration.log_header+"]: Linking script name ="+sheetName);
         const jsSheetLinkElement=document.createElement('script')
         jsSheetLinkElement.setAttribute("type","text/javascript")
         jsSheetLinkElement.setAttribute("src", browser.runtime.getURL(sheetName))
@@ -42,9 +37,17 @@ function createElementLink(sheetName) {
     // return stylesheetLinkElement;
 }
 
-let helperFunctions;
+function getProjectConfiguration() {
+  return fetch(browser.runtime.getURL('projectConfigurations.json'))
+      .then(response => response.json())
+      .then(data => data);
+}
 
-let unroundedLinkWindowsJS;
+getProjectConfiguration().then(projectConfiguration => { localStorage.setItem("ProjectConfiguration", JSON.stringify(projectConfiguration));});
+projectConfiguration = JSON.parse(localStorage.getItem("ProjectConfiguration"));
+
+
+let helperFunctions;
 let saveVisibleBeforeClip;
 
 
@@ -55,23 +58,8 @@ document.head.appendChild(helperFunctions);
 
 script.innerHTML = `
     function applyGeneratedScripts(){
-        console.log("[Return Youtube UI]: Activator call was received");
+        console.log("[`+projectConfiguration.log_header+`]: Activator call was received");
     `;
-
-
-/* Website link windows inside the player that show up during playtime are square but when
- they expand after being hovered over, they expand to have rounded corners after the UI update,
- if this setting is true, then the corners will be removed to their original state. */
-if(UN_ROUNDED_EXPANDING_HOVER){
-    script.innerHTML += `
-        let expandingDescriptions = document.querySelectorAll('.ytp-ce-expanding-overlay-background');
-    
-        for (let i = 0; i < expandingDescriptions.length; i++) {
-            expandingDescriptions[i].parentElement.style.borderRadius = '0px';
-            expandingDescriptions[i].style.borderRadius = 'inherit';//Allows it to also cover channel links which are not always caught
-        }
-    `;
-}
 
 if(PROPER_DATES){
     script.innerHTML += `
@@ -120,10 +108,6 @@ activator.innerHTML = `
             applyGeneratedScripts();
         }
     });
-    // document.getElementById("returnYoutubeUI_invisibleClickable").addEventListener("change", function(){
-    //     alert("returnYoutubeUI_invisibleClickable");
-    //     console.log(("returnYoutubeUI_invisibleClickable"));
-    // });
     
 `;
 //TODO: Above commented out code is not executing, possible removal
@@ -134,7 +118,7 @@ injectedInvisibleClickable.nodeName = "returnYoutubeUI_invisibleClickable";
 document.body.appendChild(injectedInvisibleClickable);
 activator.innerHTML+= `
     document.getElementById("returnYoutubeUI_invisibleClickable").addEventListener("click", function(){
-        console.log("[Return Youtube UI]: injectedInvisibleClickable was 'clicked'");
+        console.log("[`+projectConfiguration.log_header+`]: injectedInvisibleClickable was 'clicked'");
         applyGeneratedScripts();
     });
 `;
@@ -143,5 +127,5 @@ document.body.appendChild(injectedDiv);
 document.body.appendChild(activator);
 
 document.getElementById("returnYoutubeUI_invisibleClickable").addEventListener("change", function(){
-    console.log("[Return Youtube UI]: injectedInvisibleClickableChangeListener");
+    console.log("["+projectConfiguration.log_header+"]: injectedInvisibleClickableChangeListener");
 });

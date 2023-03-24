@@ -1,6 +1,12 @@
+// import { projectConfiguration } from "./global_helper_functions.js";
+let projectConfiguration = null;
+
 let KEY_STORAGE_LOCAL_APPLYING_SETTINGS = "applying_settings";
 
 let localCopyApplySettings = {};
+
+
+
 
 // TODO: MOVE TO A BETTER/LESS REDUNDANT SPOT. Remove Duplicate Code
 
@@ -85,6 +91,10 @@ browser.storage.onChanged.addListener((changes, areaName) => {
 // START INJECTOR BASED SETTINGS HELPERS
 function setInjectionStateHelper(state, id, filePath){
     if(typeof filePath == "undefined"){//Make id filepath for overloading
+        if(typeof id == "undefined"){//If both undefined for overloading
+            id = state;
+            state = true;
+        }
         filePath = id;
         id = "returnUI_injected_CSS__"+filePath.substring((filePath.lastIndexOf("/")===-1 ? 0 : (filePath.lastIndexOf("/"))),filePath.lastIndexOf("."));
     }
@@ -102,6 +112,15 @@ function setInjectionStateHelper(state, id, filePath){
             element.parentElement.removeChild(element);
         }catch(e){}
     }
+}
+
+function setProperty(propertyName, value){
+    var root = document.querySelector(':root');//TODO: Inefficient?
+    if(!propertyName.startsWith("--")){
+        propertyName = "--".concat(propertyName);
+    }
+    root.style.setProperty(propertyName, value);
+
 }
 // END INJECTOR BASED SETTINGS HELPERS
 
@@ -134,10 +153,8 @@ function settingsToActions(){
                 }
             }else{
                 if(key === "VIDEOS_PER_ROW"){
-                    var r = document.querySelector(':root');
-                    r.style.setProperty('--return-youtube-ui-videos-per-row', value);
-                    setInjectionStateHelper(false, "injection_parts/return/homepage_videos_per_row.css");
-                    setInjectionStateHelper(true, "injection_parts/return/homepage_videos_per_row.css");
+                    setProperty("return-youtube-ui-videos-per-row", value);
+                    setInjectionStateHelper( "injection_parts/return/homepage_videos_per_row.css");
                 }
             }
         }
@@ -147,5 +164,5 @@ function settingsToActions(){
 }
 
 // Initial setup/initial receive
-console.log("Running initial applySettings...");
+// console.log("Running initial applySettings... loggingHeader "+projectConfiguration.loggingHeader);
 settingsToActions();
