@@ -19,7 +19,7 @@ Settings control is being migrated to the extension popup page. With the latest 
 #### Items that are the core principles of return are on by default
 | Setting                            | Default & Location     | Description                                                                                                                                      |
 |------------------------------------|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| Videos Per Row                     | 4 (popup)              | Sets the number of video columns in the homepage to user provided value (min = 1).                                                               |
+| Videos Per Row                     | 4 (popup)              | Sets the number of video columns on the homepage and channel "videos" pages to a user provided value (min = 1).                                  |
 | Thumbnails                         | true (popup)           | Hardens corners for thumbnails mini-players everywhere.                                                                                          |
 | Subscribe Color                    | true (popup)           | Brings back the red to the subscribe color.                                                                                                      |
 | Subscribe Shape                    | true (popup)           | Brings back the shape subscribe color.                                                                                                           |

@@ -5,13 +5,34 @@ let KEY_STORAGE_LOCAL_APPLYING_SETTINGS = "applying_settings";
 
 let localCopyApplySettings = {};
 
+function getProjectConfiguration() {
+    return fetch(browser.runtime.getURL('projectConfiguration.json'))
+        .then(response => response.json())
+        .then(data => data);
+}
+getProjectConfiguration().then(projectConfiguration => { localStorage.setItem("ProjectConfiguration", JSON.stringify(projectConfiguration));});
+projectConfiguration = JSON.parse(localStorage.getItem("ProjectConfiguration"));
 
+function logMessageToConsole(...messages){
+    if(projectConfiguration === null){
+        getProjectConfiguration().then(gotProjectConfiguration => {
+            projectConfiguration = JSON.stringify(gotProjectConfiguration);
+            for(const message of messages){
+                console.log("["+projectConfiguration.log_header+"]: "+message);
+            }
+        });
+    }else{
+        for(const message of messages){
+            console.log("["+projectConfiguration.log_header+"]: "+message);
+        }
+    }
+}
 
 
 // TODO: MOVE TO A BETTER/LESS REDUNDANT SPOT. Remove Duplicate Code
-
 function createElementLink(sheetName) {
-    console.log("[Return YouTube UI]: Linking document name ="+sheetName);
+    logMessageToConsole("Linking document name ="+sheetName);
+
     if(sheetName.endsWith(".css")){
         const stylesheetLinkElement = document.createElement('link');
         stylesheetLinkElement.rel = 'stylesheet';
@@ -26,7 +47,6 @@ function createElementLink(sheetName) {
     }
     // return stylesheetLinkElement;
 }
-
 
 
 
@@ -69,7 +89,7 @@ function getApplySettings(key) {
 }
 
 function applySettingsUpdate(){
-    console.log("[Return YouTube UI]: Start of applySettingsUpdate");
+    logMessageToConsole("Start of applySettingsUpdate");
 
     // TODO: Try to fix again, KEY_STORAGE_LOCAL_APPLYING_SETTINGS not converted to string for some reason
     browser.storage.local.set({ "applying_settings": localCopyApplySettings }); // Synchronize the changes made to localCopyApplySettings
@@ -78,8 +98,11 @@ function applySettingsUpdate(){
 browser.storage.onChanged.addListener((changes, areaName) => {
     if (areaName === "local" && KEY_STORAGE_LOCAL_APPLYING_SETTINGS in changes) {
         for (let key in changes) {
-            const settings = JSON.parse(JSON.stringify(changes[key].newValue));//TODO: Make sure this is efficient
-            console.log(`[Return YouTube UI]: Key "${key}" in area "${areaName}" changed. New value is ${JSON.stringify(changes[key].newValue)}.`);
+            const settings = JSON.parse(JSON.stringify(changes[key].newValue));//TODO: Make sure this is efficient{
+
+            logMessageToConsole(`Key "${key}" in area "${areaName}" changed. New value is ${JSON.stringify(changes[key].newValue)}.`);
+
+
             localCopyApplySettings = settings;
             if(key===KEY_STORAGE_LOCAL_APPLYING_SETTINGS){
                 settingsToActions(settings);
@@ -127,13 +150,13 @@ function setProperty(propertyName, value){
 
 function settingsToActions(){
     getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
-        console.log("ApplySettings:", applySettings);
-        console.log("[Return Youtube UI]: Settings used:");
+        logMessageToConsole("Settings used:");
+
         const keys = Object.keys(applySettings);
         for (let i = 0; i < keys.length; i++) {
             const key = keys[i];
             const value = applySettings[keys[i]].value;
-            console.log("[Return YouTube UI]:   " + key + ": " + value);
+            // @@@console.log("["+projectConfiguration.log_header+"]:   " + key + ": " + value);
 
             if(typeof value == "boolean"){
                 // TODO: Make switch statement

@@ -1,7 +1,6 @@
 const settingsListElement = document.getElementById("settingsOptionsList");
 // const appPreferencesListElement = document.getElementById("settingsOptionsList");
 
-
 // CREATE TABLE
 getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
     console.log("[Return Youtube UI]: Initial applySettings:", applySettings);

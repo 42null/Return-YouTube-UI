@@ -12,7 +12,6 @@ const   SAVE_VISIBLE_BEFORE_CLIP = true; //Places save action before the clip ac
 const PERCENT_MORE_SPACE_TO_ACTIONS_BAR = 0;//+5 for adding one more option, for example, showing share, clip, and save instead of just share and clip
 
 //Created pages to inject
-let style = document.createElement('style');
 let script = document.createElement('script');
 let activator = document.createElement('script');
 
@@ -38,7 +37,7 @@ function createElementLink(sheetName) {
 }
 
 function getProjectConfiguration() {
-  return fetch(browser.runtime.getURL('projectConfigurations.json'))
+  return fetch(browser.runtime.getURL('projectConfiguration.json'))
       .then(response => response.json())
       .then(data => data);
 }
@@ -58,7 +57,7 @@ document.head.appendChild(helperFunctions);
 
 script.innerHTML = `
     function applyGeneratedScripts(){
-        console.log("[`+projectConfiguration.log_header+`]: Activator call was received");
+        console.log("[`+"projectConfiguration.log_header"+`]: Activator call was received");
     `;
 
 if(PROPER_DATES){
@@ -86,13 +85,8 @@ if(PERCENT_MORE_SPACE_TO_ACTIONS_BAR !== 0){
     `;
 }
 
-script.innerHTML+=` unroundLinkWindows();`;
 script.innerHTML+=` };`;
 
-//Append id's so the injected-ids can be located
-style.id = "returnYoutubeUI_style";
-
-injectedDiv.appendChild(style);
 injectedDiv.appendChild(script);
 
 
@@ -110,7 +104,6 @@ activator.innerHTML = `
     });
     
 `;
-//TODO: Above commented out code is not executing, possible removal
 
 let injectedInvisibleClickable = document.createElement("button");
 injectedInvisibleClickable.id = "returnYoutubeUI_invisibleClickable";
@@ -118,7 +111,7 @@ injectedInvisibleClickable.nodeName = "returnYoutubeUI_invisibleClickable";
 document.body.appendChild(injectedInvisibleClickable);
 activator.innerHTML+= `
     document.getElementById("returnYoutubeUI_invisibleClickable").addEventListener("click", function(){
-        console.log("[`+projectConfiguration.log_header+`]: injectedInvisibleClickable was 'clicked'");
+        console.log("[`+"projectConfiguration.log_header"+`]: injectedInvisibleClickable was 'clicked'");
         applyGeneratedScripts();
     });
 `;
@@ -127,5 +120,5 @@ document.body.appendChild(injectedDiv);
 document.body.appendChild(activator);
 
 document.getElementById("returnYoutubeUI_invisibleClickable").addEventListener("change", function(){
-    console.log("["+projectConfiguration.log_header+"]: injectedInvisibleClickableChangeListener");
+    console.log("["+"projectConfiguration.log_header"+"]: injectedInvisibleClickableChangeListener");
 });
