@@ -67,6 +67,7 @@ function getApplySettings(key) {
                             "UN_ROUNDED_MENUS":                  {value: true, displayName: "Menus"},
                             "SUBSCRIBE_BUTTON_COLOR":            {value: true, displayName: "Subscribe Color"},
                             "SUBSCRIBE_BUTTON_SHAPE":            {value: true, displayName: "Subscribe Shape"},
+                            "SAVE_BEFORE_SHARE":                 {value: true, displayName: "Save First"},
                             "BAR_BUTTONS":                       {value: true, displayName: "Action Buttons"},
                         };
                     }
@@ -173,6 +174,12 @@ function settingsToActions(){
                     setInjectionStateHelper(value, "injection_parts/return/unrounded_image_posts.css");//TODO: Move to own setting?
                 }else if(key === "BAR_BUTTONS"){
                     setInjectionStateHelper(value, "injection_parts/return/otherFormattingFromViews.css");
+                }else if(key === "SAVE_BEFORE_SHARE"){
+                    if(value){
+                        setInjectionStateHelper(true, "injection_parts/return/save_visible_before_clip.js");
+                    }else{
+                        save_visible_before_clip(false);
+                    }
                 }
             }else{
                 if(key === "VIDEOS_PER_ROW"){
@@ -189,3 +196,24 @@ function settingsToActions(){
 // Initial setup/initial receive
 // console.log("Running initial applySettings... loggingHeader "+projectConfiguration.loggingHeader);
 settingsToActions();
+
+
+
+
+
+// SPECIFICS TO YOUTUBE.COM
+
+/*
+* SPECIFIC TO YOUTUBE - listens for all video changes and re-applies
+* */
+const videoObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'src') {
+
+        }
+    });
+});
+
+// Observe changes
+videoObserver.observe(document.querySelector("video"), { attributes: true, attributeFilter: ['src'] });
+

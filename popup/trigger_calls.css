@@ -27,14 +27,16 @@ https://m2.material.io/resources/color/#!/?view.left=0&view.right=1&primary.colo
 
 html, body {
   /*width: calc(210px + var(--scrollbar-width));*/
-  width: 210px;
+  width: 220px;
   /*font-family: Segoe UI, system-ui;*/
   /*padding: 3%;*/
   font-family: Gotham, system-ui;
   margin-top: -5px;
   border-radius: 0;
   text-align: justify;
-  background-color: var(--md_greyFore);
+  /*background-color: var(--md_greyFore);*/
+
+  scrollbar-color: var(--md_dark) inital;
 }
 
 .hidden {
@@ -48,6 +50,12 @@ html, body {
 button:hover {
   /*background-color: #CFF2F2;*/
   --alpha: 1;
+}
+
+
+.hasVerticalOverflowCausingHorizontal{
+  overflow-x: hidden;
+  margin-left: -2px;
 }
 
 
@@ -135,7 +143,9 @@ input:checked + .slider:before {
 }
 
 #titlePage > h2{
-  width: 100%;
+  text-align: center;
+  width: 95%;
+  padding-left: 5px; /*TODO: Automate*/
   /*background-color: #F0F;*/
   /*padding-left: var(--scrollbar-width);*/
 }
@@ -149,7 +159,9 @@ input:checked + .slider:before {
   background-color: var(--md_light);
 }
 /*Default major buttons*/
-.majorButton > button{ background-color: var(--md_primary); }
+.majorButton > button{
+  background-color: var(--md_primary);
+}
 
 .primary_buttons{
   width: var(--primaryButtonsWidth);
@@ -208,10 +220,20 @@ table#settingsOptionsList{
   text-decoration: underline;
 }
 
-#viewExtension{
+#footer{
+  width: var(--primaryButtonsWidth);
+  margin: 0 auto;
+}
+
+#footer h5{
   text-align: center;
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+#footer #under_development_disclaimer{
+  margin: 0 auto;
+  text-align: center;
 }
 
 /*CODE FROM https://dev-bay.com/css-ul-custom-bullet-style-with-image/*/

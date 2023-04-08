@@ -17,7 +17,7 @@ https://github.com/mdn/webextensions-examples/tree/master/beastify (choose_beast
       Return YouTube UI
     </h2>
     <div style="text-align: center;">
-      <img src="../icons/ReturnYouTubeUIIconV2R2_512.png" alt="[Return Youtube UI Logo]" width="50%" height="auto" />
+      <img src="../icons/ReturnYouTubeUIIconV2R2_512.png" alt="[Return Youtube UI Logo]" width="40%" height="auto" />
     </div>
   </div>
 
@@ -26,38 +26,12 @@ https://github.com/mdn/webextensions-examples/tree/master/beastify (choose_beast
 <!--    <button type="submit" id="ManuallyReApplyJSPageModifications">Re-Apply JS page modifications</button>-->
     <div class="primary_buttons">
       <div class="majorButton">
-        <button type="submit" id="settingsPageButton">Youtube Settings</button>
+        <button type="submit" id="settingsPageButton">Page Settings</button>
         <table id="settingsOptionsList" >
           <tr>
             <th>Setting</th>
             <th>Value</th>
           </tr>
-<!--          <tr>-->
-<!--            <th colspan="2" >Unrounded Views</th>-->
-<!--          </tr>-->
-<!--          <tr>-->
-<!--            <th colspan="2" >Notifications</th>-->
-<!--          </tr>-->
-<!--          <td>Notifications</td>-->
-<!--          <td>-->
-<!--            <label class="switch">-->
-<!--              <input type="checkbox" id="notificationsCheckBox" name="notificationsCheckBox" value="notificationsCheckBoxValue">-->
-<!--              <span class="slider round"></span>-->
-<!--            </label>-->
-<!--          </td>-->
-<!--          </tr>-->
-<!--          <tr>-->
-<!--            <th colspan="2" >End-Cards</th>-->
-<!--            </tr>-->
-<!--            <td>Channels</td>-->
-<!--            <td>-->
-<!--              <label class="switch">-->
-<!--                <input type="checkbox">-->
-<!--                <span class="slider round"></span>-->
-<!--              </label>-->
-<!--            </td>-->
-<!--          </tr>-->
-
         </table>
       </div>
 
@@ -73,22 +47,22 @@ https://github.com/mdn/webextensions-examples/tree/master/beastify (choose_beast
   </div>
 
   <div id="error-content" class="hidden">
-<!--    <p>The extension does not have access to this page. However, you can still modify settings here.</p>-->
     <p>For security purposes the manifest file restricts this extension to only pages on YouTube.com.</p>
     <p><b>To see this page as it should be, just switch to a tab where YouTube is open</b>.</p>
-<!--    <p>If loading the extension as a Temporary Add-On you can change this by adding "activeTab" under permissions.</p>-->
   </div>
 
-  <h5 id="viewExtension"><u>View Extension On</u>...</h5>
-  <ul class="homepageLink" style="list-style:none!important;">
-    <table style="margin:0 auto; text-align: center;">
-      <tr>
-        <th class="githubHomepage"><li><a href="https://github.com/42null/Return-YouTube-UI">Github</a></li></th>
-        <th class="firefoxHomepage"><li><a href="https://addons.mozilla.org/en-US/firefox/addon/return-youtube-ui/">Add-Ons</a><br></li></th>
-      </tr>
-    </table>
-  </ul>
-  <p id="under_development_disclaimer" style="margin: 0 auto; text-align: center;" class="smaller"><i>(Project under active development)</i></p>
+  <div id="footer">
+    <h5><u>View Extension On</u>...</h5>
+    <ul class="homepageLink" style="list-style:none!important;">
+      <table style="margin:0 auto; text-align: center;">
+        <tr>
+          <th class="githubHomepage"><li><a href="https://github.com/42null/Return-YouTube-UI">Github</a></li></th>
+          <th class="firefoxHomepage"><li><a href="https://addons.mozilla.org/en-US/firefox/addon/return-youtube-ui/">Add-Ons</a><br></li></th>
+        </tr>
+      </table>
+    </ul>
+    <p id="under_development_disclaimer" class="smaller"><i>(Project under active development)</i></p>
+  </div>
 </body>
 
 <!--Include after page is built-->

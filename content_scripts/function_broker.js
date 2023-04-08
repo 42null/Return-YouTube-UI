@@ -14,10 +14,12 @@ https://github.com/mdn/webextensions-examples/tree/master/beastify (beastify.js)
   }
   window.hasRun = true;
 
+  document.querySelector("body").classList.add("hasVerticalOverflowCausingHorizontal");
+
   function manuallyTriggerVideoSwap() {
     let injectedTriggerFound = document.getElementById("returnYouTubeUI_invisibleClickable");
     if(!injectedTriggerFound){//If it is found
-      console.log("[Return YouTube UI]: Injected trigger not found, adding again and recalling.");
+      console.log("Injected trigger not found, adding again and recalling.");//TODO: Connect to projectConfiguration.json once re-enabled
       let injectedInvisibleClickable = document.createElement("button");
       injectedInvisibleClickable.id = "returnYouTubeUI_invisibleClickable";
       injectedInvisibleClickable.nodeName = "returnYouTubeUI_invisibleClickable";

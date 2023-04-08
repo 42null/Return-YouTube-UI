@@ -6,7 +6,6 @@
 
 /*DISCLAIMER! At current state not all variables are used, functionally will be added as the project progresses*/
 const               PROPER_DATES = true; //Changes main video date info from "<#> years/months/etc. ago" to it's formatted date
-const   SAVE_VISIBLE_BEFORE_CLIP = true; //Places save action before the clip action
 
 /* Extras (Disabled by default) */
 const PERCENT_MORE_SPACE_TO_ACTIONS_BAR = 0;//+5 for adding one more option, for example, showing share, clip, and save instead of just share and clip
@@ -57,7 +56,7 @@ document.head.appendChild(helperFunctions);
 
 script.innerHTML = `
     function applyGeneratedScripts(){
-        console.log("[`+"projectConfiguration.log_header"+`]: Activator call was received");
+        console.log("[`+projectConfiguration.log_header+`]: Activator call was received");
     `;
 
 if(PROPER_DATES){
@@ -69,11 +68,6 @@ if(PROPER_DATES){
             }
         }
     `;
-}
-
-if(SAVE_VISIBLE_BEFORE_CLIP){
-    saveVisibleBeforeClip = createElementLink("injection_parts/return/save_visible_before_clip.js");
-    document.head.appendChild(saveVisibleBeforeClip);
 }
 
 
@@ -111,7 +105,7 @@ injectedInvisibleClickable.nodeName = "returnYoutubeUI_invisibleClickable";
 document.body.appendChild(injectedInvisibleClickable);
 activator.innerHTML+= `
     document.getElementById("returnYoutubeUI_invisibleClickable").addEventListener("click", function(){
-        console.log("[`+"projectConfiguration.log_header"+`]: injectedInvisibleClickable was 'clicked'");
+        console.log("[`+projectConfiguration.log_header+`]: injectedInvisibleClickable was 'clicked'");
         applyGeneratedScripts();
     });
 `;
@@ -120,5 +114,5 @@ document.body.appendChild(injectedDiv);
 document.body.appendChild(activator);
 
 document.getElementById("returnYoutubeUI_invisibleClickable").addEventListener("change", function(){
-    console.log("["+"projectConfiguration.log_header"+"]: injectedInvisibleClickableChangeListener");
+    console.log("["+projectConfiguration.log_header+"]: injectedInvisibleClickableChangeListener");
 });

@@ -167,6 +167,7 @@ function listenForClicks() {//TODO: Merge components with getApplySettings initi
 function reportExecuteScriptError(error) {
     document.querySelector("#popup-content").classList.add("hidden");
     document.querySelector("#error-content").classList.remove("hidden");
+    document.querySelector("body").classList.remove("hasVerticalOverflowCausingHorizontal");
     console.error(`[Return Youtube UI]: Failed to execute content script: ${error.message}`);
 }
 
@@ -178,3 +179,6 @@ function reportExecuteScriptError(error) {
 browser.tabs.executeScript({file: "/content_scripts/function_broker.js"})
     .then(listenForClicks)
     .catch(reportExecuteScriptError);
+
+document.querySelector("body").classList.add("hasVerticalOverflowCausingHorizontal");//TODO: Document & rename
+
