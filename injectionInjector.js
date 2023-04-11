@@ -13,7 +13,7 @@ function getProjectConfiguration() {
 getProjectConfiguration().then(projectConfiguration => { localStorage.setItem("ProjectConfiguration", JSON.stringify(projectConfiguration));});
 projectConfiguration = JSON.parse(localStorage.getItem("ProjectConfiguration"));
 
-function logMessageToConsole(...messages){
+function logWithConfigMsg(...messages){
     if(projectConfiguration === null){
         getProjectConfiguration().then(gotProjectConfiguration => {
             projectConfiguration = JSON.stringify(gotProjectConfiguration);
@@ -31,7 +31,7 @@ function logMessageToConsole(...messages){
 
 // TODO: MOVE TO A BETTER/LESS REDUNDANT SPOT. Remove Duplicate Code
 function createElementLink(sheetName) {
-    logMessageToConsole("Linking document name ="+sheetName);
+    logWithConfigMsg("Linking document name ="+sheetName);
 
     if(sheetName.endsWith(".css")){
         const stylesheetLinkElement = document.createElement('link');
@@ -90,7 +90,7 @@ function getApplySettings(key) {
 }
 
 function applySettingsUpdate(){
-    logMessageToConsole("Start of applySettingsUpdate");
+    logWithConfigMsg("Start of applySettingsUpdate");
 
     // TODO: Try to fix again, KEY_STORAGE_LOCAL_APPLYING_SETTINGS not converted to string for some reason
     browser.storage.local.set({ "applying_settings": localCopyApplySettings }); // Synchronize the changes made to localCopyApplySettings
@@ -101,7 +101,7 @@ browser.storage.onChanged.addListener((changes, areaName) => {
         for (let key in changes) {
             const settings = JSON.parse(JSON.stringify(changes[key].newValue));//TODO: Make sure this is efficient{
 
-            logMessageToConsole(`Key "${key}" in area "${areaName}" changed. New value is ${JSON.stringify(changes[key].newValue)}.`);
+            logWithConfigMsg(`Key "${key}" in area "${areaName}" changed. New value is ${JSON.stringify(changes[key].newValue)}.`);
 
 
             localCopyApplySettings = settings;
@@ -151,13 +151,12 @@ function setProperty(propertyName, value){
 
 function settingsToActions(){
     getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
-        logMessageToConsole("Settings used:");
+        logWithConfigMsg("Settings used:");
 
         const keys = Object.keys(applySettings);
         for (let i = 0; i < keys.length; i++) {
             const key = keys[i];
             const value = applySettings[keys[i]].value;
-            // @@@console.log("["+projectConfiguration.log_header+"]:   " + key + ": " + value);
 
             if(typeof value == "boolean"){
                 // TODO: Make switch statement
@@ -175,11 +174,11 @@ function settingsToActions(){
                 }else if(key === "BAR_BUTTONS"){
                     setInjectionStateHelper(value, "injection_parts/return/otherFormattingFromViews.css");
                 }else if(key === "SAVE_BEFORE_SHARE"){
-                    if(value){
-                        setInjectionStateHelper(true, "injection_parts/return/save_visible_before_clip.js");
-                    }else{
-                        save_visible_before_clip(false);
-                    }
+                    // if(value){
+                    //     setInjectionStateHelper(true, "injection_parts/return/save_visible_before_clip.js");
+                    // }else{
+                    //     save_visible_before_clip(false);
+                    // }
                 }
             }else{
                 if(key === "VIDEOS_PER_ROW"){

@@ -1,6 +1,5 @@
 {
-
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Return YouTube UI",
   "version": "2.2.1",
   "author": "42null",
@@ -9,11 +8,15 @@
 
   "permissions": [
     "storage",
-    "*://youtube.com/*",
-    "*://www.youtube.com/*"
+    "scripting",
+    "activeTab",
+    "*://*.youtube.com/*"
+  ],
+  "host_permissions": [
+    "*://*.youtube.com/*"
   ],
 
-  "browser_action": {
+  "action": {
     "default_icon": "icons/ReturnYouTubeUIIconV2R2_512.png",
     "theme_icons": [{
       "light": "icons/ReturnYouTubeUIIconV2R2_512.png",
@@ -32,16 +35,19 @@
   ],
 
   "web_accessible_resources": [
-    "injection_parts/helper_functions.js",
-    "global_helper_functions.js",
-    "injectionInjector.js",
-
-    "injection_parts/core/*.css",
-    "injection_parts/extras/*.css"
+    {
+      "resources": [
+        "injection_parts/helper_functions.js",
+        "global_helper_functions.js",
+        "injectionInjector.js",
+        "injection_parts/return/*.css",
+        "injection_parts/extras/*.css"
+      ],
+      "matches": ["*://*.youtube.com/*"]
+    }
   ],
 
   "icons": {
     "512": "icons/ReturnYouTubeUIIconV2R2_512.png"
   }
-
 }

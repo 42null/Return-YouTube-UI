@@ -34,7 +34,7 @@ https://github.com/mdn/webextensions-examples/tree/master/beastify (beastify.js)
    * Listen for messages from the background script.
    * Call the function
    */
-  browser.runtime.onMessage.addListener((message) => {
+  determinedBrowserAPI.runtime.onMessage.addListener((message) => {
     if (message.command === "ManuallyReApplyJSPageModifications") {
       manuallyTriggerVideoSwap();
     }

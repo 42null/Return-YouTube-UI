@@ -135,7 +135,7 @@ function listenForClicks() {//TODO: Merge components with getApplySettings initi
                 } catch (error) {
                     console.error(`Error setting storage: ${error}`);
                 }
-                });
+            });
         } else if (e.target.type === "number") {
             console.log(e.target.attributes);
             const currentApplySettingKey = e.target.id.replace("idAuto_", "");
@@ -168,7 +168,7 @@ function reportExecuteScriptError(error) {
     document.querySelector("#popup-content").classList.add("hidden");
     document.querySelector("#error-content").classList.remove("hidden");
     document.querySelector("body").classList.remove("hasVerticalOverflowCausingHorizontal");
-    console.error(`[Return Youtube UI]: Failed to execute content script: ${error.message}`);
+    logWithConfigMsg(`Failed to execute content script: ${error.message}`);
 }
 
 /**
@@ -176,9 +176,35 @@ function reportExecuteScriptError(error) {
  * and add a click handler.
  * If we couldn't inject the script, handle the error.
  */
-browser.tabs.executeScript({file: "/content_scripts/function_broker.js"})
-    .then(listenForClicks)
-    .catch(reportExecuteScriptError);
+// UPDATE FROM MV2 to MV3
+// browser.tabs.executeScript({file: "/content_scripts/function_broker.js"})
+//     .then(listenForClicks)
+//     .catch(reportExecuteScriptError);
+browser.tabs.query({active: true, currentWindow: true})
+    .then((tabs) => {
+        browser.scripting.executeScript({
+            target: {tabId: tabs[0].id},
+            files: ['/content_scripts/function_broker.js']
+        })
+            .then(listenForClicks)
+            .catch(reportExecuteScriptError);
+    });
 
 document.querySelector("body").classList.add("hasVerticalOverflowCausingHorizontal");//TODO: Document & rename
 
+
+// browser.permissions.contains({
+//     permissions: ['*://*.youtube.com/*'],
+//     origins: ['*://*.youtube.com/*']
+// }).then((result) => {
+//     if (result.permissions && (result.permissions.indexOf('*://*.youtube.com/*') !== -1) &&
+//         result.origins && (result.origins.indexOf('*://*.youtube.com/*') !== -1)) {
+//         if (result.granted) {
+//             console.log('The extension has permission to read and change data.');
+//         } else {
+//             console.log('The extension does not have permission to read and change data.');
+//         }
+//     } else {
+//         console.log('The extension does not have the necessary permissions.');
+//     }
+// });

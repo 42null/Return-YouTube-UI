@@ -17,36 +17,67 @@ let activator = document.createElement('script');
 //Element to hold injected items and insert within
 let injectedDiv = document.createElement("div");
 
-function createElementLink(sheetName) {
+//SWITCHING FOR CROSS-COMPATABILITY BETWEEN BROWSERS //TODO: Remove duplication
+    // Select the correct browser object
+let determinedBrowserAPI = typeof browser !== 'undefined' ? browser : chrome;
+
+function getProjectConfiguration() {//TODO: Reduce duplicate code
+    return fetch(determinedBrowserAPI.runtime.getURL('projectConfiguration.json'))
+        .then(response => response.json())
+        .then(data => data);
+}
+getProjectConfiguration().then(projectConfiguration => { localStorage.setItem("ProjectConfiguration", JSON.stringify(projectConfiguration));});
+projectConfiguration = JSON.parse(localStorage.getItem("ProjectConfiguration"));
+
+function logWithConfigMsg(...messages){
+    if(projectConfiguration === null){
+        getProjectConfiguration().then(gotProjectConfiguration => {
+            projectConfiguration = JSON.stringify(gotProjectConfiguration);
+            for(const message of messages){
+                console.log("["+projectConfiguration.log_header+"]: "+message);
+            }
+        });
+    }else{
+        for(const message of messages){
+            console.log("["+projectConfiguration.log_header+"]: "+message);
+        }
+    }
+}
+
+chrome.permissions.request({
+    permissions: ['*://*.youtube.com/*']
+}, function(granted) {
+    if (granted) {
+        logWithConfigMsg("Permission granted for access without clicking the extension button each time");
+
+    } else {
+        logWithConfigMsg("Permission denied for access without clicking the extension button each time");
+    }
+});
+
+
+
+
+async function createElementLink(sheetName) {
     if(sheetName.endsWith(".css")){
-        console.log("["+projectConfiguration.log_header+"]: Linking style name ="+sheetName);
+        logWithConfigMsg("Linking style name ="+sheetName);
         const stylesheetLinkElement = document.createElement('link');
         stylesheetLinkElement.rel = 'stylesheet';
         stylesheetLinkElement.type = 'text/css';
-        stylesheetLinkElement.href = browser.runtime.getURL(sheetName);
+        stylesheetLinkElement.href = determinedBrowserAPI.runtime.getURL(sheetName);
         return stylesheetLinkElement;
     }else if(sheetName.endsWith(".js")){
-        console.log("["+projectConfiguration.log_header+"]: Linking script name ="+sheetName);
+        logWithConfigMsg("Linking script name ="+sheetName);
         const jsSheetLinkElement=document.createElement('script')
         jsSheetLinkElement.setAttribute("type","text/javascript")
-        jsSheetLinkElement.setAttribute("src", browser.runtime.getURL(sheetName))
+        jsSheetLinkElement.setAttribute("src", determinedBrowserAPI.runtime.getURL(sheetName))
         return jsSheetLinkElement;
     }
     // return stylesheetLinkElement;
 }
 
-function getProjectConfiguration() {
-  return fetch(browser.runtime.getURL('projectConfiguration.json'))
-      .then(response => response.json())
-      .then(data => data);
-}
-
-getProjectConfiguration().then(projectConfiguration => { localStorage.setItem("ProjectConfiguration", JSON.stringify(projectConfiguration));});
-projectConfiguration = JSON.parse(localStorage.getItem("ProjectConfiguration"));
-
 
 let helperFunctions;
-let saveVisibleBeforeClip;
 
 
 helperFunctions = createElementLink("injection_partsconsole.log/helper_functions.js");
@@ -114,5 +145,5 @@ document.body.appendChild(injectedDiv);
 document.body.appendChild(activator);
 
 document.getElementById("returnYoutubeUI_invisibleClickable").addEventListener("change", function(){
-    console.log("["+projectConfiguration.log_header+"]: injectedInvisibleClickableChangeListener");
+    logWithConfigMsg("injectedInvisibleClickableChangeListener was triggered");
 });

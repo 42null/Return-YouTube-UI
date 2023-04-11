@@ -86,9 +86,9 @@ button:hover {
 .slider {
   position: absolute;
   cursor: pointer;
-  width: 85%;
+  width: 81%;
   top: 0;
-  left: 7%;
+  left: 10%;
   right: 0;
   bottom: 0;
   background-color: var(--md_greyBack);
