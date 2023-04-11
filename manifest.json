@@ -9,12 +9,15 @@
   "permissions": [
     "storage",
     "scripting",
-    "activeTab",
-    "*://*.youtube.com/*"
+    "tabs",
+    "activeTab"
   ],
   "host_permissions": [
     "*://*.youtube.com/*"
   ],
+  "background": {
+    "scripts": ["background/background.js"]
+  },
 
   "action": {
     "default_icon": "icons/ReturnYouTubeUIIconV2R2_512.png",

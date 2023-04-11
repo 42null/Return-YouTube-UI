@@ -1,0 +1,66 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+h1{
+    text-align: center;
+    /*font-family: 'Montserrat', sans-serif;*/
+    font-family: 'Alkatra', cursive;
+    font-weight: 700;
+    font-size: 48px;
+}
+
+h2{
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.7em;
+}
+
+ol{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.list-container {
+    display: flex;
+    justify-content: center;
+}
+
+.list {
+    list-style-position: inside;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+}
+
+.list li {
+    margin-bottom: 10px;
+    font-size: 1.6em;
+}
+
+p{
+    text-align: center;
+    font-size: 1.5em;
+}
+
+/*.image-container {*/
+/*    height: calc(100% - 90%); !* Subtracts 100px from the total height to make space for other content *!*/
+/*    overflow: hidden;*/
+/*    text-align: center;*/
+/*}*/
+
+/*.image-container img {*/
+/*    height: 100%;*/
+/*    width: auto;*/
+/*}*/
+
+.image-container {
+    height: min(40vh, 100vw);
+    overflow: hidden;
+    text-align: center;
+}
+
+.image-container img {
+    height: 100%;
+    width: auto;
+}
