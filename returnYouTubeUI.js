@@ -44,7 +44,7 @@ function logWithConfigMsg(...messages){
     }
 }
 
-chrome.permissions.request({
+determinedBrowserAPI.permissions.request({
     permissions: ['*://*.youtube.com/*']
 }, function(granted) {
     if (granted) {

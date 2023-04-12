@@ -1,6 +1,8 @@
 const settingsListElement = document.getElementById("settingsOptionsList");
 // const appPreferencesListElement = document.getElementById("settingsOptionsList");
 
+let determinedBrowserAPI = typeof browser !== 'undefined' ? browser : chrome;
+
 // CREATE TABLE
 getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
     console.log("[Return Youtube UI]: Initial applySettings:", applySettings);
@@ -79,7 +81,7 @@ function listenForClicks() {//TODO: Merge components with getApplySettings initi
          * send a "reset" message to the content script in the active tab.
          */
         function reapplyGeneratedJS(tabs) {
-            browser.tabs.sendMessage(tabs[0].id, {
+            determinedBrowserAPI.tabs.sendMessage(tabs[0].id, {
                 command: "ManuallyReApplyJSPageModifications",//TODO: Come up with better message
             });
 
@@ -99,7 +101,7 @@ function listenForClicks() {//TODO: Merge components with getApplySettings initi
 
         if (e.target.type === "submit") {
             if (e.target.id === "reloadExtension") {
-                browser.runtime.reload();
+                determinedBrowserAPI.runtime.reload();
             } else if (e.target.id === "settingsPageButton" && !settingsListElement.unhideable) {
                 if (settingsListElement.classList.contains("hidden")) {
                     settingsListElement.classList.remove("hidden");
@@ -114,20 +116,20 @@ function listenForClicks() {//TODO: Merge components with getApplySettings initi
                 }
 
             } else if (e.target.id === "ManuallyReApplyJSPageModifications") {
-                browser.tabs.query({currentWindow: true, active: true}).then(reapplyGeneratedJS).catch(reportError);//TODO: Make double check for if a YouTube page.
+                determinedBrowserAPI.tabs.query({currentWindow: true, active: true}).then(reapplyGeneratedJS).catch(reportError);//TODO: Make double check for if a YouTube page.
             }
         } else if (e.target.type === "checkbox") {
             console.log(e.target.attributes);
             const currentApplySettingKey = e.target.id.replace("idAuto_", "");
             // console.log(e.target.attributes);
 
-            browser.storage.local.get("applying_settings", async (result) => {
+            determinedBrowserAPI.storage.local.get("applying_settings", async (result) => {
                 result[KEY_STORAGE_LOCAL_APPLYING_SETTINGS][currentApplySettingKey].value = e.target.checked;
                 try {
                     try {
                         const newSettings = JSON.parse(JSON.stringify(result)).applying_settings;
                         newSettings[currentApplySettingKey].value = e.target.checked;
-                        await browser.storage.local.set({"applying_settings": newSettings});
+                        await determinedBrowserAPI.storage.local.set({"applying_settings": newSettings});
                         console.log("Storage set successfully");
                     }catch(e2){
                         console.log("Error="+e2);
@@ -141,13 +143,13 @@ function listenForClicks() {//TODO: Merge components with getApplySettings initi
             const currentApplySettingKey = e.target.id.replace("idAuto_", "");
             // console.log(e.target.attributes);
 
-            browser.storage.local.get("applying_settings", async (result) => {
+            determinedBrowserAPI.storage.local.get("applying_settings", async (result) => {
                 result[KEY_STORAGE_LOCAL_APPLYING_SETTINGS][currentApplySettingKey].value = e.target.checked;
                 try {
                     try {
                         const newSettings = JSON.parse(JSON.stringify(result)).applying_settings;
                         newSettings[currentApplySettingKey].value = parseInt(e.target.value);
-                        await browser.storage.local.set({"applying_settings": newSettings});
+                        await determinedBrowserAPI.storage.local.set({"applying_settings": newSettings});
                         console.log("Storage set successfully");
                     }catch(e2){
                         console.log("Error="+e2);
@@ -180,9 +182,9 @@ function reportExecuteScriptError(error) {
 // browser.tabs.executeScript({file: "/content_scripts/function_broker.js"})
 //     .then(listenForClicks)
 //     .catch(reportExecuteScriptError);
-browser.tabs.query({active: true, currentWindow: true})
+determinedBrowserAPI.tabs.query({active: true, currentWindow: true})
     .then((tabs) => {
-        browser.scripting.executeScript({
+        determinedBrowserAPI.scripting.executeScript({
             target: {tabId: tabs[0].id},
             files: ['/content_scripts/function_broker.js']
         })

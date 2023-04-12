@@ -64,3 +64,22 @@ p{
     height: 100%;
     width: auto;
 }
+
+
+footer{
+    width: 100%;
+    list-style: none !important;
+    text-align: center;
+    font-size: 1.5em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+footer > table{
+    margin: 0 auto;
+}
+
+tr > th{
+    width: 30%;
+    background-color: #b6b6b7;
+    padding: 15px;
+}

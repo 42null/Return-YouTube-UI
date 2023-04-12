@@ -1,12 +1,13 @@
-// import { projectConfiguration } from "./global_helper_functions.js";
 let projectConfiguration = null;
 
 let KEY_STORAGE_LOCAL_APPLYING_SETTINGS = "applying_settings";
 
 let localCopyApplySettings = {};
 
+determinedBrowserAPI = typeof browser !== 'undefined' ? browser : chrome;
+
 function getProjectConfiguration() {
-    return fetch(browser.runtime.getURL('projectConfiguration.json'))
+    return fetch(determinedBrowserAPI.runtime.getURL('projectConfiguration.json'))
         .then(response => response.json())
         .then(data => data);
 }
@@ -37,12 +38,12 @@ function createElementLink(sheetName) {
         const stylesheetLinkElement = document.createElement('link');
         stylesheetLinkElement.rel = 'stylesheet';
         stylesheetLinkElement.type = 'text/css';
-        stylesheetLinkElement.href = browser.runtime.getURL(sheetName);
+        stylesheetLinkElement.href = determinedBrowserAPI.runtime.getURL(sheetName);
         return stylesheetLinkElement;
     }else if(sheetName.endsWith(".js")){
         const jsSheetLinkElement=document.createElement('script')
         jsSheetLinkElement.setAttribute("type","text/javascript")
-        jsSheetLinkElement.setAttribute("src", browser.runtime.getURL(sheetName))
+        jsSheetLinkElement.setAttribute("src", determinedBrowserAPI.runtime.getURL(sheetName))
         return jsSheetLinkElement;
     }
     // return stylesheetLinkElement;
@@ -52,9 +53,9 @@ function createElementLink(sheetName) {
 
 function getApplySettings(key) {
     return new Promise((resolve, reject) => {
-        browser.storage.local.get(key, (result) => {
-            if (browser.runtime.lastError) {
-                reject(browser.runtime.lastError);
+        determinedBrowserAPI.storage.local.get(key, (result) => {
+            if (determinedBrowserAPI.runtime.lastError) {
+                reject(determinedBrowserAPI.runtime.lastError);
             } else {
                 // If the key is not in storage, create it with default values
                 if (!result[key]) {
@@ -68,13 +69,20 @@ function getApplySettings(key) {
                             "SUBSCRIBE_BUTTON_COLOR":            {value: true, displayName: "Subscribe Color"},
                             "SUBSCRIBE_BUTTON_SHAPE":            {value: true, displayName: "Subscribe Shape"},
                             "SAVE_BEFORE_SHARE":                 {value: true, displayName: "Save First"},
-                            "BAR_BUTTONS":                       {value: true, displayName: "Action Buttons"},
+                            "BAR_BUTTONS29":                       {value: true, displayName: "Action Button29s"},
+                            "BAR_BUTTONS33":                       {value: true, displayName: "Action Buttos333"},
+                            "BAR_BUTTON4S":                       {value: true, displayName: "Action Buttons4"},
+                            "BAR_BUTTON5S":                       {value: true, displayName: "Action Buttons5"},
+                            "BAR_BUTTON22S":                       {value: true, displayName: "Action Buttons22"},
+                            "BAR_BUTTON3S":                       {value: true, displayName: "Action Buttons3"},
+                            "BAR_BUTTON3S2":                       {value: true, displayName: "Action Buttons32"},
+                            "BAR_BUTTONS1":                       {value: true, displayName: "Action Buttons1"},
                         };
                     }
                     result[key] = defaultSettings;
-                    browser.storage.local.set(result, () => {
-                        if (browser.runtime.lastError) {
-                            reject(browser.runtime.lastError);
+                    determinedBrowserAPI.storage.local.set(result, () => {
+                        if (determinedBrowserAPI.runtime.lastError) {
+                            reject(determinedBrowserAPI.runtime.lastError);
                         } else {
                             localCopyApplySettings = result[key];
                             resolve(result[key]);
@@ -93,10 +101,10 @@ function applySettingsUpdate(){
     logWithConfigMsg("Start of applySettingsUpdate");
 
     // TODO: Try to fix again, KEY_STORAGE_LOCAL_APPLYING_SETTINGS not converted to string for some reason
-    browser.storage.local.set({ "applying_settings": localCopyApplySettings }); // Synchronize the changes made to localCopyApplySettings
+    determinedBrowserAPI.storage.local.set({ "applying_settings": localCopyApplySettings }); // Synchronize the changes made to localCopyApplySettings
 }
 
-browser.storage.onChanged.addListener((changes, areaName) => {
+determinedBrowserAPI.storage.onChanged.addListener((changes, areaName) => {
     if (areaName === "local" && KEY_STORAGE_LOCAL_APPLYING_SETTINGS in changes) {
         for (let key in changes) {
             const settings = JSON.parse(JSON.stringify(changes[key].newValue));//TODO: Make sure this is efficient{

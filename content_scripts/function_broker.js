@@ -3,6 +3,8 @@ The starting point of this file started as a fork from the example repository in
 https://github.com/mdn/webextensions-examples/tree/master/beastify (beastify.js)
 */
 
+determinedBrowserAPI = typeof browser !== 'undefined' ? browser : chrome;
+
 (function() {
   /**
    * Check and set a global guard variable.
