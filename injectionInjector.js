@@ -69,14 +69,6 @@ function getApplySettings(key) {
                             "SUBSCRIBE_BUTTON_COLOR":            {value: true, displayName: "Subscribe Color"},
                             "SUBSCRIBE_BUTTON_SHAPE":            {value: true, displayName: "Subscribe Shape"},
                             "SAVE_BEFORE_SHARE":                 {value: true, displayName: "Save First"},
-                            "BAR_BUTTONS29":                       {value: true, displayName: "Action Button29s"},
-                            "BAR_BUTTONS33":                       {value: true, displayName: "Action Buttos333"},
-                            "BAR_BUTTON4S":                       {value: true, displayName: "Action Buttons4"},
-                            "BAR_BUTTON5S":                       {value: true, displayName: "Action Buttons5"},
-                            "BAR_BUTTON22S":                       {value: true, displayName: "Action Buttons22"},
-                            "BAR_BUTTON3S":                       {value: true, displayName: "Action Buttons3"},
-                            "BAR_BUTTON3S2":                       {value: true, displayName: "Action Buttons32"},
-                            "BAR_BUTTONS1":                       {value: true, displayName: "Action Buttons1"},
                         };
                     }
                     result[key] = defaultSettings;
