@@ -7,9 +7,6 @@
 /*DISCLAIMER! At current state not all variables are used, functionally will be added as the project progresses*/
 const               PROPER_DATES = true; //Changes main video date info from "<#> years/months/etc. ago" to it's formatted date
 
-/* Extras (Disabled by default) */
-// const PERCENT_MORE_SPACE_TO_ACTIONS_BAR = 0;//+5 for adding one more option, for example, showing share, clip, and save instead of just share and clip
-
 //Created pages to inject
 let script = document.createElement('script');
 let activator = document.createElement('script');
