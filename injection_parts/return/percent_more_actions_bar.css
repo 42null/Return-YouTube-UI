@@ -1,0 +1,9 @@
+:root{
+    --return-youtube-ui-percent-more-actions-bar-space: 100;
+}
+
+#actions, #actions-inner{
+    min-width: calc(5 + var(--return-youtube-ui-percent-more-actions-bar-space) - 6px);
+    margin-left: calc(0% - var(--return-youtube-ui-percent-more-actions-bar-space));
+    /*margin-left: calc( 0 - ((var(--return-youtube-ui-percent-more-actions-bar-space) * 1% )));*/
+}

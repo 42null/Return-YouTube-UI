@@ -1,9 +1,26 @@
 # Return YouTube UI
 
-An extension aimed at making YouTube look like it did before they made everything rounded. Firefox officially supported, not all features currently compatible with Chromium-based browsers.
+An extension making YouTube look like it did before everything was given rounded corners.
 
+#### Supported Browsers
+* Firefox
+  * Main priority
+  * Every version will be compatible with the latest version of Firefox at publish time
+* Chromium-based browsers
+  * Lesser priority
+  * Most functionality tested with Brave
 
-_Major releases are published to the Firefox Add-Ons page as an extension ([addons.mozilla.org/...](https://addons.mozilla.org/en-US/firefox/addon/return-youtube-ui/)) and will receive new updates as the settings are moved to the popup window along with new features. To install another version or your own fork, visit [firefox-source-docs.mozilla.org/...](https://firefox-source-docs.mozilla.org/devtools-user/about_colon_debugging/index.html) for instructions (or just enter [about:debugging#/runtime/this-firefox](https://addons.mozilla.org/en-US/firefox/addon/return-youtube-ui/)) into your url-bar._
+Due to currently divulging implementation of V3 manifests between Firefox and Google, to work with Chromium-based browsers instead of Firefox you must switch the commented lines in manifest.json.
+<br>
+_manifest.json_
+````json
+"background": {
+  "scripts": ["background/background.js"]
+//    "service_worker": "background/background.js"
+},
+ ````
+
+_Major releases are published to the Firefox Add-Ons page as an extension ([addons.mozilla.org/...](https://addons.mozilla.org/en-US/firefox/addon/return-youtube-ui/)) and will continue to receive new updates. To install another version or your own fork, visit [firefox-source-docs.mozilla.org/...](https://firefox-source-docs.mozilla.org/devtools-user/about_colon_debugging/index.html) for instructions (or just enter [about:debugging#/runtime/this-firefox](https://addons.mozilla.org/en-US/firefox/addon/return-youtube-ui/)) into your url-bar._
 
 <div style="text-align: center;">
     <img src="./icons/ReturnYouTubeUIIconV2R2_512.png" alt="[Return YouTube UI Logo]" width="128" height="auto" />

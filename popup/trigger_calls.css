@@ -270,3 +270,11 @@ table#settingsOptionsList{
 #under_development_disclaimer{
   margin-top: -50px;
 }
+
+/*Reload Warning*/
+.reloadWarning::before{
+  font-size: smaller;
+  /* &#10; is for a newline */
+  content: "\a(reload on change)";
+  white-space: pre-line;/*There to make the newline work*/
+}

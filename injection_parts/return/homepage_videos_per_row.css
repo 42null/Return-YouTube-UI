@@ -1,5 +1,5 @@
 :root{
-    --return-youtube-ui-videos-per-row: -1;
+    --return-youtube-ui-videos-per-row: 4; /* YouTubes current default */
 }
 
 /*Code basis for videos per homepage is from https://webapps.stackexchange.com/a/160600*/

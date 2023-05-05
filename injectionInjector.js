@@ -62,13 +62,14 @@ function getApplySettings(key) {
                     let defaultSettings = {};
                     if (key === KEY_STORAGE_LOCAL_APPLYING_SETTINGS) {
                         defaultSettings = {
-                            "VIDEOS_PER_ROW":                    {value: 4,    displayName: "Videos Per Row", min: 1},
+                            "VIDEOS_PER_ROW":                    {value: 4,    displayName: "Videos Per Row", min: 1, placeholder: 4},
                             "UN_ROUNDED_SEARCH":                 {value: true, displayName: "Search Bar"},
                             "UN_ROUNDED_THUMBNAILS_AND_PLAYERS": {value: true, displayName: "Thumbnails"},
                             "UN_ROUNDED_MENUS":                  {value: true, displayName: "Menus"},
                             "SUBSCRIBE_BUTTON_COLOR":            {value: true, displayName: "Subscribe Color"},
                             "SUBSCRIBE_BUTTON_SHAPE":            {value: true, displayName: "Subscribe Shape"},
-                            "SAVE_BEFORE_SHARE":                 {value: true, displayName: "Save First"},
+                            "PERCENT_MORE_SPACE_TO_ACTIONS_BAR": {value: 30,   displayName: "Actions Space %", min: 0, max: 80, needsReload: true, step: 5, placeholder: 30},
+                            // "SAVE_BEFORE_SHARE":                 {value: true, displayName: "Save First"},
                         };
                     }
                     result[key] = defaultSettings;
@@ -180,10 +181,14 @@ function settingsToActions(){
                     //     save_visible_before_clip(false);
                     // }
                 }
+                // setInjectionStateHelper(value, "injection_parts/return/text_formatting.css");
             }else{
                 if(key === "VIDEOS_PER_ROW"){
                     setProperty("return-youtube-ui-videos-per-row", value);
                     setInjectionStateHelper( "injection_parts/return/homepage_videos_per_row.css");
+                }else if(key === "PERCENT_MORE_SPACE_TO_ACTIONS_BAR"){
+                    setProperty("return-youtube-ui-percent-more-actions-bar-space", value+"%");
+                    setInjectionStateHelper( "injection_parts/return/percent_more_actions_bar.css");
                 }
             }
         }

@@ -15,6 +15,9 @@
 video.video-stream.html5-main-video{
     border-radius: 0 !important;/*Required*/
 }
+#movie_player{
+    border-radius: 0;
+}
 /*When hovering layer*/
 .ytp-miniplayer-scrim{
     border-radius: 0 !important;/*Required*/

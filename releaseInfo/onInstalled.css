@@ -55,7 +55,7 @@ p{
 /*}*/
 
 .image-container {
-    height: min(40vh, 100vw);
+    height: min(30vh, 100vw);
     overflow: hidden;
     text-align: center;
 }

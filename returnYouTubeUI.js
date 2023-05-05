@@ -8,7 +8,7 @@
 const               PROPER_DATES = true; //Changes main video date info from "<#> years/months/etc. ago" to it's formatted date
 
 /* Extras (Disabled by default) */
-const PERCENT_MORE_SPACE_TO_ACTIONS_BAR = 0;//+5 for adding one more option, for example, showing share, clip, and save instead of just share and clip
+// const PERCENT_MORE_SPACE_TO_ACTIONS_BAR = 0;//+5 for adding one more option, for example, showing share, clip, and save instead of just share and clip
 
 //Created pages to inject
 let script = document.createElement('script');
@@ -101,14 +101,6 @@ if(PROPER_DATES){
     `;
 }
 
-
-if(PERCENT_MORE_SPACE_TO_ACTIONS_BAR !== 0){
-    script.innerHTML += `
-        let elements3 = document.getElementById("actions");
-        elements3.style.minWidth = "calc(5"+`+PERCENT_MORE_SPACE_TO_ACTIONS_BAR+`+"% - 6px)";
-        elements3.style.marginLeft = "-"+`+PERCENT_MORE_SPACE_TO_ACTIONS_BAR+`+"%";
-    `;
-}
 
 script.innerHTML+=` };`;
 

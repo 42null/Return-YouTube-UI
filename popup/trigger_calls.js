@@ -12,13 +12,21 @@ getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
         const key = keys[i];
         const displayName = applySettings[keys[i]].displayName;
         const value = applySettings[keys[i]].value;
+        const needsReload = applySettings[keys[i]].needsReload;
         console.log("[Return Youtube UI]:   " + key + ": " + value);
 
         // Table Builder
         const row = settingsListElement.insertRow();
         const cell1 = row.insertCell(0);
         const cell2 = row.insertCell(1);
+
         cell1.innerText = displayName;
+        if(needsReload){
+            const reloadWarning = document.createElement("span");//TODO: Make reusable
+            reloadWarning.classList.add("reloadWarning");
+            cell1.append(reloadWarning);
+        }
+
 
         if (typeof value == "boolean") {
             const label = document.createElement('label');
@@ -46,13 +54,18 @@ getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
             input.id = "idAuto_" + key;
             input.name = "nameAuto_" + key;
             input.value = parseInt(value);
-            input.placeholder = parseInt(4);
-            // Check if min and max settings were used
+            // Check if input settings were provided
             if(typeof applySettings[keys[i]].min){
                 input.min = applySettings[keys[i]].min;
             }
             if(typeof applySettings[keys[i]].max){
                 input.max = applySettings[keys[i]].max;
+            }
+            if(typeof applySettings[keys[i]].placeholder){
+                input.placeholder = applySettings[keys[i]].placeholder;
+            }
+            if(typeof applySettings[keys[i]].step){
+                input.step = applySettings[keys[i]].step;
             }
 
             input.classList.add("numberBox");//TODO: Make option for without round
