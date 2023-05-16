@@ -24,7 +24,6 @@ https://m2.material.io/resources/color/#!/?view.left=0&view.right=1&primary.colo
   --scrollbar-width: calc(100vw - 100%);
 }
 
-
 html, body {
   /*width: calc(210px + var(--scrollbar-width));*/
   width: 220px;
@@ -277,4 +276,14 @@ table#settingsOptionsList{
   /* &#10; is for a newline */
   content: "\a(reload on change)";
   white-space: pre-line;/*There to make the newline work*/
+}
+
+.material-symbols-outlined {
+  /*vertical-align: -0.2em;*/
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 600,
+    'GRAD' 0,
+    'opsz' 10;
+  font-size: 80% !important;
 }

@@ -44,7 +44,7 @@ Settings control is being migrated to the extension popup page. With the latest 
 | Menus                              | true (popup)           | Un-rounds borders in all (found) menus.                                                                                         |
 | Action Buttons                     | true (popup)           | Removes borders on action bar buttons.                                                                                          |
 | SAVE_VISIBLE_BEFORE_CLIP           | tmp. removed           | Places save action before the clip action, not yet working in all environments.                                                 |
-| Actions Space %                    | 30 (popup)             | +5 for adding one more action, for example, showing share, clip, and save instead of just share and clip.                       |
+| Actions Space %                    | +5 (popup)             | +5 for adding one more action, for example, showing share, clip, and save instead of just share and clip.                       |
 | SHOW_VIDEO_LENGTH_IN_NOTIFICATIONS | Planned (false/extras) | Shows video length in notifications like it does in thumbnail views.                                                            |
 | SHOW_CHANGES_BACKGROUNDS           | Planned (false/extras) | Changes background color of all changed elements for demonstration.                                                             |
 

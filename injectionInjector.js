@@ -1,6 +1,17 @@
 let projectConfiguration = null;
 
-let KEY_STORAGE_LOCAL_APPLYING_SETTINGS = "applying_settings";
+const KEY_STORAGE_LOCAL_APPLYING_SETTINGS = "applying_settings";
+
+const DEFAULT_REVERT_SETTINGS = {/*The settings used on first load and reset*/
+    "VIDEOS_PER_ROW":                    {value: 4,    displayName: "Videos Per Row", min: 1, placeholder: 4},
+    "UN_ROUNDED_SEARCH":                 {value: true, displayName: "Search Bar"},
+    "UN_ROUNDED_THUMBNAILS_AND_PLAYERS": {value: true, displayName: "Thumbnails"},
+    "UN_ROUNDED_MENUS":                  {value: true, displayName: "Menus"},
+    "SUBSCRIBE_BUTTON_COLOR":            {value: true, displayName: "Subscribe Color"},
+    "SUBSCRIBE_BUTTON_SHAPE":            {value: true, displayName: "Subscribe Shape"},
+    "PERCENT_MORE_SPACE_TO_ACTIONS_BAR": {value: 5,    displayName: "Actions Space %", min: 0, max: 15, needsReload: true, step: 5, placeholder: 5},
+    "BAR_BUTTONS":                       {value: true, displayName: "Action Boarders"},
+};
 
 let localCopyApplySettings = {};
 
@@ -61,16 +72,7 @@ function getApplySettings(key) {
                 if (!result[key]) {
                     let defaultSettings = {};
                     if (key === KEY_STORAGE_LOCAL_APPLYING_SETTINGS) {
-                        defaultSettings = {
-                            "VIDEOS_PER_ROW":                    {value: 4,    displayName: "Videos Per Row", min: 1, placeholder: 4},
-                            "UN_ROUNDED_SEARCH":                 {value: true, displayName: "Search Bar"},
-                            "UN_ROUNDED_THUMBNAILS_AND_PLAYERS": {value: true, displayName: "Thumbnails"},
-                            "UN_ROUNDED_MENUS":                  {value: true, displayName: "Menus"},
-                            "SUBSCRIBE_BUTTON_COLOR":            {value: true, displayName: "Subscribe Color"},
-                            "SUBSCRIBE_BUTTON_SHAPE":            {value: true, displayName: "Subscribe Shape"},
-                            "PERCENT_MORE_SPACE_TO_ACTIONS_BAR": {value: 30,   displayName: "Actions Space %", min: 0, max: 80, needsReload: true, step: 5, placeholder: 30},
-                            // "SAVE_BEFORE_SHARE":                 {value: true, displayName: "Save First"},
-                        };
+                        defaultSettings = structuredClone(DEFAULT_REVERT_SETTINGS);
                     }
                     result[key] = defaultSettings;
                     determinedBrowserAPI.storage.local.set(result, () => {

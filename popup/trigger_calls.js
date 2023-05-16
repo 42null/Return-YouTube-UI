@@ -3,85 +3,92 @@ const settingsListElement = document.getElementById("settingsOptionsList");
 
 let determinedBrowserAPI = typeof browser !== 'undefined' ? browser : chrome;
 
-// CREATE TABLE
-getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
-    console.log("[Return Youtube UI]: Initial applySettings:", applySettings);
-    console.log("[Return Youtube UI]: Settings used:");
-    const keys = Object.keys(applySettings);
-    for (let i = 0; i < keys.length; i++) {
-        const key = keys[i];
-        const displayName = applySettings[keys[i]].displayName;
-        const value = applySettings[keys[i]].value;
-        const needsReload = applySettings[keys[i]].needsReload;
-        console.log("[Return Youtube UI]:   " + key + ": " + value);
-
-        // Table Builder
-        const row = settingsListElement.insertRow();
-        const cell1 = row.insertCell(0);
-        const cell2 = row.insertCell(1);
-
-        cell1.innerText = displayName;
-        if(needsReload){
-            const reloadWarning = document.createElement("span");//TODO: Make reusable
-            reloadWarning.classList.add("reloadWarning");
-            cell1.append(reloadWarning);
-        }
-
-
-        if (typeof value == "boolean") {
-            const label = document.createElement('label');
-            label.classList.add("switch");
-            const input = document.createElement('input');
-            input.type = "checkbox";
-            input.id = "idAuto_" + key;
-            input.name = "nameAuto_" + key;
-            input.checked = value;
-
-            const span = document.createElement("span");
-            span.classList.add("slider", "round");//TODO: Make option for without round
-
-            label.appendChild(input);
-            label.appendChild(span);
-            cell2.appendChild(label);
-
-            localCopyApplySettings[key].value = input.checked; // Change a setting
-            applySettingsUpdate();
-        }else if(Number.isInteger(parseInt(value))){
-            const label = document.createElement('label');
-            label.classList.add("integerBox");
-            const input = document.createElement('input');
-            input.type = "number";
-            input.id = "idAuto_" + key;
-            input.name = "nameAuto_" + key;
-            input.value = parseInt(value);
-            // Check if input settings were provided
-            if(typeof applySettings[keys[i]].min){
-                input.min = applySettings[keys[i]].min;
-            }
-            if(typeof applySettings[keys[i]].max){
-                input.max = applySettings[keys[i]].max;
-            }
-            if(typeof applySettings[keys[i]].placeholder){
-                input.placeholder = applySettings[keys[i]].placeholder;
-            }
-            if(typeof applySettings[keys[i]].step){
-                input.step = applySettings[keys[i]].step;
-            }
-
-            input.classList.add("numberBox");//TODO: Make option for without round
-
-            label.appendChild(input);
-            cell2.appendChild(label);
-
-            localCopyApplySettings[key].value = parseInt(value); // Change a setting
-            applySettingsUpdate();
-        }
+// CREATE & POPULATE TABLE
+function createAndPopulateTable(){
+    // Clears out the existing list contents
+    while (settingsListElement.lastElementChild) {
+        settingsListElement.removeChild(settingsListElement.lastElementChild);
     }
 
-}).catch((error) => {
-    console.error(error);
-});
+    getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
+        console.log("[Return Youtube UI]: Initial applySettings:", applySettings);
+        console.log("[Return Youtube UI]: Settings used:");
+        const keys = Object.keys(applySettings);
+        for (let i = 0; i < keys.length; i++) {
+            const key = keys[i];
+            const displayName = applySettings[keys[i]].displayName;
+            const value = applySettings[keys[i]].value;
+            const needsReload = applySettings[keys[i]].needsReload;
+            console.log("[Return Youtube UI]:   " + key + ": " + value);
 
+            // Table Builder
+            const row = settingsListElement.insertRow();
+            const cell1 = row.insertCell(0);
+            const cell2 = row.insertCell(1);
+
+            cell1.innerText = displayName;
+            if(needsReload){
+                const reloadWarning = document.createElement("span");//TODO: Make reusable
+                reloadWarning.classList.add("reloadWarning");
+                cell1.append(reloadWarning);
+            }
+
+
+            if (typeof value == "boolean") {
+                const label = document.createElement('label');
+                label.classList.add("switch");
+                const input = document.createElement('input');
+                input.type = "checkbox";
+                input.id = "idAuto_" + key;
+                input.name = "nameAuto_" + key;
+                input.checked = value;
+
+                const span = document.createElement("span");
+                span.classList.add("slider", "round");//TODO: Make option for without round
+
+                label.appendChild(input);
+                label.appendChild(span);
+                cell2.appendChild(label);
+
+                localCopyApplySettings[key].value = input.checked; // Change a setting
+                applySettingsUpdate();
+            }else if(Number.isInteger(parseInt(value))){
+                const label = document.createElement('label');
+                label.classList.add("integerBox");
+                const input = document.createElement('input');
+                input.type = "number";
+                input.id = "idAuto_" + key;
+                input.name = "nameAuto_" + key;
+                input.value = parseInt(value);
+                // Check if input settings were provided
+                if(typeof applySettings[keys[i]].min){
+                    input.min = applySettings[keys[i]].min;
+                }
+                if(typeof applySettings[keys[i]].max){
+                    input.max = applySettings[keys[i]].max;
+                }
+                if(typeof applySettings[keys[i]].placeholder){
+                    input.placeholder = applySettings[keys[i]].placeholder;
+                }
+                if(typeof applySettings[keys[i]].step){
+                    input.step = applySettings[keys[i]].step;
+                }
+
+                input.classList.add("numberBox");//TODO: Make option for without round
+
+                label.appendChild(input);
+                cell2.appendChild(label);
+
+                localCopyApplySettings[key].value = parseInt(value); // Change a setting
+                applySettingsUpdate();
+            }
+        }
+
+    }).catch((error) => {
+        console.error(error);
+    });
+}
+createAndPopulateTable();
 
 
 
@@ -114,7 +121,32 @@ function listenForClicks() {//TODO: Merge components with getApplySettings initi
 
         if (e.target.type === "submit") {
             if (e.target.id === "reloadExtension") {
-                determinedBrowserAPI.runtime.reload();
+                reloadExtension();
+            } else if(e.target.id === "resetSettingsToDefault") {
+                // for (const key in DEFAULT_REVERT_SETTINGS) {
+                //     localCopyApplySettings[key].value = DEFAULT_REVERT_SETTINGS[key].value;
+                // }
+                localCopyApplySettings = structuredClone(DEFAULT_REVERT_SETTINGS);
+                applySettingsUpdate();
+
+
+                // Save current scroll position as when the page is re-populated, it gets smaller before bouncing back;
+    // const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+    // //Repopulate settings table first and makes sure it's done before restoring position
+    // createAndPopulateTable().then( ()=> window.scrollTo(0, scrollPosition)//Restore scroll position
+    //     ).catch((error) => {logWithConfigMsg("Error restoring scroll position: "+error)});
+                const scrollPosition = document.documentElement.scrollTop;
+// Repopulate settings table first and make sure it's done before restoring position
+                createAndPopulateTable();
+                    // .then(() => {
+                    //         window.scrollTo(0, scrollPosition);
+                    // }).catch((error) => {
+                    //     logWithConfigMsg("Error restoring scroll position: " + error);
+                    // });
+                    setTimeout(() => {//TODO: Get working without timeout and instead on .then()
+                        window.scrollTo(0, scrollPosition);
+                    }, 75);
+
             } else if (e.target.id === "settingsPageButton" && !settingsListElement.unhideable) {
                 if (settingsListElement.classList.contains("hidden")) {
                     settingsListElement.classList.remove("hidden");
@@ -132,45 +164,11 @@ function listenForClicks() {//TODO: Merge components with getApplySettings initi
                 determinedBrowserAPI.tabs.query({currentWindow: true, active: true}).then(reapplyGeneratedJS).catch(reportError);//TODO: Make double check for if a YouTube page.
             }
         } else if (e.target.type === "checkbox") {
-            console.log(e.target.attributes);
-            const currentApplySettingKey = e.target.id.replace("idAuto_", "");
-            // console.log(e.target.attributes);
-
-            determinedBrowserAPI.storage.local.get("applying_settings", async (result) => {
-                result[KEY_STORAGE_LOCAL_APPLYING_SETTINGS][currentApplySettingKey].value = e.target.checked;
-                try {
-                    try {
-                        const newSettings = JSON.parse(JSON.stringify(result)).applying_settings;
-                        newSettings[currentApplySettingKey].value = e.target.checked;
-                        await determinedBrowserAPI.storage.local.set({"applying_settings": newSettings});
-                        console.log("Storage set successfully");
-                    }catch(e2){
-                        console.log("Error="+e2);
-                    }
-                } catch (error) {
-                    console.error(`Error setting storage: ${error}`);
-                }
-            });
+            e.value = e.target.checked;
+            sendStoreValue(e);
         } else if (e.target.type === "number") {
-            console.log(e.target.attributes);
-            const currentApplySettingKey = e.target.id.replace("idAuto_", "");
-            // console.log(e.target.attributes);
-
-            determinedBrowserAPI.storage.local.get("applying_settings", async (result) => {
-                result[KEY_STORAGE_LOCAL_APPLYING_SETTINGS][currentApplySettingKey].value = e.target.checked;
-                try {
-                    try {
-                        const newSettings = JSON.parse(JSON.stringify(result)).applying_settings;
-                        newSettings[currentApplySettingKey].value = parseInt(e.target.value);
-                        await determinedBrowserAPI.storage.local.set({"applying_settings": newSettings});
-                        console.log("Storage set successfully");
-                    }catch(e2){
-                        console.log("Error="+e2);
-                    }
-                } catch (error) {
-                    console.error(`Error setting storage: ${error}`);
-                }
-            });
+            e.value = parseInt(e.target.value);
+            sendStoreValue(e);
         }
     });
 }
@@ -208,18 +206,36 @@ determinedBrowserAPI.tabs.query({active: true, currentWindow: true})
 document.querySelector("body").classList.add("hasVerticalOverflowCausingHorizontal");//TODO: Document & rename
 
 
-// browser.permissions.contains({
-//     permissions: ['*://*.youtube.com/*'],
-//     origins: ['*://*.youtube.com/*']
-// }).then((result) => {
-//     if (result.permissions && (result.permissions.indexOf('*://*.youtube.com/*') !== -1) &&
-//         result.origins && (result.origins.indexOf('*://*.youtube.com/*') !== -1)) {
-//         if (result.granted) {
-//             console.log('The extension has permission to read and change data.');
-//         } else {
-//             console.log('The extension does not have permission to read and change data.');
-//         }
-//     } else {
-//         console.log('The extension does not have the necessary permissions.');
-//     }
-// });
+// PAGE METHOD CONSOLIDATIONS
+/**
+ * Reloads the extension popup page
+ */
+function reloadExtension(){
+    determinedBrowserAPI.runtime.reload();
+}
+
+/**
+ * Sends value to be stored in browser local storage.
+ * @param event that triggered the send
+ */
+function sendStoreValue(event){
+    const value = event.value;
+    console.log("Storing attributes: "+event.target.attributes);
+    const currentApplySettingKey = event.target.id.replace("idAuto_", "");
+
+    determinedBrowserAPI.storage.local.get("applying_settings", async (result) => {
+        result[KEY_STORAGE_LOCAL_APPLYING_SETTINGS][currentApplySettingKey].value = value;
+        try {
+            try {
+                const newSettings = JSON.parse(JSON.stringify(result)).applying_settings;
+                newSettings[currentApplySettingKey].value = value;
+                await determinedBrowserAPI.storage.local.set({"applying_settings": newSettings});
+                console.log("Storage \""+currentApplySettingKey+"\" set to \""+value+"\"successfully");
+            }catch(e2){
+                console.error(`Error setting storage (at catch1): ${e2}`);
+            }
+        } catch (error) {
+            console.error(`Error setting storage (at catch2: ${error}`);
+        }
+    });
+}
