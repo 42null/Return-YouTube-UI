@@ -224,15 +224,16 @@ table#settingsOptionsList{
   margin: 0 auto;
 }
 
-#footer h5{
+footer h5{
   text-align: center;
   margin-top: 5px;
   margin-bottom: 5px;
 }
 
-#footer #under_development_disclaimer{
+footer #bottommost_message{
   margin: 0 auto;
   text-align: center;
+  font-style: italic;
 }
 
 /*CODE FROM https://dev-bay.com/css-ul-custom-bullet-style-with-image/*/
@@ -266,7 +267,7 @@ table#settingsOptionsList{
   background-image: url('/icons/Fx-Browser-icon-fullColor.svg');
 }
 
-#under_development_disclaimer{
+#footer_bottommost_message{
   margin-top: -50px;
 }
 
@@ -276,6 +277,13 @@ table#settingsOptionsList{
   /* &#10; is for a newline */
   content: "\a(reload on change)";
   white-space: pre-line;/*There to make the newline work*/
+}
+
+#link_sites_header{
+  text-decoration: underline;
+}
+#link_sites_header:contains("...") {
+  text-decoration: none;
 }
 
 .material-symbols-outlined {

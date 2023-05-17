@@ -13,7 +13,7 @@ https://github.com/mdn/webextensions-examples/tree/master/beastify (choose_beast
 
 <body>
   <div id="titlePage"><!--TODO: Come up with a better id name-->
-    <h2>
+    <h2 id="title-header">
       Return YouTube UI
     </h2>
     <div style="text-align: center;">
@@ -59,18 +59,20 @@ https://github.com/mdn/webextensions-examples/tree/master/beastify (choose_beast
     <p>For security purposes this extension only works on <a href="https://www.youtube.com/" title="Open YouTube in a new tab" target="_blank">YouTube.com</a>.</p>
   </div>
 
-  <div id="footer">
-    <h5><u>View Extension On</u>...</h5>
+  <footer>
+    <div id="sites_section">
+    <h5 id="link_sites_header">View Extension On...</h5>
     <ul class="homepageLink" style="list-style:none!important;">
       <table style="margin:0 auto; text-align: center;">
-        <tr>
-          <th class="githubHomepage"><li><a href="https://github.com/42null/Return-YouTube-UI">Github</a></li></th>
-          <th class="firefoxHomepage"><li><a href="https://addons.mozilla.org/en-US/firefox/addon/return-youtube-ui/">Add-Ons</a><br></li></th>
+        <tr id="sites_list">
+<!--          <th class="githubHomepage"><li><a href="https://github.com/42null/Return-YouTube-UI">Github</a></li></th>-->
+<!--          <th class="firefoxHomepage"><li><a href="https://addons.mozilla.org/en-US/firefox/addon/return-youtube-ui/">Add-Ons</a><br></li></th>-->
         </tr>
       </table>
     </ul>
-    <p id="under_development_disclaimer" class="smaller"><i>(Project under active development)</i></p>
-  </div>
+    </div>
+    <p id="bottommost_message" class="smaller">Small Message</p>
+  </footer>
 </body>
 
 <!--Include after page is built-->

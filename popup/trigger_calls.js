@@ -1,10 +1,34 @@
 const settingsListElement = document.getElementById("settingsOptionsList");
-// const appPreferencesListElement = document.getElementById("settingsOptionsList");
+// const extensionPreferencesListElement = document.getElementById("popupPreferencesList");
 
 let determinedBrowserAPI = typeof browser !== 'undefined' ? browser : chrome;
 
-// CREATE & POPULATE TABLE
-function createAndPopulateTable(){
+function getProjectConfiguration() {//TODO: Make use returnYouTubeUI.js getProjectConfiguration or add to helperFunctions?
+    return new Promise((resolve) => {
+        // Retrieve the project configuration from local storage
+        const projectConfiguration = JSON.parse(localStorage.getItem("ProjectConfiguration"));
+
+        // If projectConfiguration is not null, resolve the promise
+        if (projectConfiguration !== null) {
+            resolve(projectConfiguration);
+        } else {
+            // Listen for a custom event to be triggered when the project configuration is set
+            document.addEventListener("projectConfigurationSet", () => {
+                // Retrieve the updated project configuration from local storage
+                const updatedProjectConfiguration = JSON.parse(localStorage.getItem("ProjectConfiguration"));
+                resolve(updatedProjectConfiguration);
+            });
+        }
+    });
+}
+getProjectConfiguration();
+
+// START OF PAGE CONSTRUCTION
+/**
+ * Creates/recreates and populates the settings table
+ * @returns {Promise<void>}
+ */
+async function createAndPopulateTable(){
     // Clears out the existing list contents
     while (settingsListElement.lastElementChild) {
         settingsListElement.removeChild(settingsListElement.lastElementChild);
@@ -90,9 +114,63 @@ function createAndPopulateTable(){
         console.error(error);
     });
 }
-createAndPopulateTable();
+
+async function createAndPopulateFooter(){//TODO: Make create instead of just populate
+    const footer = document.getElementsByTagName("footer")[0];
+    footer.querySelector("#bottommost_message").innerText = projectConfiguration.link_sites.popup_page_footer_bottommost_message;
+    const sitesSection = footer.querySelector("#sites_section");
+    // Populate eleents in popup window
+    sitesSection.querySelector("#link_sites_header").innerText = projectConfiguration.link_sites.link_sites_header;
 
 
+    const footerSitesTr = footer.querySelector("#sites_list");
+    const keys = Object.keys(projectConfiguration.link_sites.sites);
+    for (let i = 0; i < keys.length; i++) {
+        const site = projectConfiguration.link_sites.sites[keys[i]];
+        const th = document.createElement('th');
+        th.classList.add("homepageLink");
+        const li = document.createElement('li');
+        // li.style.backgroundImage = "url('"+site.icon_url+"')";
+        site.generatedId = (projectConfiguration.extension_display_name+"-autogenid-"+keys[i]).replace(/\s/g, "-").toLowerCase();
+        li.id = site.generatedId;
+        const backgroundImageStyle = document.createElement('style');
+
+        backgroundImageStyle.innerText = `#`+site.generatedId+`:before{
+                                background-image: url("`+site.icon_url+`");
+                            }`;
+        footer.appendChild(backgroundImageStyle);
+        // footer.appendChild(backgroundImageStyle);
+
+        const a = document.createElement('a');
+        a.innerText = site.name;
+        a.href = site.link_url;
+        li.appendChild(a);
+        th.appendChild(li);
+        footerSitesTr.appendChild(th);
+    }
+}
+
+// async function waitForProjectConfiguration() {//TODO: Make without wait timer
+//     // let gotProjectConfiguration = await getProjectConfiguration();
+//     while (projectConfiguration === null) {
+//         // Wait for projectConfiguration to be populated
+//         await new Promise(resolve => setTimeout(resolve, 50));
+//     }
+//
+//     createAndPopulateTable();
+//     createAndPopulateFooter();
+// }
+
+// waitForProjectConfiguration();
+setTimeout(function() {//TODO: Make without wait timer
+    createAndPopulateTable();
+    createAndPopulateFooter();
+}, 100);
+// getProjectConfiguration().then(gotProjectConfiguration => {
+//     createAndPopulateTable();
+//     createAndPopulateFooter();
+// });
+// END OF PAGE CONSTRUCTION
 
 
 // Major button processing
@@ -106,7 +184,6 @@ function listenForClicks() {//TODO: Merge components with getApplySettings initi
             determinedBrowserAPI.tabs.sendMessage(tabs[0].id, {
                 command: "ManuallyReApplyJSPageModifications",//TODO: Come up with better message
             });
-
         }
 
         /**
@@ -125,30 +202,18 @@ function listenForClicks() {//TODO: Merge components with getApplySettings initi
             if (e.target.id === "reloadExtension") {
                 reloadExtension();
             } else if(e.target.id === "resetSettingsToDefault") {
-                // for (const key in DEFAULT_REVERT_SETTINGS) {
-                //     localCopyApplySettings[key].value = DEFAULT_REVERT_SETTINGS[key].value;
-                // }
                 projectConfiguration = JSON.parse(localStorage.getItem("ProjectConfiguration"));
                 localCopyApplySettings = structuredClone(projectConfiguration.DEFAULT_REVERT_SETTINGS);
                 applySettingsUpdate();
 
 
                 // Save current scroll position as when the page is re-populated, it gets smaller before bouncing back;
-    // const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-    // //Repopulate settings table first and makes sure it's done before restoring position
-    // createAndPopulateTable().then( ()=> window.scrollTo(0, scrollPosition)//Restore scroll position
-    //     ).catch((error) => {logWithConfigMsg("Error restoring scroll position: "+error)});
                 const scrollPosition = document.documentElement.scrollTop;
-// Repopulate settings table first and make sure it's done before restoring position
+                // Repopulate settings table first and make sure it's done before restoring position
                 createAndPopulateTable();
-                    // .then(() => {
-                    //         window.scrollTo(0, scrollPosition);
-                    // }).catch((error) => {
-                    //     logWithConfigMsg("Error restoring scroll position: " + error);
-                    // });
-                    setTimeout(() => {//TODO: Get working without timeout and instead on .then()
-                        window.scrollTo(0, scrollPosition);
-                    }, 75);
+                setTimeout(() => {//TODO: Get working without timeout and instead on .then()
+                    window.scrollTo(0, scrollPosition);
+                }, 75);
 
             } else if (e.target.id === "settingsPageButton" && !settingsListElement.unhideable) {
                 if (settingsListElement.classList.contains("hidden")) {

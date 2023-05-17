@@ -1,4 +1,5 @@
 {
+  "extension_display_name": "Return Youtube UI",
   "log_header": "Return Youtube UI",
   "log_header_internal": "Internal",
   "DEFAULT_REVERT_SETTINGS" : {
@@ -10,5 +11,21 @@
     "SUBSCRIBE_BUTTON_SHAPE":            {"value": true, "displayName": "Subscribe Shape"},
     "PERCENT_MORE_SPACE_TO_ACTIONS_BAR": {"value": 5,    "displayName": "Actions Space %", "min": 0, "max": 15, "needsReload": true, "step": 5, "placeholder": 5},
     "BAR_BUTTONS":                       {"value": true, "displayName": "Action Boarders"}
+  },
+  "link_sites": {
+    "link_sites_header": "View Extension On...",
+    "popup_page_footer_bottommost_message": "(Project under active development)",
+    "sites": {
+      "github": {
+        "name": "Github",
+        "icon_url": "/icons/github-mark.png",
+        "link_url": "https://github.com/42null/Return-YouTube-UI"
+      },
+      "firefox": {
+        "name": "Add-Ons",
+        "icon_url": "/icons/Fx-Browser-icon-fullColor.svg",
+        "link_url": "https://addons.mozilla.org/en-US/firefox/addon/return-youtube-ui/"
+      }
+    }
   }
 }

@@ -69,7 +69,7 @@ async function createElementLink(sheetName) {
         jsSheetLinkElement.setAttribute("src", determinedBrowserAPI.runtime.getURL(sheetName))
         return jsSheetLinkElement;
     }
-    // return stylesheetLinkElement;
+    // primary stylesheetLinkElement;
 }
 
 
