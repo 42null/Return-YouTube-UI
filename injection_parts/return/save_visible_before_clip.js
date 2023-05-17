@@ -22,23 +22,8 @@ function waitForElm(selector){
 
 
 waitForElm('#actions-inner').then((elm) => {
-    console.log('[Return YouTube UI]: Element is ready');
-    // waitForElm('button.yt-spec-button-shape-next.yt-spec-button-shape-next--tonal.yt-spec-button-shape-next--mono.yt-spec-button-shape-next--size-m.yt-spec-button-shape-next--icon-button').then((elm) => {
-    // // Trigger opening of more actions to load options
-    //     let moreOptionsButtons = document.querySelectorAll("button.yt-spec-button-shape-next.yt-spec-button-shape-next--tonal.yt-spec-button-shape-next--mono.yt-spec-button-shape-next--size-m.yt-spec-button-shape-next--icon-button");
-    //     for (let i = 0; i < moreOptionsButtons.length; i++){
-    //         const moreOptionsButton = moreOptionsButtons[i].textContent;
-    //         // moreOptionsButtons[i].style.backgroundColor = "yellow";
-    //
-    //         if(moreOptionsButton.includes("Save")){
-    //             moreOptionsButtons[i].click();
-    //             // moreOptionsButtons[i].style.backgroundColor = "green";
-    //         }
-    //     }
-        // moreOptionsButton.click();
-        // moreOptionsButton.click();
-        save_visible_before_clip(true);
-    // });
+    logWithConfigMsg("Element is ready");
+    save_visible_before_clip(true);
 });
 
 
@@ -80,7 +65,7 @@ function save_visible_before_clip(apply){
         }
     }
 
-    console.log("[Return YouTube UI]: save visible before clip function called");
+    logWithConfigMsg("Save visible before clip function called");
 
     /*Need to check to avoid error on null, checks all just for completeness and just
      in case something get changed by another extension or a different view setting*/

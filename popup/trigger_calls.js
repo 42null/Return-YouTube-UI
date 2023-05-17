@@ -11,15 +11,17 @@ function createAndPopulateTable(){
     }
 
     getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
-        console.log("[Return Youtube UI]: Initial applySettings:", applySettings);
-        console.log("[Return Youtube UI]: Settings used:");
+        logWithConfigMsg("Initial applySettings:", applySettings);
+        logWithConfigMsg("Settings used:");
+
+        logWithConfigMsg("Settings used:");
         const keys = Object.keys(applySettings);
         for (let i = 0; i < keys.length; i++) {
             const key = keys[i];
             const displayName = applySettings[keys[i]].displayName;
             const value = applySettings[keys[i]].value;
             const needsReload = applySettings[keys[i]].needsReload;
-            console.log("[Return Youtube UI]:   " + key + ": " + value);
+            logWithConfigMsg("   "+key+": "+value);
 
             // Table Builder
             const row = settingsListElement.insertRow();
@@ -111,7 +113,7 @@ function listenForClicks() {//TODO: Merge components with getApplySettings initi
          * Just log the error to the console.
          */
         function reportError(error) {
-            console.error(`[Return Youtube UI]: Could not edit page, most likely page is not permitted in manifest: ${error}`);
+            logWithConfigMsg(`Could not edit page, most likely page is not permitted in manifest: ${error}`);//, "error");//TODO: Make error level message passable
         }
 
         /**
@@ -126,7 +128,8 @@ function listenForClicks() {//TODO: Merge components with getApplySettings initi
                 // for (const key in DEFAULT_REVERT_SETTINGS) {
                 //     localCopyApplySettings[key].value = DEFAULT_REVERT_SETTINGS[key].value;
                 // }
-                localCopyApplySettings = structuredClone(DEFAULT_REVERT_SETTINGS);
+                projectConfiguration = JSON.parse(localStorage.getItem("ProjectConfiguration"));
+                localCopyApplySettings = structuredClone(projectConfiguration.DEFAULT_REVERT_SETTINGS);
                 applySettingsUpdate();
 
 

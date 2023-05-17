@@ -4,8 +4,7 @@
    as colors and text.
 */
 
-/*DISCLAIMER! At current state not all variables are used, functionally will be added as the project progresses*/
-const               PROPER_DATES = true; //Changes main video date info from "<#> years/months/etc. ago" to it's formatted date
+const PROPER_DATES = true; //Changes main video date info from "<#> years/months/etc. ago" to it's formatted date
 
 //Created pages to inject
 let script = document.createElement('script');

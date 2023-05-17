@@ -2,16 +2,6 @@ let projectConfiguration = null;
 
 const KEY_STORAGE_LOCAL_APPLYING_SETTINGS = "applying_settings";
 
-const DEFAULT_REVERT_SETTINGS = {/*The settings used on first load and reset*/
-    "VIDEOS_PER_ROW":                    {value: 4,    displayName: "Videos Per Row", min: 1, placeholder: 4},
-    "UN_ROUNDED_SEARCH":                 {value: true, displayName: "Search Bar"},
-    "UN_ROUNDED_THUMBNAILS_AND_PLAYERS": {value: true, displayName: "Thumbnails"},
-    "UN_ROUNDED_MENUS":                  {value: true, displayName: "Menus"},
-    "SUBSCRIBE_BUTTON_COLOR":            {value: true, displayName: "Subscribe Color"},
-    "SUBSCRIBE_BUTTON_SHAPE":            {value: true, displayName: "Subscribe Shape"},
-    "PERCENT_MORE_SPACE_TO_ACTIONS_BAR": {value: 5,    displayName: "Actions Space %", min: 0, max: 15, needsReload: true, step: 5, placeholder: 5},
-    "BAR_BUTTONS":                       {value: true, displayName: "Action Boarders"},
-};
 
 let localCopyApplySettings = {};
 
@@ -30,12 +20,20 @@ function logWithConfigMsg(...messages){
         getProjectConfiguration().then(gotProjectConfiguration => {
             projectConfiguration = JSON.stringify(gotProjectConfiguration);
             for(const message of messages){
-                console.log("["+projectConfiguration.log_header+"]: "+message);
+                if(typeof message === "object"){
+                    console.log("["+JSON.parse(projectConfiguration).log_header+"]: "+JSON.stringify(message));
+                }else{
+                    console.log("["+JSON.parse(projectConfiguration).log_header+"]: "+message);
+                }
             }
         });
     }else{
         for(const message of messages){
-            console.log("["+projectConfiguration.log_header+"]: "+message);
+            if(typeof message === "object"){
+                console.log("["+projectConfiguration.log_header+"]: "+JSON.stringify(message));
+            }else{
+                console.log("["+projectConfiguration.log_header+"]: "+message);
+            }
         }
     }
 }
@@ -72,7 +70,7 @@ function getApplySettings(key) {
                 if (!result[key]) {
                     let defaultSettings = {};
                     if (key === KEY_STORAGE_LOCAL_APPLYING_SETTINGS) {
-                        defaultSettings = structuredClone(DEFAULT_REVERT_SETTINGS);
+                        defaultSettings = structuredClone(projectConfiguration.DEFAULT_REVERT_SETTINGS);
                     }
                     result[key] = defaultSettings;
                     determinedBrowserAPI.storage.local.set(result, () => {
@@ -200,7 +198,6 @@ function settingsToActions(){
 }
 
 // Initial setup/initial receive
-// console.log("Running initial applySettings... loggingHeader "+projectConfiguration.loggingHeader);
 settingsToActions();
 
 
