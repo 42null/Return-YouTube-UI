@@ -3,25 +3,11 @@ const settingsListElement = document.getElementById("settingsOptionsList");
 
 let determinedBrowserAPI = typeof browser !== 'undefined' ? browser : chrome;
 
-function getProjectConfiguration() {//TODO: Make use returnYouTubeUI.js getProjectConfiguration or add to helperFunctions?
-    return new Promise((resolve) => {
-        // Retrieve the project configuration from local storage
-        const projectConfiguration = JSON.parse(localStorage.getItem("ProjectConfiguration"));
-
-        // If projectConfiguration is not null, resolve the promise
-        if (projectConfiguration !== null) {
-            resolve(projectConfiguration);
-        } else {
-            // Listen for a custom event to be triggered when the project configuration is set
-            document.addEventListener("projectConfigurationSet", () => {
-                // Retrieve the updated project configuration from local storage
-                const updatedProjectConfiguration = JSON.parse(localStorage.getItem("ProjectConfiguration"));
-                resolve(updatedProjectConfiguration);
-            });
-        }
-    });
+function loadProjectConfiguration() {//TODO: Make use returnYouTubeUI.js getProjectConfiguration or add to helperFunctions?
+    projectConfiguration = JSON.parse(localStorage.getItem("ProjectConfiguration"));
+    // localCopyApplySettings = structuredClone(projectConfiguration.DEFAULT_REVERT_SETTINGS);
 }
-getProjectConfiguration();
+loadProjectConfiguration();
 
 // START OF PAGE CONSTRUCTION
 /**
@@ -61,9 +47,9 @@ async function createAndPopulateTable(){
 
 
             if (typeof value == "boolean") {
-                const label = document.createElement('label');
+                const label = document.createElement("label");
                 label.classList.add("switch");
-                const input = document.createElement('input');
+                const input = document.createElement("input");
                 input.type = "checkbox";
                 input.id = "idAuto_" + key;
                 input.name = "nameAuto_" + key;
@@ -79,9 +65,9 @@ async function createAndPopulateTable(){
                 localCopyApplySettings[key].value = input.checked; // Change a setting
                 applySettingsUpdate();
             }else if(Number.isInteger(parseInt(value))){
-                const label = document.createElement('label');
+                const label = document.createElement("label");
                 label.classList.add("integerBox");
-                const input = document.createElement('input');
+                const input = document.createElement("input");
                 input.type = "number";
                 input.id = "idAuto_" + key;
                 input.name = "nameAuto_" + key;
@@ -127,13 +113,13 @@ async function createAndPopulateFooter(){//TODO: Make create instead of just pop
     const keys = Object.keys(projectConfiguration.link_sites.sites);
     for (let i = 0; i < keys.length; i++) {
         const site = projectConfiguration.link_sites.sites[keys[i]];
-        const th = document.createElement('th');
+        const th = document.createElement("th");
         th.classList.add("homepageLink");
-        const li = document.createElement('li');
+        const li = document.createElement("li");
         // li.style.backgroundImage = "url('"+site.icon_url+"')";
         site.generatedId = (projectConfiguration.extension_display_name+"-autogenid-"+keys[i]).replace(/\s/g, "-").toLowerCase();
         li.id = site.generatedId;
-        const backgroundImageStyle = document.createElement('style');
+        const backgroundImageStyle = document.createElement("style");
 
         backgroundImageStyle.innerText = `#`+site.generatedId+`:before{
                                 background-image: url("`+site.icon_url+`");
@@ -141,9 +127,10 @@ async function createAndPopulateFooter(){//TODO: Make create instead of just pop
         footer.appendChild(backgroundImageStyle);
         // footer.appendChild(backgroundImageStyle);
 
-        const a = document.createElement('a');
+        const a = document.createElement("a");
         a.innerText = site.name;
         a.href = site.link_url;
+        a.target = "_blank";
         li.appendChild(a);
         th.appendChild(li);
         footerSitesTr.appendChild(th);
@@ -163,9 +150,10 @@ async function createAndPopulateFooter(){//TODO: Make create instead of just pop
 
 // waitForProjectConfiguration();
 setTimeout(function() {//TODO: Make without wait timer
+    loadProjectConfiguration();
     createAndPopulateTable();
     createAndPopulateFooter();
-}, 100);
+}, 150);
 // getProjectConfiguration().then(gotProjectConfiguration => {
 //     createAndPopulateTable();
 //     createAndPopulateFooter();
