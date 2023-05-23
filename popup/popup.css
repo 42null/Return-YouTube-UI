@@ -146,12 +146,21 @@ input:checked + .slider:before {
   text-align: center;
 }
 
-#title-page > h2{
+#title-page h1{
+  font-size: 1.48em;
   text-align: center;
-  width: 95%;
+  width: 98%;
   padding-left: 5px; /*TODO: Automate*/
-  /*background-color: #F0F;*/
   /*padding-left: var(--scrollbar-width);*/
+  background-color: var(--md_primary);
+  position: fixed;
+  padding-top: 50px;
+  padding-bottom: 5px;
+  top: -55px;
+}
+#title-page{
+  margin-top: 1.5em; /*Size of h2 for title element*/
+  margin-top: 60px;
 }
 
 #error-content{

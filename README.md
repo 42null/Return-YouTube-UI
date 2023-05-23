@@ -24,7 +24,7 @@ _Major releases are published to the Firefox Add-Ons page as an extension ([addo
 
 <div style="text-align: center;">
     <img src="./icons/ReturnYouTubeUIIconV2R2_512.png" alt="[Return YouTube UI Logo]" width="128" height="auto" />
-    <img src="./Screenshots/PopupPageFullSettings_latestTOP.png" alt="[Return YouTube UI Logo]" width="128" height="auto" />
+    <img src="./Screenshots/PopupPageFullSettings_latestTOP.png" alt="[Recent settings screenshot]" width="128" height="auto" />
 </div>
 
 ---

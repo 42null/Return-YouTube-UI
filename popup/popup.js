@@ -6,7 +6,6 @@ const settingsListElement = document.getElementById("settingsOptionsList");
 
 let determinedBrowserAPI = typeof browser !== 'undefined' ? browser : chrome;
 
-let limitingTriggerTimeStart = 0;
 
 let lastScrollPosition = null;
 window.addEventListener('scroll', triggerScrollingHappening);
@@ -27,7 +26,7 @@ setTimeout(() => {//TODO: Get working without timeout and instead on .then()
 
 function loadProjectConfiguration() {//TODO: Make use returnYouTubeUI.js getProjectConfiguration or add to helperFunctions?
     projectConfiguration = JSON.parse(localStorage.getItem("ProjectConfiguration"));
-    // localCopyApplySettings = structuredClone(projectConfiguration.DEFAULT_REVERT_SETTINGS);
+    // localCopyApplySettings = structuredClone(projectConfiguration.DEFAULT_CHANGE_SETTINGS);
 }
 loadProjectConfiguration();
 
@@ -164,11 +163,15 @@ setTimeout(function() {//TODO: Make without wait timer
     loadProjectConfiguration();
     createAndPopulateTable();
     createAndPopulateFooter();
+//     Set page title h2 //TODO: Make h1
+    document.getElementById("title-header").innerText = projectConfiguration.extension_display_name;
 //     Set image parts of popup-top-image //TODO: Make method with parameters for every configImage
     const image = document.getElementById("popup-top-image");
     image.src = projectConfiguration.popup_page.top_image.src;
     image.alt = projectConfiguration.popup_page.top_image.alt;
     image.title = projectConfiguration.popup_page.top_image.title;
+    document.getElementsByTagName("title-header")[0].innerText = projectConfiguration.extension_display_name;
+    document.getElementsByTagName("title")[0].innerText = projectConfiguration.extension_display_name+"'s Popup Page";
 }, 150);
 // getProjectConfiguration().then(gotProjectConfiguration => {
 //     createAndPopulateTable();
@@ -207,7 +210,7 @@ function listenForClicks() {//TODO: Merge components with getApplySettings initi
                 reloadExtension();
             } else if(e.target.id === "resetSettingsToDefault") {
                 projectConfiguration = JSON.parse(localStorage.getItem("ProjectConfiguration"));
-                localCopyApplySettings = structuredClone(projectConfiguration.DEFAULT_REVERT_SETTINGS);
+                localCopyApplySettings = structuredClone(projectConfiguration.DEFAULT_CHANGE_SETTINGS);
                 applySettingsUpdate();
 
 
@@ -222,7 +225,7 @@ function listenForClicks() {//TODO: Merge components with getApplySettings initi
             } else if (e.target.id === "settingsPageButton" && !settingsListElement.unhideable) {
                 if (settingsListElement.classList.contains("hidden")) {
                     settingsListElement.classList.remove("hidden");
-                    // Get the vertical scrollbar element dimensions
+                        // Get the vertical scrollbar element dimensions
 
                     // var width = document.body.clientWidth;
                     // var height = document.body.clientHeight;
@@ -253,6 +256,9 @@ function reportExecuteScriptError(error) {
     document.querySelector("#popup-content").classList.add("hidden");
     document.querySelector("#error-content").classList.remove("hidden");
     document.querySelector("body").classList.remove("hasVerticalOverflowCausingHorizontal");
+    document.querySelectorAll("#title-header")[0].style.width = "100%";//Removes padding for scroll bar
+    document.querySelectorAll("#title-header")[0].style.marginLeft = "-15px";//TODO: Make not based on pixels
+
     logWithConfigMsg(`Failed to execute content script: ${error.message}`);
 }
 

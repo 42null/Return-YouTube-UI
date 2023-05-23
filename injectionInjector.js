@@ -70,7 +70,7 @@ function getApplySettings(key) {
                 if (!result[key]) {
                     let defaultSettings = {};
                     if (key === KEY_STORAGE_LOCAL_APPLYING_ADJUSTMENT_STATES) {
-                        defaultSettings = structuredClone(projectConfiguration.DEFAULT_REVERT_SETTINGS);
+                        defaultSettings = structuredClone(projectConfiguration.DEFAULT_CHANGE_SETTINGS);
                     }
                     result[key] = defaultSettings;
                     determinedBrowserAPI.storage.local.set(result, () => {
