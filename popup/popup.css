@@ -7,14 +7,19 @@ https://github.com/mdn/webextensions-examples/tree/master/beastify (choose_beast
   /*All vars starting with md are for material design
 https://m2.material.io/resources/color/#!/?view.left=0&view.right=1&primary.color=14d1d1
   */
-  --md_primary: #14d1d1;
-  --md_light: #69ffff;
-  --md_dark: #009fa0;
-  --md_greyBack: #e1e2e1;
-  --md_greyFore: #f5f5f6;
-  --md_textOnP: #000000;
-  --md_sliderBack: var(--md_primary);
-  --md_sliderFill: #b6b6b7;
+
+  /*NOTICE: projectConfiguration.json overrides these values. ("popup_page.colors.<color>")
+  They are set here to so their color can be displayed within your IDE.
+  The colors below will not be used by the extension.
+  */
+  --md_primary: #14d1d1; /*In projectConfig*/
+  --md_light: #69ffff; /*In projectConfig*/
+  --md_dark: #009fa0; /*In projectConfig*/
+  --md_greyBack: #e1e2e1; /*In projectConfig*/
+  --md_greyFore: #f5f5f6; /*In projectConfig*/
+  --md_textOnP: #000000; /*In projectConfig*/
+  --md_sliderBack: var(--md_primary); /*In projectConfig*/ /*TODO: Make js take variable names for one place set i.e. ("primary" --> "--md_primary")*/
+  --md_sliderFill: #b6b6b7; /*In projectConfig*/
 
   --extension_legacy_button_color: #ff3349ff;
 
@@ -33,7 +38,7 @@ html, body {
   margin-top: -5px;
   border-radius: 0;
   text-align: justify;
-  /*background-color: var(--md_greyFore);*/
+  background-color: var(--md_greyFore);
 
   scrollbar-color: var(--md_dark) inital;
 }
@@ -137,11 +142,11 @@ input:checked + .slider:before {
 
 
 
-#titlePage{
+#title-page{
   text-align: center;
 }
 
-#titlePage > h2{
+#title-page > h2{
   text-align: center;
   width: 95%;
   padding-left: 5px; /*TODO: Automate*/

@@ -1,7 +1,29 @@
+const SAVED_SCROLLBAR_KEY = "popup_page_scrollbar";
+const LIMITING_MILLISECONDS_BETWEEN_SCROLL_CALLS = 300;
+
 const settingsListElement = document.getElementById("settingsOptionsList");
 // const extensionPreferencesListElement = document.getElementById("popupPreferencesList");
 
 let determinedBrowserAPI = typeof browser !== 'undefined' ? browser : chrome;
+
+let limitingTriggerTimeStart = 0;
+
+let lastScrollPosition = null;
+window.addEventListener('scroll', triggerScrollingHappening);
+setTimeout(() => {//TODO: Get working without timeout and instead on .then()
+    determinedBrowserAPI.storage.local.get(SAVED_SCROLLBAR_KEY).then((result) => {
+        lastScrollPosition = result[SAVED_SCROLLBAR_KEY];
+        console.log("lastScrollPosition = "+lastScrollPosition);
+        console.log(result);
+        // lastScrollPosition = 99999;
+
+        setTimeout(() => {//TODO: Get working without timeout and instead on .then()
+            // window.scrollTo(0, result.value);
+            window.scrollTo(0, lastScrollPosition);
+        }, 100);
+    });
+}, 200);
+
 
 function loadProjectConfiguration() {//TODO: Make use returnYouTubeUI.js getProjectConfiguration or add to helperFunctions?
     projectConfiguration = JSON.parse(localStorage.getItem("ProjectConfiguration"));
@@ -20,7 +42,7 @@ async function createAndPopulateTable(){
         settingsListElement.removeChild(settingsListElement.lastElementChild);
     }
 
-    getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
+    getApplySettings(KEY_STORAGE_LOCAL_APPLYING_ADJUSTMENT_STATES).then((applySettings) => {
         logWithConfigMsg("Initial applySettings:", applySettings);
         logWithConfigMsg("Settings used:");
 
@@ -105,7 +127,7 @@ async function createAndPopulateFooter(){//TODO: Make create instead of just pop
     const footer = document.getElementsByTagName("footer")[0];
     footer.querySelector("#bottommost_message").innerText = projectConfiguration.link_sites.popup_page_footer_bottommost_message;
     const sitesSection = footer.querySelector("#sites_section");
-    // Populate eleents in popup window
+    // Populate elements in popup window
     sitesSection.querySelector("#link_sites_header").innerText = projectConfiguration.link_sites.link_sites_header;
 
 
@@ -137,22 +159,16 @@ async function createAndPopulateFooter(){//TODO: Make create instead of just pop
     }
 }
 
-// async function waitForProjectConfiguration() {//TODO: Make without wait timer
-//     // let gotProjectConfiguration = await getProjectConfiguration();
-//     while (projectConfiguration === null) {
-//         // Wait for projectConfiguration to be populated
-//         await new Promise(resolve => setTimeout(resolve, 50));
-//     }
-//
-//     createAndPopulateTable();
-//     createAndPopulateFooter();
-// }
-
 // waitForProjectConfiguration();
 setTimeout(function() {//TODO: Make without wait timer
     loadProjectConfiguration();
     createAndPopulateTable();
     createAndPopulateFooter();
+//     Set image parts of popup-top-image //TODO: Make method with parameters for every configImage
+    const image = document.getElementById("popup-top-image");
+    image.src = projectConfiguration.popup_page.top_image.src;
+    image.alt = projectConfiguration.popup_page.top_image.alt;
+    image.title = projectConfiguration.popup_page.top_image.title;
 }, 150);
 // getProjectConfiguration().then(gotProjectConfiguration => {
 //     createAndPopulateTable();
@@ -221,10 +237,10 @@ function listenForClicks() {//TODO: Merge components with getApplySettings initi
             }
         } else if (e.target.type === "checkbox") {
             e.value = e.target.checked;
-            sendStoreValue(e);
+            sendAdjustmentStateValue(e);
         } else if (e.target.type === "number") {
             e.value = parseInt(e.target.value);
-            sendStoreValue(e);
+            sendAdjustmentStateValue(e);
         }
     });
 }
@@ -274,18 +290,18 @@ function reloadExtension(){
  * Sends value to be stored in browser local storage.
  * @param event that triggered the send
  */
-function sendStoreValue(event){
+function sendAdjustmentStateValue(event){
     const value = event.value;
     console.log("Storing attributes: "+event.target.attributes);
     const currentApplySettingKey = event.target.id.replace("idAuto_", "");
 
-    determinedBrowserAPI.storage.local.get("applying_settings", async (result) => {
-        result[KEY_STORAGE_LOCAL_APPLYING_SETTINGS][currentApplySettingKey].value = value;
+    determinedBrowserAPI.storage.local.get("page_adjustment_states", async (result) => {
+        result[KEY_STORAGE_LOCAL_APPLYING_ADJUSTMENT_STATES][currentApplySettingKey].value = value;
         try {
             try {
-                const newSettings = JSON.parse(JSON.stringify(result)).applying_settings;
+                const newSettings = JSON.parse(JSON.stringify(result)).page_adjustment_states;
                 newSettings[currentApplySettingKey].value = value;
-                await determinedBrowserAPI.storage.local.set({"applying_settings": newSettings});
+                await determinedBrowserAPI.storage.local.set({"page_adjustment_states": newSettings});
                 console.log("Storage \""+currentApplySettingKey+"\" set to \""+value+"\"successfully");
             }catch(e2){
                 console.error(`Error setting storage (at catch1): ${e2}`);
@@ -294,4 +310,16 @@ function sendStoreValue(event){
             console.error(`Error setting storage (at catch2: ${error}`);
         }
     });
+}
+
+var scrollingTimerMils = -1;
+window.addEventListener('scroll', triggerScrollingHappening);
+
+function triggerScrollingHappening() {
+    if (scrollingTimerMils !== -1) {
+        clearTimeout(scrollingTimerMils);
+    }
+    scrollingTimerMils = window.setTimeout(async function () {
+        await determinedBrowserAPI.storage.local.set({[SAVED_SCROLLBAR_KEY]: document.documentElement.scrollTop});
+    }, LIMITING_MILLISECONDS_BETWEEN_SCROLL_CALLS);
 }

@@ -7,17 +7,17 @@ https://github.com/mdn/webextensions-examples/tree/master/beastify (choose_beast
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="trigger_calls.css" id="popup-style"/>
+    <link rel="stylesheet" href="popup.css" id="popup-style"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />    <title>Return YouTube UI Popup Page</title> <!--I don't think this is ever visible to the user but might in a task manager somewhere -->
   </head>
 
 <body>
-  <div id="titlePage"><!--TODO: Come up with a better id name-->
+  <div id="title-page"><!--TODO: Come up with a better id name-->
     <h2 id="title-header">
       Return YouTube UI
     </h2>
     <div style="text-align: center;">
-      <img src="../icons/ReturnYouTubeUIIconV2R2_512.png" alt="[Return Youtube UI Logo]" width="40%" height="auto" />
+      <img id="popup-top-image" src="<getFromConfig>" alt="<getFromConfig>" title="<getFromConfig>" width="40%" height="auto" />
     </div>
   </div>
 
@@ -75,10 +75,10 @@ https://github.com/mdn/webextensions-examples/tree/master/beastify (choose_beast
   </footer>
 </body>
 
-<!--Include after page is built-->
-  <script src="popupSettings.js"></script>
+<!--Include after page is built TODO: Move?-->
+  <script src="popupPageStructure.js"></script>
   <script src="../injectionInjector.js"></script>
-  <script src="trigger_calls.js"></script>
-  <script src="popup_page_preferences.js"></script>
+  <script src="popup.js"></script>
+  <script src="popupPagePreferences.js"></script>
 
 </html>

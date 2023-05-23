@@ -1,6 +1,6 @@
 let projectConfiguration = null;
 
-const KEY_STORAGE_LOCAL_APPLYING_SETTINGS = "applying_settings";
+const KEY_STORAGE_LOCAL_APPLYING_ADJUSTMENT_STATES = "page_adjustment_states";
 
 
 let localCopyApplySettings = {};
@@ -69,7 +69,7 @@ function getApplySettings(key) {
                 // If the key is not in storage, create it with default values
                 if (!result[key]) {
                     let defaultSettings = {};
-                    if (key === KEY_STORAGE_LOCAL_APPLYING_SETTINGS) {
+                    if (key === KEY_STORAGE_LOCAL_APPLYING_ADJUSTMENT_STATES) {
                         defaultSettings = structuredClone(projectConfiguration.DEFAULT_REVERT_SETTINGS);
                     }
                     result[key] = defaultSettings;
@@ -93,12 +93,12 @@ function getApplySettings(key) {
 function applySettingsUpdate(){
     logWithConfigMsg("Start of applySettingsUpdate");
 
-    // TODO: Try to fix again, KEY_STORAGE_LOCAL_APPLYING_SETTINGS not converted to string for some reason
-    determinedBrowserAPI.storage.local.set({ "applying_settings": localCopyApplySettings }); // Synchronize the changes made to localCopyApplySettings
+    // TODO: Try to fix again, KEY_STORAGE_LOCAL_APPLYING_ADJUSTMENT_STATES not converted to string for some reason
+    determinedBrowserAPI.storage.local.set({ "page_adjustment_states": localCopyApplySettings }); // Synchronize the changes made to localCopyApplySettings
 }
 
 determinedBrowserAPI.storage.onChanged.addListener((changes, areaName) => {
-    if (areaName === "local" && KEY_STORAGE_LOCAL_APPLYING_SETTINGS in changes) {
+    if (areaName === "local" && KEY_STORAGE_LOCAL_APPLYING_ADJUSTMENT_STATES in changes) {
         for (let key in changes) {
             const settings = JSON.parse(JSON.stringify(changes[key].newValue));//TODO: Make sure this is efficient{
 
@@ -106,7 +106,7 @@ determinedBrowserAPI.storage.onChanged.addListener((changes, areaName) => {
 
 
             localCopyApplySettings = settings;
-            if(key===KEY_STORAGE_LOCAL_APPLYING_SETTINGS){
+            if(key===KEY_STORAGE_LOCAL_APPLYING_ADJUSTMENT_STATES){
                 settingsToActions(settings);
             }
         }
@@ -151,7 +151,7 @@ function setProperty(propertyName, value){
 
 
 function settingsToActions(){
-    getApplySettings(KEY_STORAGE_LOCAL_APPLYING_SETTINGS).then((applySettings) => {
+    getApplySettings(KEY_STORAGE_LOCAL_APPLYING_ADJUSTMENT_STATES).then((applySettings) => {
         logWithConfigMsg("Settings used:");
 
         const keys = Object.keys(applySettings);
