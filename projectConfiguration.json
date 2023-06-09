@@ -1,0 +1,48 @@
+{
+  "extension_display_name": "Return Youtube UI",
+  "log_header": "Return Youtube UI",
+  "log_header_internal": "Internal",
+  "DEFAULT_CHANGE_SETTINGS": {
+    "VIDEOS_PER_ROW":                    {"value": 4,    "displayName": "Videos Per Row", "min": 1, "placeholder": 4},
+    "UN_ROUNDED_SEARCH":                 {"value": true, "displayName": "Search Bar"},
+    "UN_ROUNDED_THUMBNAILS_AND_PLAYERS": {"value": true, "displayName": "Thumbnails"},
+    "UN_ROUNDED_MENUS":                  {"value": true, "displayName": "Menus"},
+    "SUBSCRIBE_BUTTON_COLOR":            {"value": true, "displayName": "Subscribe Color"},
+    "SUBSCRIBE_BUTTON_SHAPE":            {"value": true, "displayName": "Subscribe Shape"},
+    "PERCENT_MORE_SPACE_TO_ACTIONS_BAR": {"value": 5,    "displayName": "Actions Space %", "min": 0, "max": 15, "needsReload": true, "step": 5, "placeholder": 5},
+    "BAR_BUTTONS":                       {"value": true, "displayName": "Action Boarders"}
+  },
+  "popup_page": {
+    "top_image": {
+      "src": "/icons/ReturnYouTubeUIIconV2R2_512.png",
+      "alt": "[Return Youtube UI Logo]",
+      "title": "Thanks for installing! :)"
+    },
+    "colors": {
+      "primary": "#14d1d1",
+      "primary_light": "#69ffff",
+      "primary_dark": "#009fa0",
+      "primary_light_background": "#e1e2e1",
+      "primary_light_foreground": "#f5f5f6",
+      "primary_text": "#000000",
+      "slider_background": "14d1d1",
+      "slider_fill": "#b6b6b7"
+    }
+  },
+  "link_sites": {
+    "link_sites_header": "View Extension On...",
+    "popup_page_footer_bottommost_message": "(Project under active development)",
+    "sites": {
+      "github": {
+        "name": "Github",
+        "icon_url": "/icons/github-mark.png",
+        "link_url": "https://github.com/42null/Return-YouTube-UI"
+      },
+      "firefox": {
+        "name": "Add-Ons",
+        "icon_url": "/icons/Fx-Browser-icon-fullColor.svg",
+        "link_url": "https://addons.mozilla.org/en-US/firefox/addon/return-youtube-ui/"
+      }
+    }
+  }
+}
