@@ -7,16 +7,16 @@ An extension making YouTube look like it did before everything was given rounded
   * Main priority
   * Every version will be compatible with the latest version of Firefox at publish time
 * Chromium-based browsers
-  * Lesser priority
+  * Lesser priority, dedicated parity updates
   * Most functionality tested with Brave
 
-Due to currently divulging implementation of V3 manifests between Firefox and Google, to work with Chromium-based browsers instead of Firefox you must switch the commented lines in manifest.json.
+Due to currently divulging implementation of V3 manifests between Mozilla and Google, to work with Chromium-based browsers instead of Firefox, you must switch the commented lines in manifest.json.
 <br>
 _manifest.json_
 ````json
 "background": {
-  "scripts": ["background/background.js"]
-//    "service_worker": "background/background.js"
+  "scripts": ["background/background.js"]//for Firefox
+//    "service_worker": "background/background.js"//for Chromium-based
 },
  ````
 
@@ -31,7 +31,7 @@ _Major releases are published to the Firefox Add-Ons page as an extension ([addo
 
 ## Settings & Customization Flags
 
-Settings control is being migrated to the extension popup page. With the latest versions, some settings have been moved while others are still only available to be set as static variables before installation. Those values can be adjusted by setting flags at the very top of "_returnYouTubeUI.js_".
+Settings control is being migrated to the extension popup page. With the latest versions, some settings have been moved while others are still only available to be set as static variables before installation. Those values can be adjusted by setting flags at the very top of "_triggerSetup.js_".
 
 #### Items that are the core principles of return are on by default
 | Setting                            | Default & Location     | Description                                                                                                                     |

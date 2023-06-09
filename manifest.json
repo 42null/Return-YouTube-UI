@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Return YouTube UI",
-  "version": "2.2.10",
+  "version": "2.3.0",
   "author": "42null",
   "description": "An extension making YouTube look like it used to before everything became rounded and circular with customisable settings.",
   "homepage_url": "https://github.com/42null/Return-YouTube-UI",
@@ -39,7 +39,7 @@
   "content_scripts": [
     {
       "matches": ["*://*.youtube.com/*"],
-      "js": ["returnYouTubeUI.js", "injectionInjector.js"]
+      "js": ["triggerSetup.js", "injectionInjector.js"]
     }
   ],
 

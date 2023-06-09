@@ -4,7 +4,7 @@
    as colors and text.
 */
 
-const PROPER_DATES = true; //Changes main video date info from "<#> years/months/etc. ago" to it's formatted date
+// const PROPER_DATES = true; //Changes main video date info from "<#> years/months/etc. ago" to it's formatted date
 
 //Created pages to inject
 let script = document.createElement('script');
@@ -51,9 +51,6 @@ determinedBrowserAPI.permissions.request({
     }
 });
 
-
-
-
 async function createElementLink(sheetName) {
     if(sheetName.endsWith(".css")){
         logWithConfigMsg("Linking style name ="+sheetName);
@@ -72,38 +69,19 @@ async function createElementLink(sheetName) {
     // primary stylesheetLinkElement;
 }
 
-
-let helperFunctions;
-
-
-helperFunctions = createElementLink("injection_partsconsole.log/helper_functions.js");
+let helperFunctions = createElementLink("injection_parts/helper_functions.js");
 document.head.appendChild(helperFunctions);
 
 /* Video link windows inside the player that show up during playtime */
-
 script.innerHTML = `
     function applyGeneratedScripts(){
         console.log("[`+projectConfiguration.log_header+`]: Activator call was received");
     `;
-
-if(PROPER_DATES){
-    script.innerHTML += `
-        let elementsOfFirstRowInDetails = document.getElementsByClassName("style-scope yt-formatted-string bold");
-        for(let i = 0; i < elementsOfFirstRowInDetails.length; i++){
-            if(elementsOfFirstRowInDetails[i].innerText.endsWith("ago")){//If the element was the one that needs to be replaced with the formatted date
-                elementsOfFirstRowInDetails[i].textContent = document.querySelectorAll("yt-formatted-string.style-scope.ytd-video-primary-info-renderer")[2].textContent;
-            }
-        }
-    `;
-}
-
-
 script.innerHTML+=` };`;
 
 injectedDiv.appendChild(script);
 
-
-/* Run the scrips again that were added to the page using this as YouTube switches videos
+/* Runs the scrips again that were added to the page using this. YouTube switches videos
    in a way that makes it difficult to just see if the page url changes. This also means
    we do not need to worry about losing the function we created between different pages. */
 activator.innerHTML = `

@@ -12,6 +12,7 @@ https://m2.material.io/resources/color/#!/?view.left=0&view.right=1&primary.colo
   They are set here to so their color can be displayed within your IDE.
   The colors below will not be used by the extension.
   */
+  /*TODO: Important: Works on only 2nd+ opening of popup*/
   --md_primary: #14d1d1; /*In projectConfig*/
   --md_light: #69ffff; /*In projectConfig*/
   --md_dark: #009fa0; /*In projectConfig*/

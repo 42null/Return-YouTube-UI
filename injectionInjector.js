@@ -149,7 +149,6 @@ function setProperty(propertyName, value){
 }
 // END INJECTOR BASED SETTINGS HELPERS
 
-
 function settingsToActions(){
     getApplySettings(KEY_STORAGE_LOCAL_APPLYING_ADJUSTMENT_STATES).then((applySettings) => {
         logWithConfigMsg("Settings used:");
@@ -202,11 +201,7 @@ function settingsToActions(){
 settingsToActions();
 
 
-
-
-
 // SPECIFICS TO YOUTUBE.COM
-
 /*
 * SPECIFIC TO YOUTUBE - listens for all video changes and re-applies
 * */

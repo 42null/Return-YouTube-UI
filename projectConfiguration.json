@@ -2,7 +2,7 @@
   "extension_display_name": "Return Youtube UI",
   "log_header": "Return Youtube UI",
   "log_header_internal": "Internal",
-  "DEFAULT_CHANGE_SETTINGS" : {
+  "DEFAULT_CHANGE_SETTINGS": {
     "VIDEOS_PER_ROW":                    {"value": 4,    "displayName": "Videos Per Row", "min": 1, "placeholder": 4},
     "UN_ROUNDED_SEARCH":                 {"value": true, "displayName": "Search Bar"},
     "UN_ROUNDED_THUMBNAILS_AND_PLAYERS": {"value": true, "displayName": "Thumbnails"},

@@ -14,7 +14,6 @@ setTimeout(() => {//TODO: Get working without timeout and instead on .then()
         lastScrollPosition = result[SAVED_SCROLLBAR_KEY];
         console.log("lastScrollPosition = "+lastScrollPosition);
         console.log(result);
-        // lastScrollPosition = 99999;
 
         setTimeout(() => {//TODO: Get working without timeout and instead on .then()
             // window.scrollTo(0, result.value);
@@ -24,7 +23,7 @@ setTimeout(() => {//TODO: Get working without timeout and instead on .then()
 }, 200);
 
 
-function loadProjectConfiguration() {//TODO: Make use returnYouTubeUI.js getProjectConfiguration or add to helperFunctions?
+function loadProjectConfiguration() {//TODO: Make use triggerSetup.js getProjectConfiguration or add to helperFunctions?
     projectConfiguration = JSON.parse(localStorage.getItem("ProjectConfiguration"));
     // localCopyApplySettings = structuredClone(projectConfiguration.DEFAULT_CHANGE_SETTINGS);
 }
