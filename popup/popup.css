@@ -57,13 +57,10 @@ button:hover {
   --alpha: 1;
 }
 
-
 .hasVerticalOverflowCausingHorizontal{
   overflow-x: hidden;
   margin-left: -2px;
 }
-
-
 .numberBox {
   position: relative;
   display: inline-block;
