@@ -7,14 +7,20 @@ https://github.com/mdn/webextensions-examples/tree/master/beastify (choose_beast
   /*All vars starting with md are for material design
 https://m2.material.io/resources/color/#!/?view.left=0&view.right=1&primary.color=14d1d1
   */
-  --md_primary: #14d1d1;
-  --md_light: #69ffff;
-  --md_dark: #009fa0;
-  --md_greyBack: #e1e2e1;
-  --md_greyFore: #f5f5f6;
-  --md_textOnP: #000000;
-  --md_sliderBack: var(--md_primary);
-  --md_sliderFill: #b6b6b7;
+
+  /*NOTICE: projectConfiguration.json overrides these values. ("popup_page.colors.<color>")
+  They are set here to so their color can be displayed within your IDE.
+  The colors below will not be used by the extension.
+  */
+  /*TODO: Important: Works on only 2nd+ opening of popup*/
+  --md_primary: #14d1d1; /*In projectConfig*/
+  --md_light: #69ffff; /*In projectConfig*/
+  --md_dark: #009fa0; /*In projectConfig*/
+  --md_greyBack: #e1e2e1; /*In projectConfig*/
+  --md_greyFore: #f5f5f6; /*In projectConfig*/
+  --md_textOnP: #000000; /*In projectConfig*/
+  --md_sliderBack: var(--md_primary); /*In projectConfig*/ /*TODO: Make js take variable names for one place set i.e. ("primary" --> "--md_primary")*/
+  --md_sliderFill: #b6b6b7; /*In projectConfig*/
 
   --extension_legacy_button_color: #ff3349ff;
 
@@ -24,10 +30,9 @@ https://m2.material.io/resources/color/#!/?view.left=0&view.right=1&primary.colo
   --scrollbar-width: calc(100vw - 100%);
 }
 
-
 html, body {
   /*width: calc(210px + var(--scrollbar-width));*/
-  width: 210px;
+  width: 220px;
   /*font-family: Segoe UI, system-ui;*/
   /*padding: 3%;*/
   font-family: Gotham, system-ui;
@@ -35,6 +40,8 @@ html, body {
   border-radius: 0;
   text-align: justify;
   background-color: var(--md_greyFore);
+
+  scrollbar-color: var(--md_dark) inital;
 }
 
 .hidden {
@@ -50,7 +57,10 @@ button:hover {
   --alpha: 1;
 }
 
-
+.hasVerticalOverflowCausingHorizontal{
+  overflow-x: hidden;
+  margin-left: -2px;
+}
 .numberBox {
   position: relative;
   display: inline-block;
@@ -78,9 +88,9 @@ button:hover {
 .slider {
   position: absolute;
   cursor: pointer;
-  width: 85%;
+  width: 81%;
   top: 0;
-  left: 7%;
+  left: 10%;
   right: 0;
   bottom: 0;
   background-color: var(--md_greyBack);
@@ -130,14 +140,25 @@ input:checked + .slider:before {
 
 
 
-#titlePage{
+#title-page{
   text-align: center;
 }
 
-#titlePage > h2{
-  width: 100%;
-  /*background-color: #F0F;*/
+#title-page h1{
+  font-size: 1.48em;
+  text-align: center;
+  width: 98%;
+  padding-left: 5px; /*TODO: Automate*/
   /*padding-left: var(--scrollbar-width);*/
+  background-color: var(--md_primary);
+  position: fixed;
+  padding-top: 50px;
+  padding-bottom: 5px;
+  top: -55px;
+}
+#title-page{
+  margin-top: 1.5em; /*Size of h2 for title element*/
+  margin-top: 60px;
 }
 
 #error-content{
@@ -149,7 +170,9 @@ input:checked + .slider:before {
   background-color: var(--md_light);
 }
 /*Default major buttons*/
-.majorButton > button{ background-color: var(--md_primary); }
+.majorButton > button{
+  background-color: var(--md_primary);
+}
 
 .primary_buttons{
   width: var(--primaryButtonsWidth);
@@ -208,10 +231,21 @@ table#settingsOptionsList{
   text-decoration: underline;
 }
 
-#viewExtension{
+#footer{
+  width: var(--primaryButtonsWidth);
+  margin: 0 auto;
+}
+
+footer h5{
   text-align: center;
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+footer #bottommost_message{
+  margin: 0 auto;
+  text-align: center;
+  font-style: italic;
 }
 
 /*CODE FROM https://dev-bay.com/css-ul-custom-bullet-style-with-image/*/
@@ -245,6 +279,31 @@ table#settingsOptionsList{
   background-image: url('/icons/Fx-Browser-icon-fullColor.svg');
 }
 
-#under_development_disclaimer{
+#footer_bottommost_message{
   margin-top: -50px;
+}
+
+/*Reload Warning*/
+.reloadWarning::before{
+  font-size: smaller;
+  /* &#10; is for a newline */
+  content: "\a(reload on change)";
+  white-space: pre-line;/*There to make the newline work*/
+}
+
+#link_sites_header{
+  text-decoration: underline;
+}
+#link_sites_header:contains("...") {
+  text-decoration: none;
+}
+
+.material-symbols-outlined {
+  /*vertical-align: -0.2em;*/
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 600,
+    'GRAD' 0,
+    'opsz' 10;
+  font-size: 80% !important;
 }

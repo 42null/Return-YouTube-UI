@@ -1,5 +1,9 @@
 :root{
+<<<<<<< HEAD:injection_parts/primary/homepage_videos_per_row.css
+    --return-youtube-ui-videos-per-row: 4; /* YouTubes current default */
+=======
     --return-youtube-ui-videos-per-row: -1;
+>>>>>>> origin/releases:injection_parts/return/homepage_videos_per_row.css
 }
 
 /*Code basis for videos per homepage is from https://webapps.stackexchange.com/a/160600*/

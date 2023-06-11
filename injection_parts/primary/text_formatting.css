@@ -1,0 +1,6 @@
+/*For some reason occasionally all of YouTube will become italicised but this is due to some other bug and cleaning the cash or setting all fixes it, as this is rare and does not appear to be intentional, at this moment, changes will not be made as part of the standard, published version in relation to this*/
+/*REMOVE ITALICS*/
+/*Channel Name*/
+.style-scope.ytd-channel-name{
+    font-style: normal;
+}

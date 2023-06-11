@@ -1,0 +1,85 @@
+<!--
+The starting point of this file started as a fork from the example repository in
+https://github.com/mdn/webextensions-examples/tree/master/beastify (choose_beast.html)
+-->
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="popup.css" id="popup-style"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />    <title>____ Popup Page</title> <!--I don't think this is ever visible to the user but might in a task manager somewhere -->
+  </head>
+
+<body>
+  <div id="title-page"><!--TODO: Come up with a better id name-->
+    <h1 id="title-header">
+      &lt;TitleHeader&gt;
+    </h1>
+<!--    <p>test</p>-->
+    <div style="text-align: center;">
+      <img id="popup-top-image" src="<getFromConfig>" alt="<getFromConfig>" title="<getFromConfig>" width="40%" height="auto" />
+    </div>
+  </div>
+
+  <div id="read-change-data-permission-request-message" class="hidden">
+    <p>This is a test</p>
+  </div>
+
+  <div id="popup-content">
+    <h3>Actions</h3>
+<!--    <button type="submit" id="ManuallyReApplyJSPageModifications">Re-Apply JS page modifications</button>-->
+    <div class="primary_buttons">
+      <div class="majorButton">
+        <button type="submit" id="settingsPageButton">Page Settings</button>
+        <table id="settingsOptionsList" >
+          <tr>
+            <th>Setting</th>
+            <th>Value</th>
+          </tr>
+        </table>
+      </div>
+
+
+
+      <div class="majorButton">
+        <button type="submit" id="extensionPreferencesPageButton">App Preferences</button>
+      </div>
+      <div class="majorButton">
+        <button type="submit" id="reloadExtension">Reload Extension</button>
+      </div>
+      <div class="majorButton">
+        <button type="submit" id="resetSettingsToDefault">
+          <span class="material-symbols-outlined">autorenew</span> Reset Settings <span class="material-symbols-outlined">autorenew</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="error-content" class="hidden">
+    <p>For security purposes this extension only works on <a href="https://www.youtube.com/" title="Open YouTube in a new tab" target="_blank">YouTube.com</a>.</p>
+  </div>
+
+  <footer>
+    <div id="sites_section">
+    <h5 id="link_sites_header">View Extension On...</h5>
+    <ul class="homepageLink" style="list-style:none!important;">
+      <table style="margin:0 auto; text-align: center;">
+        <tr id="sites_list">
+<!--          <th class="githubHomepage"><li><a href="https://github.com/42null/Return-YouTube-UI">Github</a></li></th>-->
+<!--          <th class="firefoxHomepage"><li><a href="https://addons.mozilla.org/en-US/firefox/addon/return-youtube-ui/">Add-Ons</a><br></li></th>-->
+        </tr>
+      </table>
+    </ul>
+    </div>
+    <p id="bottommost_message" class="smaller">Small Message</p>
+  </footer>
+</body>
+
+<!--Include after page is built TODO: Move?-->
+  <script src="popupPageStructure.js"></script>
+  <script src="../injectionInjector.js"></script>
+  <script src="popup.js"></script>
+  <script src="popupPagePreferences.js"></script>
+
+</html>

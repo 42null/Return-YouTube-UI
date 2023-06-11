@@ -1,0 +1,85 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+h1{
+    text-align: center;
+    /*font-family: 'Montserrat', sans-serif;*/
+    font-family: 'Alkatra', cursive;
+    font-weight: 700;
+    font-size: 48px;
+}
+
+h2{
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.7em;
+}
+
+ol{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.list-container {
+    display: flex;
+    justify-content: center;
+}
+
+.list {
+    list-style-position: inside;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+}
+
+.list li {
+    margin-bottom: 10px;
+    font-size: 1.6em;
+}
+
+p{
+    text-align: center;
+    font-size: 1.5em;
+}
+
+/*.image-container {*/
+/*    height: calc(100% - 90%); !* Subtracts 100px from the total height to make space for other content *!*/
+/*    overflow: hidden;*/
+/*    text-align: center;*/
+/*}*/
+
+/*.image-container img {*/
+/*    height: 100%;*/
+/*    width: auto;*/
+/*}*/
+
+.image-container {
+    height: min(30vh, 100vw);
+    overflow: hidden;
+    text-align: center;
+}
+
+.image-container img {
+    height: 100%;
+    width: auto;
+}
+
+
+footer{
+    width: 100%;
+    list-style: none !important;
+    text-align: center;
+    font-size: 1.5em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+footer > table{
+    margin: 0 auto;
+}
+
+tr > th{
+    width: 30%;
+    background-color: #b6b6b7;
+    padding: 15px;
+}
