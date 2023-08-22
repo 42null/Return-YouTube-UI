@@ -1,0 +1,8 @@
+/*Main Player*/
+#movie_player{
+    border-radius: 0;
+}
+/*Apply border radius from the main player onto set child*/
+ytd-watch-flexy[rounded-player-large][default-layout] #ytd-player.ytd-watch-flexy{
+    border-radius: inherit;
+}

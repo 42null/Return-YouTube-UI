@@ -15,17 +15,10 @@
 video.video-stream.html5-main-video{
     border-radius: 0 !important;/*Required*/
 }
-#movie_player{
-    border-radius: 0;
-}
+
 /*When hovering layer*/
 .ytp-miniplayer-scrim{
     border-radius: 0 !important;/*Required*/
-}
-
-/*MAIN VIDEO*/
-video{
-    border-radius: 0 !important;
 }
 
 /*Main Video On Channel Pages*/
@@ -53,7 +46,6 @@ div.thumbnail-container.style-scope.ytd-notification-renderer{
     -moz-border-radius: 0px !important;/*Required*/
     border-radius: 0px !important;/*Required*/
 }
-
 
 /*Next video preview button hold*/
 /*Outer Element*/

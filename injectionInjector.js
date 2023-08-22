@@ -168,8 +168,10 @@ function settingsToActions(){
                     setInjectionStateHelper(value, "injection_parts/primary/subscribe_button_shape.css");
                 }else if(key === "UN_ROUNDED_MENUS"){
                     setInjectionStateHelper(value, "injection_parts/primary/unrounded_menus.css");
-                }else if(key === "UN_ROUNDED_THUMBNAILS_AND_PLAYERS"){
-                    setInjectionStateHelper(value, "injection_parts/primary/unrounded_thumbnails_and_players.css");
+                }else if(key === "UN_ROUNDED_MAIN_PLAYER"){
+                    setInjectionStateHelper(value, "injection_parts/primary/unrounded_main_player.css");
+                }else if(key === "UN_ROUNDED_THUMBNAILS_AND_SECONDARY_PLAYERS"){
+                    setInjectionStateHelper(value, "injection_parts/primary/unrounded_thumbnails_and_secondary_players.css");
                     setInjectionStateHelper(value, "injection_parts/primary/unrounded_image_posts.css");//TODO: Move to own setting?
                 }else if(key === "BAR_BUTTONS"){
                     setInjectionStateHelper(value, "injection_parts/primary/otherFormattingFromViews.css");
