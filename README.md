@@ -2,6 +2,9 @@
 
 An extension making YouTube look like it did before everything was given rounded corners.
 
+THIS PROJECT IS CONNECTED TO MY MULTI-PLATFORM EXTENSION GNERATOR APPLICATION AND BOILERPLATE/EXAMPLE EXTENSION, UPDATES MAY TAKE TIME TO PROAGATE BETWEEN PROJECTS.
+
+
 #### Supported Browsers
 * Firefox
   * Main priority
@@ -20,7 +23,9 @@ _manifest.json_
 },
  ````
 
+
 _Major releases are published to the Firefox Add-Ons page as an extension ([addons.mozilla.org/...](https://addons.mozilla.org/en-US/firefox/addon/return-youtube-ui/)) and will continue to receive new updates. To install another version or your own fork, visit [firefox-source-docs.mozilla.org/...](https://firefox-source-docs.mozilla.org/devtools-user/about_colon_debugging/index.html) for instructions (or just enter [about:debugging#/runtime/this-firefox](https://firefox-source-docs.mozilla.org/devtools-user/about_colon_debugging/index.html)) into your url-bar._
+
 
 <div style="text-align: center;">
     <img src="./icons/ReturnYouTubeUIIconV2R2_512.png" alt="[Return YouTube UI Logo]" width="128" height="auto" />

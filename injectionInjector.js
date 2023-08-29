@@ -152,6 +152,8 @@ function setProperty(propertyName, value){
 function settingsToActions(){
     getApplySettings(KEY_STORAGE_LOCAL_APPLYING_ADJUSTMENT_STATES).then((applySettings) => {
         logWithConfigMsg("Settings used:");
+
+
         const keys = Object.keys(applySettings);
         for (let i = 0; i < keys.length; i++) {
             const key = keys[i];
@@ -191,12 +193,14 @@ function settingsToActions(){
                     setProperty("return-youtube-ui-percent-more-actions-bar-space", value+"%");
                     setInjectionStateHelper( "injection_parts/primary/percent_more_actions_bar.css");
                 }
-            }else{
+                // setInjectionStateHelper(value, "injection_parts/primary/text_formatting.css");
+            // }else{
                 if(key === "VIDEOS_PER_ROW"){
-                    var r = document.querySelector(':root');
-                    r.style.setProperty('--return-youtube-ui-videos-per-row', value);
-                    setInjectionStateHelper(false, "injection_parts/return/homepage_videos_per_row.css");
-                    setInjectionStateHelper(true, "injection_parts/return/homepage_videos_per_row.css");
+                    setProperty("return-youtube-ui-videos-per-row", value);
+                    setInjectionStateHelper( "injection_parts/primary/homepage_videos_per_row.css");
+                }else if(key === "PERCENT_MORE_SPACE_TO_ACTIONS_BAR"){
+                    setProperty("return-youtube-ui-percent-more-actions-bar-space", value+"%");
+                    setInjectionStateHelper( "injection_parts/primary/percent_more_actions_bar.css");
                 }
             }
         }
@@ -206,7 +210,6 @@ function settingsToActions(){
 }
 
 // Initial setup/initial receive
-console.log("Running initial applySettings...");
 settingsToActions();
 
 
