@@ -168,8 +168,10 @@ function settingsToActions(){
                     setInjectionStateHelper(value, "injection_parts/primary/subscribe_button_shape.css");
                 }else if(key === "UN_ROUNDED_MENUS"){
                     setInjectionStateHelper(value, "injection_parts/primary/unrounded_menus.css");
-                }else if(key === "UN_ROUNDED_THUMBNAILS_AND_PLAYERS"){
-                    setInjectionStateHelper(value, "injection_parts/primary/unrounded_thumbnails_and_players.css");
+                }else if(key === "UN_ROUNDED_MAIN_PLAYER"){
+                    setInjectionStateHelper(value, "injection_parts/primary/unrounded_main_player.css");
+                }else if(key === "UN_ROUNDED_THUMBNAILS_AND_SECONDARY_PLAYERS"){
+                    setInjectionStateHelper(value, "injection_parts/primary/unrounded_thumbnails_and_secondary_players.css");
                     setInjectionStateHelper(value, "injection_parts/primary/unrounded_image_posts.css");//TODO: Move to own setting?
                 }else if(key === "BAR_BUTTONS"){
                     setInjectionStateHelper(value, "injection_parts/primary/otherFormattingFromViews.css");
@@ -179,6 +181,15 @@ function settingsToActions(){
                     // }else{
                     //     save_visible_before_clip(false);
                     // }
+                }
+                // setInjectionStateHelper(value, "injection_parts/primary/text_formatting.css");
+            // }else{
+                if(key === "VIDEOS_PER_ROW"){
+                    setProperty("return-youtube-ui-videos-per-row", value);
+                    setInjectionStateHelper( "injection_parts/primary/homepage_videos_per_row.css");
+                }else if(key === "PERCENT_MORE_SPACE_TO_ACTIONS_BAR"){
+                    setProperty("return-youtube-ui-percent-more-actions-bar-space", value+"%");
+                    setInjectionStateHelper( "injection_parts/primary/percent_more_actions_bar.css");
                 }
                 // setInjectionStateHelper(value, "injection_parts/primary/text_formatting.css");
             // }else{

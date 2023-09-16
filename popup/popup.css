@@ -61,6 +61,8 @@ button:hover {
   overflow-x: hidden;
   margin-left: -2px;
 }
+
+
 .numberBox {
   position: relative;
   display: inline-block;
