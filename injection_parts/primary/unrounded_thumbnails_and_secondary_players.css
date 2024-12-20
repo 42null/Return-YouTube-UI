@@ -1,5 +1,5 @@
 /*THUMBNAILS*/
-#thumbnail{
+#thumbnail, .yt-thumbnail-view-model.yt-collection-thumbnail-view-model--has-stacks{
     border-radius: 0 !important;
 }
 .ytp-videowall-still-round-medium, .ytp-videowall-still-image{
