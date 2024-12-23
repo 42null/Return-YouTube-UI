@@ -2,9 +2,6 @@
 
 An extension making YouTube look like it did before everything was given rounded corners.
 
-THIS PROJECT IS CONNECTED TO MY MULTI-PLATFORM EXTENSION GNERATOR APPLICATION AND BOILERPLATE/EXAMPLE EXTENSION, UPDATES MAY TAKE TIME TO PROAGATE BETWEEN PROJECTS.
-
-
 #### Supported Browsers
 * Firefox
   * Main priority
