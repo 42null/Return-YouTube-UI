@@ -152,7 +152,6 @@ function setProperty(propertyName, value){
 function settingsToActions(){
     getApplySettings(KEY_STORAGE_LOCAL_APPLYING_ADJUSTMENT_STATES).then((applySettings) => {
         logWithConfigMsg("Settings used:");
-
         const keys = Object.keys(applySettings);
         for (let i = 0; i < keys.length; i++) {
             const key = keys[i];
@@ -201,6 +200,13 @@ function settingsToActions(){
                     setProperty("return-youtube-ui-percent-more-actions-bar-space", value+"%");
                     setInjectionStateHelper( "injection_parts/primary/percent_more_actions_bar.css");
                 }
+            }else{
+                if(key === "VIDEOS_PER_ROW"){
+                    var r = document.querySelector(':root');
+                    r.style.setProperty('--return-youtube-ui-videos-per-row', value);
+                    setInjectionStateHelper(false, "injection_parts/return/homepage_videos_per_row.css");
+                    setInjectionStateHelper(true, "injection_parts/return/homepage_videos_per_row.css");
+                }
             }
         }
     }).catch((error) => {
@@ -209,6 +215,7 @@ function settingsToActions(){
 }
 
 // Initial setup/initial receive
+console.log("Running initial applySettings...");
 settingsToActions();
 
 
