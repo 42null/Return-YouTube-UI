@@ -10,7 +10,7 @@ An extension making YouTube look like it did before everything was given rounded
   * Lesser priority, dedicated parity updates
   * Most functionality tested with Brave
 
-Due to currently divulging implementation of V3 manifests between Mozilla and Google, to work with Chromium-based browsers instead of Firefox, you must switch the commented lines in manifest.json.
+Due to diverging implementations of V3 manifests between Mozilla and Google, to work with Chromium-based browsers instead of Firefox, you must switch the commented lines in manifest.json.
 <br>
 _manifest.json_
 ````json
