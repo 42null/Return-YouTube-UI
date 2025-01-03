@@ -11,7 +11,7 @@
     "SUBSCRIBE_BUTTON_COLOR":            {"value": true, "displayName": "Subscribe Color"},
     "SUBSCRIBE_BUTTON_SHAPE":            {"value": true, "displayName": "Subscribe Shape"},
     "PERCENT_MORE_SPACE_TO_ACTIONS_BAR": {"value": 5,    "displayName": "Actions Space %", "min": 0, "max": 15, "needsReload": true, "step": 5, "placeholder": 5},
-    "BAR_BUTTONS":                       {"value": true, "displayName": "Action Boarders"}
+    "BAR_BUTTONS":                       {"value": true, "displayName": "Action Borders"}
   },
   "popup_page": {
     "top_image": {
