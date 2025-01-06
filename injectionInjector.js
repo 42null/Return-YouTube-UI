@@ -159,28 +159,36 @@ function settingsToActions(){
 
             // if(typeof value == "boolean"){
             if(true){
-                // TODO: Make switch statement
-                if(key === "UN_ROUNDED_SEARCH"){
-                    setInjectionStateHelper(value, "injection_parts/primary/searchbox.css");
-                }else if(key === "SUBSCRIBE_BUTTON_COLOR"){
-                    setInjectionStateHelper(value, "injection_parts/primary/subscribe_button_color.css");
-                }else if(key === "SUBSCRIBE_BUTTON_SHAPE"){
-                    setInjectionStateHelper(value, "injection_parts/primary/subscribe_button_shape.css");
-                }else if(key === "UN_ROUNDED_MENUS"){
-                    setInjectionStateHelper(value, "injection_parts/primary/unrounded_menus.css");
-                }else if(key === "UN_ROUNDED_MAIN_PLAYER"){
-                    setInjectionStateHelper(value, "injection_parts/primary/unrounded_main_player.css");
-                }else if(key === "UN_ROUNDED_THUMBNAILS_AND_SECONDARY_PLAYERS"){
-                    setInjectionStateHelper(value, "injection_parts/primary/unrounded_thumbnails_and_secondary_players.css");
-                    setInjectionStateHelper(value, "injection_parts/primary/unrounded_image_posts.css");//TODO: Move to own setting?
-                }else if(key === "BAR_BUTTONS"){
-                    setInjectionStateHelper(value, "injection_parts/primary/otherFormattingFromViews.css");
-                }else if(key === "SAVE_BEFORE_SHARE"){
-                    // if(value){
-                    //     setInjectionStateHelper(true, "injection_parts/primary/save_visible_before_clip.js");
-                    // }else{
-                    //     save_visible_before_clip(false);
-                    // }
+                switch(key) {
+                    case "UN_ROUNDED_SEARCH":
+                        setInjectionStateHelper(value, "injection_parts/primary/searchbox.css");
+                        break;
+                    case "SUBSCRIBE_BUTTON_COLOR":
+                        setInjectionStateHelper(value, "injection_parts/primary/subscribe_button_color.css");
+                        break;
+                    case "SUBSCRIBE_BUTTON_SHAPE":
+                        setInjectionStateHelper(value, "injection_parts/primary/subscribe_button_shape.css");
+                        break;
+                    case "UN_ROUNDED_MENUS":
+                        setInjectionStateHelper(value, "injection_parts/primary/unrounded_menus.css");
+                        break;
+                    case "UN_ROUNDED_MAIN_PLAYER":
+                        setInjectionStateHelper(value, "injection_parts/primary/unrounded_main_player.css");
+                        break;
+                    case "UN_ROUNDED_THUMBNAILS_AND_SECONDARY_PLAYERS":
+                        setInjectionStateHelper(value, "injection_parts/primary/unrounded_thumbnails_and_secondary_players.css");
+                        setInjectionStateHelper(value, "injection_parts/primary/unrounded_image_posts.css");//TODO: Move to own setting?
+                        break;
+                    case "BAR_BUTTONS":
+                        setInjectionStateHelper(value, "injection_parts/primary/otherFormattingFromViews.css");
+                        break;
+                    case "SAVE_BEFORE_SHARE":
+                        // if(value){
+                        //     setInjectionStateHelper(true, "injection_parts/primary/save_visible_before_clip.js");
+                        // }else{
+                        //     save_visible_before_clip(false);
+                        // }
+                        break;
                 }
                 // setInjectionStateHelper(value, "injection_parts/primary/text_formatting.css");
             // }else{
