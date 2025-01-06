@@ -1,10 +1,23 @@
 /*THUMBNAILS*/
-#thumbnail{
+#thumbnail, .yt-thumbnail-view-model.yt-collection-thumbnail-view-model--has-stacks{
     border-radius: 0 !important;
 }
 .ytp-videowall-still-round-medium, .ytp-videowall-still-image{
     /*background-color: orange !important;*/
     border-radius: 0 !important;
+}
+/*THUMBNAILS FOR PLAYLIST STACKS*/
+div[class^="collections-stack-wiz__collection-stack1"] {
+    width: calc(100% - 8px);
+    left: 4px;
+    right: 4px;
+    border-radius: 0;
+}
+div[class^="collections-stack-wiz__collection-stack2"] {
+    width: calc(100% - 16px);
+    left: 8px;
+    right: 8px;
+    border-radius: 0;
 }
 
 /*MINIPLAYER*/
