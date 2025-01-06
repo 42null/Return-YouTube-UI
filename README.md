@@ -1,6 +1,6 @@
 # Return YouTube UI
 
-An extension making YouTube look like it did before everything was given rounded corners.
+An extension making YouTube look like it did before everything was given rounded corners. 
 
 #### Supported Browsers
 * Firefox
@@ -38,7 +38,7 @@ Settings control has been migrated to the extension popup page. With the latest 
 #### Items that are the core principles of return are on by default
 | Setting                            | Default & Location     | Description                                                                                                     |
 |------------------------------------|------------------------|-----------------------------------------------------------------------------------------------------------------|
-| Videos Per Row                     | 4 (popup)              | Sets the number of video columns on the homepage and channel "videos" pages to a user provided value (min = 1). |
+| Videos Per Row                     | 5 (popup)              | Sets the number of video columns on the homepage and channel "videos" pages to a user provided value (min = 1). |
 | Thumbnails                         | true (popup)           | Hardens corners for thumbnails mini-players everywhere.                                                         |
 | Main Player                        | true (popup)           | Hardens corners for the main player.                                                                            |
 | Subscribe Color                    | true (popup)           | Brings back the red to the subscribe color.                                                                     |
@@ -57,6 +57,8 @@ Settings control has been migrated to the extension popup page. With the latest 
 
 If you try it out, please let me know if the changes feels natural on your device/aspect ratio.
 
-**In addition, any screenshots or saved pages from before the UI change would be appreciated if you have them. Finding differences that could be applied without creating the old view from scratch would simplify the process.**
-
 Feel free to message me with any questions or suggestions! :)
+
+## Note:
+
+This project was forked to create the repository [Simplified-example-website-modifier-extension-template](https://github.com/42null/Simplified-example-website-modifier-extension-template). They are now decoupled but improvements to one may be ported to the other.

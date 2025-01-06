@@ -26,3 +26,12 @@ ytd-tvfilm-offer-module-renderer{
 }
 /*END OFFER MODULE*/
 
+/*YOUR WATCH HISTORY IS OFF NOTICE*/
+#dismissible{
+    border-radius: 2px !important;
+}
+
+/*Left sidebar options (Home, Subscriptions, Etc - given less harsh corners*/
+ytd-guide-entry-renderer.style-scope.ytd-guide-section-renderer, #endpoint.yt-simple-endpoint.style-scope.ytd-guide-entry-renderer{
+    border-radius: 5px !important;
+}
