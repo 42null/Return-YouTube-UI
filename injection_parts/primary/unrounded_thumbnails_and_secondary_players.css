@@ -29,6 +29,10 @@ video.video-stream.html5-main-video{
     border-radius: 0 !important;/*Required*/
 }
 
+#modern-card.ytd-miniplayer{
+    border-radius: 2px !important;/*Required*/
+}
+
 /*When hovering layer*/
 .ytp-miniplayer-scrim{
     border-radius: 0 !important;/*Required*/
