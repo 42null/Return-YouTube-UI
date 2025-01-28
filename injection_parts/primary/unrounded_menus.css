@@ -3,6 +3,18 @@
     border-radius: 0 !important;/*Required !*/
     /*    TODO: Make option for border-color #292929*/
 }
+ytd-playlist-video-renderer{
+    border-radius: 0;
+}
+
+/*PLAYLIST LEFT SIDE OF LIST*/
+.page-header-view-model-wiz--display-as-sidebar .page-header-view-model-wiz__page-header-background {
+    border-radius: 2px;
+}
+/*PLAYLIST Hover elements on the list*/
+yt-content-preview-image-view-model{
+    border-radius: 0 !important;
+}
 
 
 /*START Popup Menus*/
