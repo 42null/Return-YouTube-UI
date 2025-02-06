@@ -3,7 +3,7 @@
   "log_header": "Return Youtube UI",
   "log_header_internal": "Internal",
   "DEFAULT_CHANGE_SETTINGS": {
-    "VIDEOS_PER_ROW":                    {"value": 4,    "displayName": "Videos Per Row", "min": 1, "placeholder": 4},
+    "VIDEOS_PER_ROW":                    {"value": 5,    "displayName": "Videos Per Row", "min": 1, "placeholder": 4},
     "UN_ROUNDED_SEARCH":                 {"value": true, "displayName": "Search Bar"},
     "UN_ROUNDED_THUMBNAILS_AND_SECONDARY_PLAYERS": {"value": true, "displayName": "Thumbnails"},
     "UN_ROUNDED_MAIN_PLAYER":            {"value": true, "displayName": "Main Player"},
@@ -32,7 +32,7 @@
   },
   "link_sites": {
     "link_sites_header": "View Extension On...",
-    "popup_page_footer_bottommost_message": "(Project receives updates)",
+    "popup_page_footer_bottommost_message": "(Project receives updates, may lag behind YouTube's changes)",
     "sites": {
       "github": {
         "name": "Github",

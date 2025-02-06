@@ -20,6 +20,11 @@ div[class^="collections-stack-wiz__collection-stack2"] {
     border-radius: 0;
 }
 
+/*SHORTS*/
+.shortsLockupViewModelHostThumbnailContainer{
+    border-radius: 0;
+}
+
 /*MINIPLAYER*/
 #video-preview-container.ytd-video-preview{
     border-radius: 0;
@@ -27,6 +32,10 @@ div[class^="collections-stack-wiz__collection-stack2"] {
 /*Miniplayer on bottom right of screen*/
 video.video-stream.html5-main-video{
     border-radius: 0 !important;/*Required*/
+}
+
+#modern-card.ytd-miniplayer{
+    border-radius: 2px !important;/*Required*/
 }
 
 /*When hovering layer*/
