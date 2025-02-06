@@ -6,3 +6,8 @@
 ytd-watch-flexy[rounded-player-large][default-layout] #ytd-player.ytd-watch-flexy{
     border-radius: inherit;
 }
+
+/*Shorts Main Player*/
+#player-container{
+    border-radius: 0;
+}
