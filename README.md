@@ -1,6 +1,7 @@
 # Return YouTube UI
 
-An extension making YouTube look like it did before everything was given rounded corners. 
+An extension making YouTube look like it did before everything was given rounded corners.
+
 
 #### Supported Browsers
 * Firefox
