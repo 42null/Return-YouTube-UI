@@ -33,8 +33,7 @@ div[class^="collections-stack-wiz__collection-stack2"] {
 video.video-stream.html5-main-video{
     border-radius: 0 !important;/*Required*/
 }
-
-#modern-card.ytd-miniplayer{
+.ytd-miniplayer{
     border-radius: 2px !important;/*Required*/
 }
 
