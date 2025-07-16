@@ -10,8 +10,8 @@
     "UN_ROUNDED_MENUS":                  {"value": true, "displayName": "Menus"},
     "SUBSCRIBE_BUTTON_COLOR":            {"value": true, "displayName": "Subscribe Color"},
     "SUBSCRIBE_BUTTON_SHAPE":            {"value": true, "displayName": "Subscribe Shape"},
-    "PERCENT_MORE_SPACE_TO_ACTIONS_BAR": {"value": 5,    "displayName": "Actions Space %", "min": 0, "max": 15, "needsReload": true, "step": 5, "placeholder": 5},
-    "BAR_BUTTONS":                       {"value": true, "displayName": "Action Borders"}
+    "BAR_BUTTONS":                       {"value": true, "displayName": "Action Borders"},
+    "PERCENT_MORE_SPACE_TO_ACTIONS_BAR": {"value": 5,    "displayName": "Actions Space %", "min": 0, "max": 15, "needsReload": true, "step": 5, "placeholder": 5}
   },
   "popup_page": {
     "top_image": {
@@ -32,7 +32,7 @@
   },
   "link_sites": {
     "link_sites_header": "View Extension On...",
-    "popup_page_footer_bottommost_message": "(Project receives updates, may lag behind YouTube's changes)",
+    "popup_page_footer_bottommost_message": "(Project receives updates but may lag behind YouTube's changes)",
     "sites": {
       "github": {
         "name": "Github",
