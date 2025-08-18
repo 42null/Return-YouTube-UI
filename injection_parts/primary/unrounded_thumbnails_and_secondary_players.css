@@ -37,6 +37,10 @@ video.video-stream.html5-main-video{
     border-radius: 2px !important;/*Required*/
 }
 
+.ytdMiniplayerComponentContent{
+    border-radius: 2px !important;
+}
+
 /*When hovering layer*/
 .ytp-miniplayer-scrim{
     border-radius: 0 !important;/*Required*/

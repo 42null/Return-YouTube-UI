@@ -10,3 +10,7 @@
     background-color: transparent !important; /*required !*/
 }
 
+/*Channel Header Banner*/
+yt-image-banner-view-model {
+    border-radius: 2px !important;
+}
