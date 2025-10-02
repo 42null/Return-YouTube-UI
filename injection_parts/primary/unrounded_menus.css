@@ -22,6 +22,11 @@ yt-content-preview-image-view-model{
 .ytd-popup-container{
     border-radius: 0 !important;
 }
+/*Three dots menu by thumbnail*/
+.ytSheetViewModelHost.ytSheetViewModelContextual{
+    border-radius: 0 !important;
+}
+
 /*END Popup Menus*/
 
 /*PLAYER SETTINGS*/
