@@ -8,8 +8,8 @@ ytd-playlist-video-renderer{
 }
 
 /*PLAYLIST LEFT SIDE OF LIST*/
-.page-header-view-model-wiz--display-as-sidebar .page-header-view-model-wiz__page-header-background {
-    border-radius: 2px;
+.page-header-view-model-wiz--display-as-sidebar .page-header-view-model-wiz__page-header-background, .yt-page-header-view-model__page-header-background{
+    border-radius: 2px !important;
 }
 /*PLAYLIST Hover elements on the list*/
 yt-content-preview-image-view-model{
