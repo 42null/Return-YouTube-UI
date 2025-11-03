@@ -187,6 +187,10 @@ function settingsToActions(){
                     //     save_visible_before_clip(false);
                     // }
                     break;
+                case "UNROUND_CONTROL_BUTTONS":
+                    setInjectionStateHelper(value, "injection_parts/primary/unrounded_controller_actions.css");
+                    break;
+
             }
             // setInjectionStateHelper(value, "injection_parts/primary/text_formatting.css");
             if(key === "VIDEOS_PER_ROW"){

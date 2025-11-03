@@ -1,0 +1,25 @@
+.ytp-chrome-bottom{
+    max-height: 50px !important;
+    width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    background-color: var(--yt-spec-overlay-background-medium-light,rgba(0,0,0,.3)) !important;
+}
+
+/*The Progress Bar*/
+.ytp-timed-markers-container{
+    width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+}
+
+.ytp-button{
+    border-radius: 0 !important;
+    background-color: #00000000 !important;
+}
+
+/*ytp-chrome-controls*/
+
+html{
+    background-color: red !important;
+}
